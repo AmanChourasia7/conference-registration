@@ -3,9 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Join us at the International Tech Conference 2026. Connect with industry leaders, learn from experts, and network with professionals.">
+    <meta name="keywords" content="conference, technology, networking, professional development, tech summit">
+    <meta name="author" content="Tech Conference Organization">
+    <meta property="og:title" content="International Tech Conference 2026">
+    <meta property="og:description" content="Join us at the International Tech Conference 2026">
+    <meta property="og:type" content="website">
+    <title>Home - International Tech Conference 2026</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <H1>Hello world</H1>
+    <header>
+        <nav class="container">
+            <div class="logo">Tech Conference 2026</div>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="speakers.html">Speakers</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="registration.html">Registration</a></li>
+                <li><a href="venue.html">Venue</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>International Tech Conference 2026</h1>
+                <p>Join the Future of Technology</p>
+                <p>June 15-17, 2026 | San Francisco, CA</p>
+                <div style="margin-top: 2rem;">
+                    <a href="registration.html" class="btn">Register Now</a>
+                    <a href="about.html" class="btn btn-secondary" style="margin-left: 1rem;">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Why Attend?</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>World-Class Speakers</h3>
+                        <p>Learn from industry leaders and pioneers shaping the future of technology.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Networking Opportunities</h3>
+                        <p>Connect with professionals, entrepreneurs, and innovators from around the globe.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Cutting-Edge Topics</h3>
+                        <p>Explore the latest trends in AI, cloud computing, cybersecurity, and more.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Hands-On Workshops</h3>
+                        <p>Participate in interactive sessions and gain practical skills you can apply immediately.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Conference Highlights</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>3 Days of Innovation</h3>
+                        <p>Immerse yourself in three full days of keynotes, sessions, and workshops covering the most important topics in tech.</p>
+                    </div>
+                    <div class="card">
+                        <h3>50+ Expert Speakers</h3>
+                        <p>Gain insights from leaders at Fortune 500 companies, successful startups, and research institutions.</p>
+                    </div>
+                    <div class="card">
+                        <h3>100+ Sessions</h3>
+                        <p>Choose from over 100 sessions across multiple tracks tailored to different interests and expertise levels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Ready to Join Us?</h2>
+                <div style="text-align: center;">
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                        Don't miss this opportunity to be part of the premier technology conference of 2026.
+                    </p>
+                    <a href="registration.html" class="btn">Register Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="speakers.html">Speakers</a></li>
+                        <li><a href="schedule.html">Schedule</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="venue.html">Venue</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="registration.html">Registration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 International Tech Conference. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

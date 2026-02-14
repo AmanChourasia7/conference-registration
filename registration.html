@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Register for the International Tech Conference 2026. Secure your spot at the premier technology event.">
+    <meta name="keywords" content="conference registration, event registration, tech conference signup">
+    <title>Registration - International Tech Conference 2026</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Tech Conference 2026</div>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="speakers.html">Speakers</a></li>
+                <li><a href="schedule.html">Schedule</a></li>
+                <li><a href="registration.html" class="active">Registration</a></li>
+                <li><a href="venue.html">Venue</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Event Registration</h1>
+                <p>Join Us at Tech Conference 2026</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Registration Pricing</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Early Bird</h3>
+                        <p style="font-size: 2rem; color: #2563eb; font-weight: bold; margin: 1rem 0;">$399</p>
+                        <p style="margin-bottom: 1.5rem; color: #f59e0b; font-weight: 600;">Until March 31, 2026</p>
+                        <ul style="list-style: none; text-align: left; margin-bottom: 1.5rem;">
+                            <li>✓ Full conference access</li>
+                            <li>✓ All keynote sessions</li>
+                            <li>✓ Workshop participation</li>
+                            <li>✓ Conference materials</li>
+                            <li>✓ Networking events</li>
+                        </ul>
+                    </div>
+                    <div class="card" style="border: 3px solid #2563eb;">
+                        <h3>Standard</h3>
+                        <p style="font-size: 2rem; color: #2563eb; font-weight: bold; margin: 1rem 0;">$599</p>
+                        <p style="margin-bottom: 1.5rem; color: #f59e0b; font-weight: 600;">Until May 31, 2026</p>
+                        <ul style="list-style: none; text-align: left; margin-bottom: 1.5rem;">
+                            <li>✓ Full conference access</li>
+                            <li>✓ All keynote sessions</li>
+                            <li>✓ Workshop participation</li>
+                            <li>✓ Conference materials</li>
+                            <li>✓ Networking events</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Late Registration</h3>
+                        <p style="font-size: 2rem; color: #2563eb; font-weight: bold; margin: 1rem 0;">$799</p>
+                        <p style="margin-bottom: 1.5rem; color: #f59e0b; font-weight: 600;">After May 31, 2026</p>
+                        <ul style="list-style: none; text-align: left; margin-bottom: 1.5rem;">
+                            <li>✓ Full conference access</li>
+                            <li>✓ All keynote sessions</li>
+                            <li>✓ Workshop participation</li>
+                            <li>✓ Conference materials</li>
+                            <li>✓ Networking events</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Register Now</h2>
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title</label>
+                        <input type="text" id="jobTitle" name="jobTitle">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ticketType">Ticket Type *</label>
+                        <select id="ticketType" name="ticketType" required>
+                            <option value="">Select a ticket type</option>
+                            <option value="earlyBird">Early Bird - $399</option>
+                            <option value="standard">Standard - $599</option>
+                            <option value="late">Late Registration - $799</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interests">Areas of Interest (Select all that apply)</label>
+                        <div style="margin-top: 0.5rem;">
+                            <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="ai" style="width: auto; margin-right: 0.5rem;">
+                                Artificial Intelligence & Machine Learning
+                            </label>
+                            <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="cloud" style="width: auto; margin-right: 0.5rem;">
+                                Cloud Computing & DevOps
+                            </label>
+                            <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="security" style="width: auto; margin-right: 0.5rem;">
+                                Cybersecurity
+                            </label>
+                            <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="data" style="width: auto; margin-right: 0.5rem;">
+                                Data Science & Analytics
+                            </label>
+                            <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                <input type="checkbox" name="interests" value="mobile" style="width: auto; margin-right: 0.5rem;">
+                                Mobile & Web Development
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dietaryRestrictions">Dietary Restrictions</label>
+                        <textarea id="dietaryRestrictions" name="dietaryRestrictions" rows="3" placeholder="Please let us know if you have any dietary restrictions"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="specialRequests">Special Requests or Accommodations</label>
+                        <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Any special requests or accessibility needs"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="newsletter" style="width: auto; margin-right: 0.5rem;">
+                            Subscribe to our newsletter for updates and future events
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; font-weight: normal;">
+                            <input type="checkbox" name="terms" required style="width: auto; margin-right: 0.5rem;">
+                            I agree to the terms and conditions *
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem;">Complete Registration</button>
+                </form>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <h2>Group Discounts Available</h2>
+                <div class="info-box" style="max-width: 700px; margin: 2rem auto;">
+                    <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                        Planning to attend with your team? We offer special group rates for organizations registering 5 or more attendees.
+                    </p>
+                    <ul style="margin-bottom: 1.5rem;">
+                        <li>5-9 attendees: 10% discount</li>
+                        <li>10-19 attendees: 15% discount</li>
+                        <li>20+ attendees: 20% discount</li>
+                    </ul>
+                    <div style="text-align: center;">
+                        <a href="contact.html" class="btn">Contact Us for Group Rates</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="speakers.html">Speakers</a></li>
+                        <li><a href="schedule.html">Schedule</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Information</h4>
+                    <ul>
+                        <li><a href="venue.html">Venue</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="registration.html">Registration</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 International Tech Conference. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for registering! Your registration has been submitted successfully. You will receive a confirmation email shortly.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
