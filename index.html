@@ -3,9 +3,596 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tech Conference 2026 - Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero .date-location {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.85;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #555;
+        }
+
+        /* Speakers Section */
+        .speakers {
+            padding: 80px 20px;
+        }
+
+        .speakers h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .speaker-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .speaker-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .speaker-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .speaker-info h3 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .speaker-info .title {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .speaker-info p {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Schedule Section */
+        .schedule {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .schedule h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .schedule-item {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .schedule-item .time {
+            color: #ff6b6b;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .schedule-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .schedule-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 80px 20px;
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            text-align: center;
+            color: #667eea;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+        }
+
+        .price-card.featured {
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .price-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .price-card .price {
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .price-card ul {
+            text-align: left;
+            margin: 25px 0;
+            list-style: none;
+        }
+
+        .price-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+
+        .price-card li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        footer p, footer a {
+            color: #bbb;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        footer a:hover {
+            color: #667eea;
+        }
+
+        footer .bottom {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about h2, .speakers h2, .schedule h2, .pricing h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <H1>Hello world</H1>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">TechConf 2026</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#speakers">Speakers</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Tech Conference 2026</h1>
+            <p>Join us for the most innovative tech event of the year!</p>
+            <div class="date-location">
+                📅 March 15-17, 2026 | 📍 San Francisco Convention Center
+            </div>
+            <a href="#register" class="cta-button">Register Now</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About the Conference</h2>
+            <p>
+                TechConf 2026 brings together industry leaders, innovators, and technology enthusiasts 
+                from around the world. Over three days, join us for cutting-edge talks, interactive workshops, 
+                networking sessions, and hands-on demonstrations.
+            </p>
+            <p>
+                Whether you're a developer, entrepreneur, designer, or tech enthusiast, there's something 
+                for everyone at TechConf 2026.
+            </p>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section class="speakers" id="speakers">
+        <div class="container">
+            <h2>Featured Speakers</h2>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <img src="https://via.placeholder.com/250x250?text=Speaker+1" alt="Sarah Chen">
+                    <div class="speaker-info">
+                        <h3>Sarah Chen</h3>
+                        <p class="title">AI & Machine Learning Expert</p>
+                        <p>Leading AI innovations at TechCorp</p>
+                    </div>
+                </div>
+                <div class="speaker-card">
+                    <img src="https://via.placeholder.com/250x250?text=Speaker+2" alt="James Wilson">
+                    <div class="speaker-info">
+                        <h3>James Wilson</h3>
+                        <p class="title">Cloud Architecture Specialist</p>
+                        <p>Scaling systems for millions of users</p>
+                    </div>
+                </div>
+                <div class="speaker-card">
+                    <img src="https://via.placeholder.com/250x250?text=Speaker+3" alt="Maria Garcia">
+                    <div class="speaker-info">
+                        <h3>Maria Garcia</h3>
+                        <p class="title">Cybersecurity Advocate</p>
+                        <p>Protecting digital futures worldwide</p>
+                    </div>
+                </div>
+                <div class="speaker-card">
+                    <img src="https://via.placeholder.com/250x250?text=Speaker+4" alt="David Park">
+                    <div class="speaker-info">
+                        <h3>David Park</h3>
+                        <p class="title">Web3 & Blockchain Pioneer</p>
+                        <p>Building the decentralized internet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section class="schedule" id="schedule">
+        <div class="container">
+            <h2>Conference Schedule</h2>
+            <div class="schedule-grid">
+                <div class="schedule-item">
+                    <div class="time">Day 1: March 15</div>
+                    <h3>Opening Keynote & AI Workshop</h3>
+                    <p>
+                        Join us for the opening keynote featuring industry leaders discussing the future of AI 
+                        followed by interactive workshops on machine learning applications.
+                    </p>
+                </div>
+                <div class="schedule-item">
+                    <div class="time">Day 2: March 16</div>
+                    <h3>Cloud & DevOps Summit</h3>
+                    <p>
+                        Deep dive into cloud architecture, containerization, and DevOps best practices with 
+                        hands-on demonstrations and networking sessions.
+                    </p>
+                </div>
+                <div class="schedule-item">
+                    <div class="time">Day 3: March 17</div>
+                    <h3>Web3 & Security Panel</h3>
+                    <p>
+                        Explore blockchain technology, cybersecurity trends, and future tech innovations. 
+                        Closing ceremony with networking reception.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Ticket Pricing</h2>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Student</h3>
+                    <div class="price">$49</div>
+                    <ul>
+                        <li>3-day conference access</li>
+                        <li>All workshops included</li>
+                        <li>Student networking event</li>
+                        <li>Digital materials</li>
+                    </ul>
+                    <a href="#register" class="cta-button">Register</a>
+                </div>
+                <div class="price-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$199</div>
+                    <ul>
+                        <li>3-day conference access</li>
+                        <li>All workshops & seminars</li>
+                        <li>VIP networking sessions</li>
+                        <li>Digital + printed materials</li>
+                        <li>Certificate of attendance</li>
+                    </ul>
+                    <a href="#register" class="cta-button">Register</a>
+                </div>
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$499</div>
+                    <ul>
+                        <li>5 team member passes</li>
+                        <li>Premium workshops</li>
+                        <li>Executive networking</li>
+                        <li>Premium materials</li>
+                        <li>Company branding</li>
+                    </ul>
+                    <a href="#register" class="cta-button">Register</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div>
+                <h3>About TechConf</h3>
+                <p>The premier technology conference bringing together innovators and industry leaders worldwide.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <a href="#about">About</a>
+                <a href="#speakers">Speakers</a>
+                <a href="#schedule">Schedule</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p>📧 info@techconf2026.com</p>
+                <p>📞 +1 (555) 123-4567</p>
+                <p>📍 San Francisco, CA</p>
+            </div>
+        </div>
+        <div class="bottom">
+            <p>&copy; 2026 TechConf. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.speaker-card, .schedule-item, .price-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
