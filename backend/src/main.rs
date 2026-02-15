@@ -1,4 +1,4 @@
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{web, App, HttpResponse, HttpServer, Responder, http::StatusCode};
 use actix_cors::Cors;
 use serde::{Deserialize, Serialize};
 use surrealdb::engine::local::Mem;
@@ -26,15 +26,52 @@ struct SubmissionResponse {
     message: String,
 }
 
+#[derive(Debug, Serialize)]
+struct ErrorResponse {
+    error: String,
+}
+
 struct AppState {
     db: Arc<Surreal<surrealdb::engine::local::Db>>,
+}
+
+fn validate_form_data(data: &FormData) -> Result<(), String> {
+    if data.name.trim().is_empty() {
+        return Err("Name cannot be empty".to_string());
+    }
+    if data.name.len() > 100 {
+        return Err("Name is too long (max 100 characters)".to_string());
+    }
+    if data.email.trim().is_empty() {
+        return Err("Email cannot be empty".to_string());
+    }
+    if !data.email.contains('@') {
+        return Err("Invalid email format".to_string());
+    }
+    if data.email.len() > 255 {
+        return Err("Email is too long (max 255 characters)".to_string());
+    }
+    if data.message.trim().is_empty() {
+        return Err("Message cannot be empty".to_string());
+    }
+    if data.message.len() > 1000 {
+        return Err("Message is too long (max 1000 characters)".to_string());
+    }
+    Ok(())
 }
 
 async fn submit_form(
     data: web::Json<FormData>,
     app_state: web::Data<AppState>,
 ) -> impl Responder {
-    let created: Vec<Record> = app_state
+    // Validate input
+    if let Err(err) = validate_form_data(&data) {
+        return HttpResponse::build(StatusCode::BAD_REQUEST)
+            .json(ErrorResponse { error: err });
+    }
+
+    // Store in database
+    let created: Vec<Record> = match app_state
         .db
         .create("submissions")
         .content(FormData {
@@ -43,7 +80,15 @@ async fn submit_form(
             message: data.message.clone(),
         })
         .await
-        .unwrap();
+    {
+        Ok(records) => records,
+        Err(e) => {
+            return HttpResponse::build(StatusCode::INTERNAL_SERVER_ERROR)
+                .json(ErrorResponse {
+                    error: format!("Database error: {}", e),
+                });
+        }
+    };
 
     let response = SubmissionResponse {
         id: created[0].id.to_string(),
@@ -67,8 +112,19 @@ async fn main() -> std::io::Result<()> {
     println!("Starting server...");
 
     // Initialize SurrealDB
-    let db = Surreal::new::<Mem>(()).await.unwrap();
-    db.use_ns("form_ns").use_db("form_db").await.unwrap();
+    let db = Surreal::new::<Mem>(()).await.map_err(|e| {
+        std::io::Error::new(
+            std::io::ErrorKind::Other,
+            format!("Failed to initialize SurrealDB: {}", e),
+        )
+    })?;
+    
+    db.use_ns("form_ns").use_db("form_db").await.map_err(|e| {
+        std::io::Error::new(
+            std::io::ErrorKind::Other,
+            format!("Failed to set namespace/database: {}", e),
+        )
+    })?;
 
     let app_state = web::Data::new(AppState { db: Arc::new(db) });
 
@@ -76,6 +132,8 @@ async fn main() -> std::io::Result<()> {
     println!("Open index.html in your browser to use the form");
 
     HttpServer::new(move || {
+        // WARNING: CORS is configured for development only
+        // For production, configure specific allowed origins
         let cors = Cors::default()
             .allow_any_origin()
             .allow_any_method()

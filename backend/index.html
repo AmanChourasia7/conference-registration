@@ -50,10 +50,12 @@
                 });
                 
                 const result = await response.json();
-                document.getElementById('response').innerHTML = '<p>Success! ID: ' + result.id + '</p>';
+                const responseDiv = document.getElementById('response');
+                responseDiv.textContent = 'Success! ID: ' + result.id;
                 document.getElementById('submissionForm').reset();
             } catch (error) {
-                document.getElementById('response').innerHTML = '<p>Error: ' + error.message + '</p>';
+                const responseDiv = document.getElementById('response');
+                responseDiv.textContent = 'Error: ' + error.message;
             }
         });
     </script>
