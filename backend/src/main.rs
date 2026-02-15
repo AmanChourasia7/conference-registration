@@ -45,7 +45,13 @@ fn validate_form_data(data: &FormData) -> Result<(), String> {
     if data.email.trim().is_empty() {
         return Err("Email cannot be empty".to_string());
     }
-    if !data.email.contains('@') {
+    // Basic email validation: must contain @ with text before and after
+    let email_parts: Vec<&str> = data.email.split('@').collect();
+    if email_parts.len() != 2 || email_parts[0].is_empty() || email_parts[1].is_empty() {
+        return Err("Invalid email format".to_string());
+    }
+    // Check for at least one dot in domain part
+    if !email_parts[1].contains('.') {
         return Err("Invalid email format".to_string());
     }
     if data.email.len() > 255 {
@@ -89,6 +95,14 @@ async fn submit_form(
                 });
         }
     };
+
+    // Ensure we received a record back from the database
+    if created.is_empty() {
+        return HttpResponse::build(StatusCode::INTERNAL_SERVER_ERROR)
+            .json(ErrorResponse {
+                error: "Failed to create submission: no record returned".to_string(),
+            });
+    }
 
     let response = SubmissionResponse {
         id: created[0].id.to_string(),

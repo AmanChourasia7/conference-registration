@@ -51,8 +51,13 @@
                 
                 const result = await response.json();
                 const responseDiv = document.getElementById('response');
-                responseDiv.textContent = 'Success! ID: ' + result.id;
-                document.getElementById('submissionForm').reset();
+                
+                if (response.ok) {
+                    responseDiv.textContent = 'Success! ID: ' + result.id;
+                    document.getElementById('submissionForm').reset();
+                } else {
+                    responseDiv.textContent = 'Error: ' + result.error;
+                }
             } catch (error) {
                 const responseDiv = document.getElementById('response');
                 responseDiv.textContent = 'Error: ' + error.message;
