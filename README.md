@@ -1,41 +1,38 @@
-# Conference Registration System
+# Conference Registration System – Capstone Project
 
-Capstone Project
+This repository contains the implementation of a **web-based Conference Registration System** developed as part of a capstone project. The system provides a structured platform through which users can access conference information and complete the registration process online.
 
-## 1. Description
+The web interface is implemented using standard front-end technologies including **HTML, CSS, and JavaScript**. The platform presents essential conference information such as the event overview, schedule, speakers, and related details. A dedicated **registration module** enables participants to submit their personal and participation details through an online form.
 
-The **Conference Registration System** is a simple web application that allows users to register for a conference using an online form. Participants enter their personal details and submit their registration. The submitted information is processed using basic JavaScript and displayed on the page.
+For backend data management, the system integrates **Firebase** as a database service. Registration data submitted through the form is processed using JavaScript and stored in Firebase, enabling organizers to efficiently collect, manage, and maintain participant records without relying on a traditional server-side infrastructure.
 
-This project demonstrates fundamental concepts of **HTML structure, CSS styling, and JavaScript-based form handling**.
+## Technologies
 
-## 2. Technologies Used
+* HTML
+* CSS
+* JavaScript
+* Firebase
 
-1. HTML
-2. CSS
-3. JavaScript
+## Project Team
 
-## 3. Features
+1. **Aman Chourasia** — Project Coordination and Documentation
+2. **Ankush Chowdhury** — Frontend Development (User Interface Design and Layout)
+3. **Anurag Das** — Frontend Development (Form Design and Validation)
+4. **Harshwardhan Das** — Backend Integration (Firebase Configuration and Database Handling)
+5. **Shraban Das** — JavaScript Logic and Registration Workflow
+6. **Soham Das** — Testing, Debugging, and Deployment Support
 
-1. Conference registration form
-2. Basic input validation
-3. Display of submitted registrations
-4. Simple user interface for participants
+---
 
-## 4. How to Run
+**Project Type:** Capstone Project
 
-1. Download or clone the project.
-2. Open the main HTML file in any web browser.
-3. Fill out the registration form and submit the details.
+**Program**  
+BS–MS (2025–2030)  
+Computer Science and Data Analytics (CSDA)  
 
-## 5. Team Members
+**Institution**  
+Indian Institute of Technology Patna (IIT Patna)  
+Bihta Kanpa Road  
+Patna, Bihar, India – 801106
 
-[1.] Aman Chourasia
-[2.] Ankush Chowdhury
-[3.] Anurag Das
-[4.] Harshwardhan Das
-[5.] Shraban Das
-[6.] Soham Das
-
-## 6. License
-
-This project was developed for academic purposes as part of an undergraduate capstone project.
+© 2026 Conference Registration System Project Team
