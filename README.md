@@ -27,7 +27,7 @@ For backend data management, the system integrates **Firebase** as a database se
 **Project Type:** Capstone Project
 
 **Program**  
-BS–MS (2025–2030)  
+BS–MS (2025 tp 2030)  
 Computer Science and Data Analytics (CSDA)  
 
 **Institution**  
