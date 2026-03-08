@@ -1,8 +1,10 @@
 # Conference Registration System – Capstone Project
 
-This repository contains the implementation of a **web-based Conference Registration System** developed as part of a capstone project. The system provides a structured platform through which users can access conference information and complete the registration process online. The web interface is implemented using standard front-end technologies including **HTML, CSS, and JavaScript**. 
+This repository contains the implementation of a web based Conference Registration System developed as part of a capstone project. 
 
-The platform presents essential conference information such as the event overview, schedule, speakers, and related details. A dedicated **registration module** enables participants to submit their personal and participation details through an online form. For backend data management, the system integrates **Firebase** as a database service. Registration data submitted through the form is processed using JavaScript and stored in Firebase, enabling organizers to efficiently collect, manage, and maintain participant records without relying on a traditional server-side infrastructure.
+The system provides a structured platform through which users can access conference information and complete the registration process online. The objective of the project is to demonstrate the development of a simple event registration platform using core web technologies while maintaining a clear and organized user interface. The web interface of the system is implemented using HTML, CSS, and JavaScript, which handle the layout, visual styling, and client side interaction of the application.
+
+The platform presents essential conference information such as the event overview, schedule, speakers, and related details. A dedicated registration module enables participants to submit their personal and participation details through an online form. For backend data management, the system integrates Firebase as a database service. Registration data submitted through the form is processed using JavaScript and stored in Firebase, enabling organizers to efficiently collect, manage, and maintain participant records without relying on a traditional server side infrastructure.
 
 ## Technologies
 
