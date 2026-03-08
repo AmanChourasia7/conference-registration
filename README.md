@@ -1,8 +1,11 @@
 # Conference Registration System
 
-**Course**: BO CDA 108: Capstone Project I @ Indian Institute of Technology Patna
+Course: BO CDA 108: Capstone Project I  
+Indian Institute of Technology Patna
 
-This repository contains the implementation of a web based Conference Registration System developed as part of the course BO CDA 108: Capstone Project I. The system provides a structured platform through which users can access conference information and complete the registration process online. The objective of the project is to demonstrate the development of a simple event registration platform using core web technologies while maintaining a clear and organized user interface.
+This repository contains the implementation of a web based Conference Registration System developed as part of the course BO CDA 108: Capstone Project I. The system provides a structured platform through which users can access conference information and complete the registration process online.
+
+The objective of the project is to demonstrate the development of a simple event registration platform using core web technologies while maintaining a clear and organized user interface.
 
 The web interface of the system is implemented using HTML, CSS, and JavaScript. These technologies manage the page structure, visual styling, and client side interaction of the application.
 
