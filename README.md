@@ -32,7 +32,7 @@ For backend data management, the system integrates Firebase as a database servic
 
 [5] **Shraban Das** provided supporting contributions to the project.
 
-[6] **Soham Das** assisted with testing and general development support
+[6] **Soham Das** provided supporting contributions to the project.
 
 ---
 
