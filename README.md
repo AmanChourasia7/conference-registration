@@ -1,7 +1,6 @@
 # Conference Registration System
 
-Capstone Project — Undergraduate Computer Science
-Project format inspired by coursework structure at ETH Zurich
+Capstone Project
 
 ## 1. Description
 
