@@ -15,12 +15,17 @@ For backend data management, the system integrates **Firebase** as a database se
 
 ## Project Team
 
-1. **Aman Chourasia** — Project Coordination and Documentation
-2. **Ankush Chowdhury** — Frontend Development (User Interface Design and Layout)
-3. **Anurag Das** — Frontend Development (Form Design and Validation)
-4. **Harshwardhan Das** — Backend Integration (Firebase Configuration and Database Handling)
-5. **Shraban Das** — JavaScript Logic and Registration Workflow
-6. **Soham Das** — Testing, Debugging, and Deployment Support
+[1] **Aman Chourasia** works on backend development and serves as the project lead. He developed the initial skeleton of the system upon which the project was built.
+
+[2] **Anurag Das** works on frontend development and is responsible for most of the implementation, including form design, validation, and integration with the existing project structure.
+
+[3] **Ankush Chowdhury** provided supporting contributions during development.
+
+[4] **Harshwardhan Das** provided supporting contributions to the project.
+
+[5] **Shraban Das** provided supporting contributions to the project.
+
+[6] **Soham Das** assisted with testing and general development support
 
 ---
 
