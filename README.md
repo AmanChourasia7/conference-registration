@@ -15,9 +15,9 @@ For backend data management, the system integrates **Firebase** as a database se
 
 ## Project Team
 
-[1] **Aman Chourasia** works on backend development and serves as the project lead. He developed the initial skeleton of the system upon which the project was built.
+[1] **Aman Chourasia**  is the project lead and provided supporting contributions during development.
 
-[2] **Anurag Das** works on frontend development and is responsible for most of the implementation, including form design, validation, and integration with the existing project structure.
+[2] **Anurag Das**  provided supporting contributions during development.
 
 [3] **Ankush Chowdhury** provided supporting contributions during development.
 
