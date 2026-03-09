@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<h2>Conference Admin Login</h2>
+
+<form id="login-form">
+
+  <div>
+    <label>Email</label><br>
+    <input
+      type="email"
+      id="email"
+      required
+      placeholder="Admin email"
+    >
+  </div>
+
+  <br>
+
+  <div>
+    <label>Password</label><br>
+    <input
+      type="password"
+      id="password"
+      required
+      placeholder="Password"
+    >
+  </div>
+
+  <br>
+
+  <button type="submit">
+    Login
+  </button>
+
+</form>
+
+<p id="error-message"></p>
+
+<script type="module" src="js/login.js"></script>
+
+</body>
+</html>
