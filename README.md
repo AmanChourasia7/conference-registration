@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.jpg" alt="banner" width="100%">
+</p>
+
 # Conference Registration System
 
 **Course**: BO CDA 108: Capstone Project I  
