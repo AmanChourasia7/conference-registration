@@ -1,29 +1,56 @@
+/* =========================================================
+   Global Background
+   ========================================================= */
+html{background:#2E75C7}
+
 body {
-    background: url("../images/background.jpg");
+    background: url("../assets/background.png");
     background-repeat: no-repeat;
     background-position: center;
     background-position: top;
     background-attachment: fixed;
+
+    /* Modern font stack */
+    font-family: 'SF UI Text', system-ui, sans-serif;
 }
 
+
+/* =========================================================
+   Main Layout Table
+   ========================================================= */
 table.maintable {
-    border: 3px solid #b2b3b4;
     padding: 0px;
-    width: 1000px;
+    width: 1020px;
     height: 100%;
-    margin: 0px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0px auto;
     vertical-align: top;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+}
+
+table.maintable td {
+    padding: 0;
+}
+
+table.maintable > tbody > tr > td:first-child,
+table.maintable > tbody > tr > td:last-child {
+    width: 0;
+    font-size: 0;
+    line-height: 0;
 }
 
 td#side {
     width: 10px;
 }
 
+
+/* =========================================================
+   Information Table
+   ========================================================= */
 table#tbl_information {
     border: 1px solid black;
-    WIDTH: 700px;
+    width: 700px;
     margin: 0px;
     padding: 0px;
 }
@@ -33,6 +60,10 @@ tr#tbl_information {
     color: black;
 }
 
+
+/* =========================================================
+   Logo Section
+   ========================================================= */
 tr.logo {
     padding: 0px;
     margin: 0px;
@@ -41,124 +72,264 @@ tr.logo {
 
 td#logo {
     text-align: right;
-    height: 204px
+    height: 380px;
+    line-height: 0;
 }
 
-IMG#logo {
+img#logo {
     border: 0;
     vertical-align: top;
 }
 
-A:link#logo {
+.hero-banner {
+    position: relative;
+    width: 1020px;
+    height: 380px;
+    overflow: hidden;
+    border: 0;
+    background: #000;
+}
+
+.hero-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.60);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-bg-image {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    color: #fff;
+    padding: 18px 22px;
+}
+
+.hero-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.hero-logo {
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.hero-logo-left {
+    padding: 6px 10px;
+}
+
+.hero-logo-image {
+    display: block;
+    height: 40px;
+    width: auto;
+}
+
+.hero-main-text {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    text-align: right;
+    font-size: 56px;
+    line-height: 1;
+    font-weight: 300;
+}
+
+.hero-main-text sup {
+    font-size: 40%;
+    line-height: 0;
+    top: -0.8em;
+    position: relative;
+}
+
+.hero-bottom-right {
+    position: absolute;
+    right: 20px;
+    bottom: 16px;
+    text-align: right;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+}
+
+/* Remove link styling for logo */
+a:link#logo,
+a:visited#logo,
+a:active#logo,
+a:hover#logo {
     text-decoration: none;
 }
 
-A:visited#logo {
-    text-decoration: none;
-}
 
-A:active#logo {
-    text-decoration: none;
-}
-
-A:hover#logo {
-    text-decoration: none;
-}
-
+/* =========================================================
+   Content Area
+   ========================================================= */
 td#content {
     text-align: left;
-    font: Arial,Helvetica,sans-serif;
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: 'SF UI Text', system-ui, sans-serif;
 }
 
+
+/* =========================================================
+   Left Menu
+   ========================================================= */
 td#menu_tbl {
     margin-top: 0px;
     text-align: left;
     vertical-align: top;
     width: 230px;
-    font-family: "Arial",Helvetica,sans-serif;
+
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-weight: bold;
     font-size: 15px;
     line-height: 180%;
-    padding-top: 1px
+    padding-top: 1px;
 }
 
-A:link#menu_tbl {
+/* Menu links */
+a:link#menu_tbl,
+a:visited#menu_tbl {
     text-decoration: none;
     color: #333;
+    line-height:2;
 }
 
-A:visited#menu_tbl {
-    text-decoration: none;
-    color: #333;
-}
-
-A:active#menu_tbl {
+a:active#menu_tbl {
     text-decoration: none;
 }
 
-A:hover#menu_tbl {
-    text-decoration: underline overline;
-    color: #F60;
+a:hover#menu_tbl {
+    text-decoration: none;
+    color: #2E75C7;
+    position: relative;
+    display: inline-block;
 }
 
+a:hover#menu_tbl::before,
+a:hover#menu_tbl::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+a:hover#menu_tbl::before {
+    top: -1px;
+    border-top: 2px solid #2E75C7;
+}
+
+a:hover#menu_tbl::after {
+    bottom: -1px;
+    border-bottom: 2px solid #2E75C7;
+}
+
+
+/* =========================================================
+   Breadcrumb Navigation
+   ========================================================= */
 td#breadcrumb {
     width: 750px;
     height: 20px;
-    font: Tahoma,Geneva,sans-serif;
-    font-family: Tahoma,Geneva,sans-serif;
+
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-size: 12px;
+
     text-align: left;
     vertical-align: top;
     text-transform: uppercase;
     margin: 0;
 }
 
-B#breadcrumb {
+b#breadcrumb {
     text-decoration: underline;
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-size: 14px;
     font-variant: small-caps;
 }
 
+
+/* =========================================================
+   Content Table
+   ========================================================= */
 td#content_tbl {
     vertical-align: top;
     padding: 0;
     margin: 0;
 }
 
+
+/* =========================================================
+   Headings
+   ========================================================= */
 h2#content {
     text-transform: uppercase;
     background: #FFF;
     color: #000;
-    font-family: Arial,Helvetica,sans-serif;
+
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-size: 18px;
 }
 
 h3#content {
-    font: "Verdana",Arial,Helvetica,sans-serif;
-    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-size: 16px;
-    color: #FF6633;
+    color: #2E75C7;
+
     line-height: 120%;
     text-align: left;
     vertical-align: top;
+
     padding-top: 0;
     margin-top: 0;
 }
 
-table,#tbl_form,ol#content,table#tbl_information,ul#content,p#content {
-    font: "Arial",Arial,Helvetica,sans-serif;
-    font-family: Calibri,Arial,Helvetica,sans-serif;
+h3 {
+    font-family: 'SF UI Text', system-ui, sans-serif;
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   General Text Content
+   ========================================================= */
+table,
+#tbl_form,
+ol#content,
+table#tbl_information,
+ul#content,
+p#content {
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-size: 15px;
+
     line-height: 120%;
     text-align: justify;
     vertical-align: top;
 }
 
-table.timetable td,tr {
-    font: "Arial",Arial,Helvetica,sans-serif;
-    font-family: Calibri,Arial,Helvetica,sans-serif;
+
+/* =========================================================
+   Timetable Styling
+   ========================================================= */
+table.timetable td,
+table.timetable tr {
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-size: 15px;
     line-height: 120%;
     vertical-align: top;
@@ -177,96 +348,114 @@ td#topline {
     padding-bottom: 15px;
 }
 
-ol#content {
-}
 
+/* =========================================================
+   Lists and Papers
+   ========================================================= */
 li.paper {
     margin-bottom: 10px;
-    font: "Arial",Arial,Helvetica,sans-serif;
-    font-family: Calibri,Arial,Helvetica,sans-serif;
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-size: 15px;
 }
 
+
+/* =========================================================
+   Images
+   ========================================================= */
 img#poster {
-    border: solid #003
+    border: solid #003;
 }
 
+
+/* =========================================================
+   Footer
+   ========================================================= */
 td#footer {
-    height: 40px;
+height: 20PX;
     text-align: left;
     vertical-align: top;
-    font: "Arial",Helvetica,sans-serif;
-    font-family: Arial,Helvetica,sans-serif;
-    border-top: #CCC solid;
+    font-family: 'SF UI Text', system-ui, sans-serif;
+    padding-left: 1rem;
+    padding-top: 6px;
+    padding-bottom: 6px;
     font-size: 12px;
+    border-top: #ccc solid;
 }
 
+
+/* =========================================================
+   Sponsor Section
+   ========================================================= */
 td#sponsor {
     margin-top: 0px;
-    margin-left: 10px text-align:left;
+    margin-left: 10px;
+
+    text-align: left;
     vertical-align: top;
     width: 230px;
-    font-family: "Arial",Helvetica,sans-serif;
+
+    font-family: 'SF UI Text', system-ui, sans-serif;
     font-weight: bold;
     font-size: 15px;
     line-height: 180%;
 }
 
-h3 {
-    font-family: Arial,Helvetica,sans-serif;
-    margin-top: 20px;
-}
 
+/* =========================================================
+   Right Sidebar Tables
+   ========================================================= */
 table.righttable {
     padding: 0px;
     width: 200px;
     height: 100%;
-    margin: 0px;
-    margin-left: auto;
+
+    margin: 0px auto;
     vertical-align: top;
-    font-family: Arial,Helvetica,sans-serif;
+
+    font-family: 'SF UI Text', system-ui, sans-serif;
 }
 
 td#righttable {
     border: 1px solid #CCC;
 }
 
+
+/* =========================================================
+   Info Tables
+   ========================================================= */
 table.info {
     border-width: 0px;
     border-spacing: 0px;
     border-style: none;
-    border-color: ;
     border-collapse: collapse;
     background-color: transparent;
 }
 
-table.info th {
-    border-width: 1px;
-    padding: 1px;
-    border-style: inset;
-    border-color: gray;
-    background-color: transparent;
-    -moz-border-radius: ;
-    text-align: left;
-}
-
+table.info th,
 table.info td {
     border-width: 1px;
     padding: 1px;
     border-style: inset;
     border-color: gray;
     background-color: transparent;
-    -moz-border-radius: ;
     text-align: left;
 }
 
+
+/* =========================================================
+   Page Container
+   ========================================================= */
 #page {
-    background-color: rgba(239,239,239,0.7);
+    background-color: rgba(239, 239, 239, 0.7);
+
     width: 650px;
     margin: 10px auto;
     padding: 10px 150px 20px 50px;
+
     min-height: 600px;
+
     border: 2px solid #fff;
     outline: 1px solid #ccc;
+
     text-align: left;
 }
