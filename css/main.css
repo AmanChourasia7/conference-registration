@@ -1,1 +1,272 @@
+body {
+    background: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position: top;
+    background-attachment: fixed;
+}
 
+table.maintable {
+    border: 3px solid #b2b3b4;
+    padding: 0px;
+    width: 1000px;
+    height: 100%;
+    margin: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: top;
+}
+
+td#side {
+    width: 10px;
+}
+
+table#tbl_information {
+    border: 1px solid black;
+    WIDTH: 700px;
+    margin: 0px;
+    padding: 0px;
+}
+
+tr#tbl_information {
+    background-color: #f0f0f0;
+    color: black;
+}
+
+tr.logo {
+    padding: 0px;
+    margin: 0px;
+    vertical-align: top;
+}
+
+td#logo {
+    text-align: right;
+    height: 204px
+}
+
+IMG#logo {
+    border: 0;
+    vertical-align: top;
+}
+
+A:link#logo {
+    text-decoration: none;
+}
+
+A:visited#logo {
+    text-decoration: none;
+}
+
+A:active#logo {
+    text-decoration: none;
+}
+
+A:hover#logo {
+    text-decoration: none;
+}
+
+td#content {
+    text-align: left;
+    font: Arial,Helvetica,sans-serif;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+td#menu_tbl {
+    margin-top: 0px;
+    text-align: left;
+    vertical-align: top;
+    width: 230px;
+    font-family: "Arial",Helvetica,sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 180%;
+    padding-top: 1px
+}
+
+A:link#menu_tbl {
+    text-decoration: none;
+    color: #333;
+}
+
+A:visited#menu_tbl {
+    text-decoration: none;
+    color: #333;
+}
+
+A:active#menu_tbl {
+    text-decoration: none;
+}
+
+A:hover#menu_tbl {
+    text-decoration: underline overline;
+    color: #F60;
+}
+
+td#breadcrumb {
+    width: 750px;
+    height: 20px;
+    font: Tahoma,Geneva,sans-serif;
+    font-family: Tahoma,Geneva,sans-serif;
+    font-size: 12px;
+    text-align: left;
+    vertical-align: top;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+B#breadcrumb {
+    text-decoration: underline;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-variant: small-caps;
+}
+
+td#content_tbl {
+    vertical-align: top;
+    padding: 0;
+    margin: 0;
+}
+
+h2#content {
+    text-transform: uppercase;
+    background: #FFF;
+    color: #000;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 18px;
+}
+
+h3#content {
+    font: "Verdana",Arial,Helvetica,sans-serif;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    color: #FF6633;
+    line-height: 120%;
+    text-align: left;
+    vertical-align: top;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+table,#tbl_form,ol#content,table#tbl_information,ul#content,p#content {
+    font: "Arial",Arial,Helvetica,sans-serif;
+    font-family: Calibri,Arial,Helvetica,sans-serif;
+    font-size: 15px;
+    line-height: 120%;
+    text-align: justify;
+    vertical-align: top;
+}
+
+table.timetable td,tr {
+    font: "Arial",Arial,Helvetica,sans-serif;
+    font-family: Calibri,Arial,Helvetica,sans-serif;
+    font-size: 15px;
+    line-height: 120%;
+    vertical-align: top;
+}
+
+table.timetable td {
+    border-bottom: 1px #6699CC dotted;
+    text-align: left;
+    padding-bottom: 15px;
+}
+
+td#topline {
+    border-bottom: 1px #6699CC dotted;
+    border-top: 1px #6699CC dotted;
+    text-align: left;
+    padding-bottom: 15px;
+}
+
+ol#content {
+}
+
+li.paper {
+    margin-bottom: 10px;
+    font: "Arial",Arial,Helvetica,sans-serif;
+    font-family: Calibri,Arial,Helvetica,sans-serif;
+    font-size: 15px;
+}
+
+img#poster {
+    border: solid #003
+}
+
+td#footer {
+    height: 40px;
+    text-align: left;
+    vertical-align: top;
+    font: "Arial",Helvetica,sans-serif;
+    font-family: Arial,Helvetica,sans-serif;
+    border-top: #CCC solid;
+    font-size: 12px;
+}
+
+td#sponsor {
+    margin-top: 0px;
+    margin-left: 10px text-align:left;
+    vertical-align: top;
+    width: 230px;
+    font-family: "Arial",Helvetica,sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 180%;
+}
+
+h3 {
+    font-family: Arial,Helvetica,sans-serif;
+    margin-top: 20px;
+}
+
+table.righttable {
+    padding: 0px;
+    width: 200px;
+    height: 100%;
+    margin: 0px;
+    margin-left: auto;
+    vertical-align: top;
+    font-family: Arial,Helvetica,sans-serif;
+}
+
+td#righttable {
+    border: 1px solid #CCC;
+}
+
+table.info {
+    border-width: 0px;
+    border-spacing: 0px;
+    border-style: none;
+    border-color: ;
+    border-collapse: collapse;
+    background-color: transparent;
+}
+
+table.info th {
+    border-width: 1px;
+    padding: 1px;
+    border-style: inset;
+    border-color: gray;
+    background-color: transparent;
+    -moz-border-radius: ;
+    text-align: left;
+}
+
+table.info td {
+    border-width: 1px;
+    padding: 1px;
+    border-style: inset;
+    border-color: gray;
+    background-color: transparent;
+    -moz-border-radius: ;
+    text-align: left;
+}
+
+#page {
+    background-color: rgba(239,239,239,0.7);
+    width: 650px;
+    margin: 10px auto;
+    padding: 10px 150px 20px 50px;
+    min-height: 600px;
+    border: 2px solid #fff;
+    outline: 1px solid #ccc;
+    text-align: left;
+}
