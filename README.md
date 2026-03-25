@@ -34,9 +34,7 @@ For backend data management, the system integrates Firebase as a database servic
 
 [4] **Shraban Das** provided supporting contributions during development.
 
-[5] **Soham Das** provided supporting contributions during development.
-
-[6] **Aman Chourasia**  is the project lead and provided supporting contributions during development.
+[5] **Aman Chourasia**  is the project lead and provided supporting contributions during development.
 
 ---
 
