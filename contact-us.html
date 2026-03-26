@@ -12,231 +12,231 @@
 
 <script type="module">
     import { saveContactMessage } from './firebase/firestore.js';
-
-    window.handleContactSubmit = async function(event) {
-        event.preventDefault();
-        
-        const form = event.target;
-        const submitBtn = form.querySelector('button[type="submit"]');
-        
-        // Disable button and show loading state
-        submitBtn.disabled = true;
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
-        
-        try {
-            const formData = {
-                name: form.querySelector('input[name="name"]').value,
-                email: form.querySelector('input[name="email"]').value,
-                message: form.querySelector('textarea[name="message"]').value
-            };
-            
-            // Save to Firestore
-            const docId = await saveContactMessage(formData);
-            
-            alert('Thank you for contacting us! We will get back to you soon.\nMessage ID: ' + docId);
-            form.reset();
-            
-        } catch (error) {
-            console.error('Error sending message:', error);
-            alert('Error sending message. Please try again later.');
-        } finally {
-            // Re-enable button
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        }
-    };
-</script>
-
-<script language="javascript"> 
-function toggle() {
-	var ele = document.getElementById("toggleText");
-	var text = document.getElementById("displayText");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-		text.innerHTML = "<b>show directions</b>";
-  	}
-	else {
-		ele.style.display = "block";
-		text.innerHTML = "<b>hide directions</b>";
-	}
-}
-
-function toggle2() {
-	var ele = document.getElementById("toggleText2");
-	var text = document.getElementById("displayText2");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-		text.innerHTML = "<b>show directions</b>";
-  	}
-	else {
-		ele.style.display = "block";
-		text.innerHTML = "<b>hide directions</b>";
-	}
-} 
-
-function toggle_plain() {
-	var ele = document.getElementById("toggleText");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-  	}
-	else {
-		ele.style.display = "block";
-	}
-}
-</script>
-</head>
-
-<body>
-<table align="center" class="maintable">
-<tr>
-<td>&nbsp;</td>
-<td id="logo">
-	<div class="hero-banner" aria-label="Conference banner">
-		<img src="assets/background-slider.png" alt="Conference banner" class="hero-bg-image">
-
-		<div class="hero-overlay">
-			<div class="hero-top-row">
-				<div class="hero-logo hero-logo-left">
-					
-                </div>
-				<div class="hero-logo hero-logo-right"></div>
-			</div>
-
-			<div class="hero-main-text">
-				1<sup>st</sup> Conference on<br>
-				Optimization and Machine Learning
-			</div>
-
-			<div class="hero-bottom-right">
-				Tutorial: 8 - 9 January 2027, LH001, Indian Institute of Technology Patna<br>
-				Scientific Programme: 10 - 14 January 2027, LH004,  Indian Institute of Technology Patna
-			</div>
-		</div>
-	</div>
-
-</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<td>&nbsp;</td>
-<td id="content">
-
-<table width="980px" align="center">
-<tr>
-
-<td width="230" rowspan="2" id="menu_tbl">
-<a href="index.html" id="menu_tbl">Home</a><br>
-<a href="committees.html" id="menu_tbl">Committees</a><br>
-<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a><br>
-<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a><br>
-<a href="poster-session.html" id="menu_tbl">Poster Session</a><br>
-<a href="public-lecture.html" id="menu_tbl">Public Lecture</a><br>
-<a href="rump-session.html" id="menu_tbl">Rump Session</a><br>
-<a href="photos.html" id="menu_tbl">Photos</a><br>
-<a href="submissions.html" id="menu_tbl">Submissions</a><br>
- 
-<a href="registration.html" id="menu_tbl">Registration</a><br>
-<a href="participant-list.html" id="menu_tbl">Participants</a><br>
-<a href="conference-venue.html" id="menu_tbl">Conference Venue</a><br>
-<a href="accommodation.html" id="menu_tbl">Accommodation</a><br>
-<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a><br>
- 
-<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a><br>
-<a href="related-conferences.html" id="menu_tbl">Related Conferences</a><br>
-<a href="oml-charter.html" id="menu_tbl">OML Charter</a><br>
-<a href="contact-us.html" id="menu_tbl">Contact Us</a><br>
-<br/>
-</td>
-
-
-<td width="720" id="content_tbl">
-
-<h1 style="text-align: center; color: #2E75C7; font-size: 32px; margin-bottom: 40px;">Contact Us</h1>
-
-<!-- OpenStreetMap Location Section -->
-<div style="width: 100%; background-color: #ccc; padding: 40px 20px; text-align: center; margin-bottom: 40px; border-radius: 8px;">
-    <h3 style="margin: 0; color: #333;"><strong>OpenStreetMap Location</strong></h3>
-    <iframe style="width: 100%; height: 300px; border: none; border-radius: 8px; margin-top: 15px;" 
-        src="https://www.openstreetmap.org/export/embed.html?bbox=85.1823,25.5941,85.2023,25.6041&layer=mapnik&marker=25.5991,85.1923" 
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-</div>
-
-<!-- Contact Information and Form Section -->
-<div style="display: flex; gap: 30px; margin-bottom: 40px;">
-    
-    <!-- Contact Information (Left) -->
-    <div style="flex: 1; background-color: #aaa; padding: 30px; border-radius: 8px;">
-        <h3 style="text-align: center; color: #333; margin-top: 0;"><strong>Contact Information</strong></h3>
-        
-        <div style="margin-top: 20px; color: #333; line-height: 1.8;">
-            <div style="margin-bottom: 15px;">
-                <strong>Venue Name:</strong> ABC Conference Hall
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-                <strong>Address:</strong> Indian Institute of Technology Patna, Bihta Road, Kanpa
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-                <strong>Phone:</strong> +91 9xxxxxxxxx
-            </div>
-            
-            <div style="margin-bottom: 15px;">
-                <strong>Email:</strong> <a href="mailto:info@conference.com" style="color: #333; text-decoration: none;">info@conference.com</a>
-            </div>
-            
-            <div>
-                <strong>Details:</strong> Parking available, Near main road
-            </div>
-        </div>
-    </div>
-    
-    <!-- Contact Form (Right) -->
-    <div style="flex: 1; background-color: #aaa; padding: 30px; border-radius: 8px;">
-        <h3 style="text-align: center; color: #333; margin-top: 0;"><strong>Contact Form</strong></h3>
-        
-        <form style="margin-top: 20px;" onsubmit="handleContactSubmit(event)">
-            <div style="margin-bottom: 18px;">
-                <label style="display: block; margin-bottom: 8px; color: #333; font-weight: bold;">Name:</label>
-                <input type="text" name="name" required style="width: 100%; padding: 10px; border: 1px solid #999; border-radius: 4px; box-sizing: border-box; font-family: 'SF UI Text', system-ui, sans-serif; font-size: 14px;">
-            </div>
-            
-            <div style="margin-bottom: 18px;">
-                <label style="display: block; margin-bottom: 8px; color: #333; font-weight: bold;">Email:</label>
-                <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #999; border-radius: 4px; box-sizing: border-box; font-family: 'SF UI Text', system-ui, sans-serif; font-size: 14px;">
-            </div>
-            
-            <div style="margin-bottom: 18px;">
-                <label style="display: block; margin-bottom: 8px; color: #333; font-weight: bold;">Message:</label>
-                <textarea name="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid #999; border-radius: 4px; box-sizing: border-box; font-family: 'SF UI Text', system-ui, sans-serif; font-size: 14px; resize: vertical;"></textarea>
-            </div>
-            
-            <div style="text-align: center;">
-                <button type="submit" style="background-color: #2E75C7; color: white; padding: 12px 30px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-family: 'SF UI Text', system-ui, sans-serif; font-size: 14px;">Submit</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-</td>
-
-</tr>
-</table>
-
-</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<td>&nbsp;</td>
-<td id="footer">Copyright&copy; 2027 Optimization and Machine Learning Conference</td>
-<td>&nbsp;</td>
-</tr>
-
-</table>
-
-</body>
-</html>
+	
+	    window.handleContactSubmit = async function(event) {
+		        event.preventDefault();
+				        
+						        const form = event.target;
+								        const submitBtn = form.querySelector('button[type="submit"]');
+										        
+												        // Disable button and show loading state
+														        submitBtn.disabled = true;
+																        const originalText = submitBtn.textContent;
+																		        submitBtn.textContent = 'Sending...';
+																				        
+																						        try {
+																								            const formData = {
+																											                name: form.querySelector('input[name="name"]').value,
+																															                email: form.querySelector('input[name="email"]').value,
+																																			                message: form.querySelector('textarea[name="message"]').value
+																																							            };
+																																										            
+																																													            // Save to Firestore
+																																																            const docId = await saveContactMessage(formData);
+																																																			            
+																																																						            alert('Thank you for contacting us! We will get back to you soon.\nMessage ID: ' + docId);
+																																																									            form.reset();
+																																																												            
+																																																															        } catch (error) {
+																																																																	            console.error('Error sending message:', error);
+																																																																				            alert('Error sending message. Please try again later.');
+																																																																							        } finally {
+																																																																									            // Re-enable button
+																																																																												            submitBtn.disabled = false;
+																																																																															            submitBtn.textContent = originalText;
+																																																																																		        }
+																																																																																				    };
+																																																																																					</script>
+																																																																																					
+																																																																																					<script language="javascript"> 
+																																																																																					function toggle() {
+																																																																																						var ele = document.getElementById("toggleText");
+																																																																																							var text = document.getElementById("displayText");
+																																																																																								if(ele.style.display == "block") {
+																																																																																								    		ele.style.display = "none";
+																																																																																													text.innerHTML = "<b>show directions</b>";
+																																																																																													  	}
+																																																																																															else {
+																																																																																																	ele.style.display = "block";
+																																																																																																			text.innerHTML = "<b>hide directions</b>";
+																																																																																																				}
+																																																																																																				}
+																																																																																																				
+																																																																																																				function toggle2() {
+																																																																																																					var ele = document.getElementById("toggleText2");
+																																																																																																						var text = document.getElementById("displayText2");
+																																																																																																							if(ele.style.display == "block") {
+																																																																																																							    		ele.style.display = "none";
+																																																																																																												text.innerHTML = "<b>show directions</b>";
+																																																																																																												  	}
+																																																																																																														else {
+																																																																																																																ele.style.display = "block";
+																																																																																																																		text.innerHTML = "<b>hide directions</b>";
+																																																																																																																			}
+																																																																																																																			} 
+																																																																																																																			
+																																																																																																																			function toggle_plain() {
+																																																																																																																				var ele = document.getElementById("toggleText");
+																																																																																																																					if(ele.style.display == "block") {
+																																																																																																																					    		ele.style.display = "none";
+																																																																																																																								  	}
+																																																																																																																										else {
+																																																																																																																												ele.style.display = "block";
+																																																																																																																													}
+																																																																																																																													}
+																																																																																																																													</script>
+																																																																																																																													</head>
+																																																																																																																													
+																																																																																																																													<body>
+																																																																																																																													<table align="center" class="maintable">
+																																																																																																																													<tr>
+																																																																																																																													<td>&nbsp;</td>
+																																																																																																																													<td id="logo">
+																																																																																																																														<div class="hero-banner" aria-label="Conference banner">
+																																																																																																																																<img src="assets/background-slider.png" alt="Conference banner" class="hero-bg-image">
+																																																																																																																																
+																																																																																																																																		<div class="hero-overlay">
+																																																																																																																																					<div class="hero-top-row">
+																																																																																																																																									<div class="hero-logo hero-logo-left">
+																																																																																																																																														
+																																																																																																																																														                </div>
+																																																																																																																																																						<div class="hero-logo hero-logo-right"></div>
+																																																																																																																																																									</div>
+																																																																																																																																																									
+																																																																																																																																																												<div class="hero-main-text">
+																																																																																																																																																																1<sup>st</sup> Conference on<br>
+																																																																																																																																																																				Optimization and Machine Learning
+																																																																																																																																																																							</div>
+																																																																																																																																																																							
+																																																																																																																																																																										<div class="hero-bottom-right">
+																																																																																																																																																																														Tutorial: 8 - 9 January 2027, LH001, Indian Institute of Technology Patna<br>
+																																																																																																																																																																																		Scientific Programme: 10 - 14 January 2027, LH004,  Indian Institute of Technology Patna
+																																																																																																																																																																																					</div>
+																																																																																																																																																																																							</div>
+																																																																																																																																																																																								</div>
+																																																																																																																																																																																								
+																																																																																																																																																																																								</td>
+																																																																																																																																																																																								<td>&nbsp;</td>
+																																																																																																																																																																																								</tr>
+																																																																																																																																																																																								
+																																																																																																																																																																																								<tr>
+																																																																																																																																																																																								<td>&nbsp;</td>
+																																																																																																																																																																																								<td id="content">
+																																																																																																																																																																																								
+																																																																																																																																																																																								<table width="980px" align="center">
+																																																																																																																																																																																								<tr>
+																																																																																																																																																																																								
+																																																																																																																																																																																								<td width="230" rowspan="2" id="menu_tbl">
+																																																																																																																																																																																								<a href="index.html" id="menu_tbl">Home</a><br>
+																																																																																																																																																																																								<a href="committees.html" id="menu_tbl">Committees</a><br>
+																																																																																																																																																																																								<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a><br>
+																																																																																																																																																																																								<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a><br>
+																																																																																																																																																																																								<a href="poster-session.html" id="menu_tbl">Poster Session</a><br>
+																																																																																																																																																																																								<a href="public-lecture.html" id="menu_tbl">Public Lecture</a><br>
+																																																																																																																																																																																								<a href="rump-session.html" id="menu_tbl">Rump Session</a><br>
+																																																																																																																																																																																								<a href="photos.html" id="menu_tbl">Photos</a><br>
+																																																																																																																																																																																								<a href="submissions.html" id="menu_tbl">Submissions</a><br>
+																																																																																																																																																																																								 
+																																																																																																																																																																																								 <a href="registration.html" id="menu_tbl">Registration</a><br>
+																																																																																																																																																																																								 <a href="participant-list.html" id="menu_tbl">Participants</a><br>
+																																																																																																																																																																																								 <a href="conference-venue.html" id="menu_tbl">Conference Venue</a><br>
+																																																																																																																																																																																								 <a href="accommodation.html" id="menu_tbl">Accommodation</a><br>
+																																																																																																																																																																																								 <a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a><br>
+																																																																																																																																																																																								  
+																																																																																																																																																																																								  <a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a><br>
+																																																																																																																																																																																								  <a href="related-conferences.html" id="menu_tbl">Related Conferences</a><br>
+																																																																																																																																																																																								  <a href="oml-charter.html" id="menu_tbl">OML Charter</a><br>
+																																																																																																																																																																																								  <a href="contact-us.html" id="menu_tbl">Contact Us</a><br>
+																																																																																																																																																																																								  <br/>
+																																																																																																																																																																																								  </td>
+																																																																																																																																																																																								  
+																																																																																																																																																																																								  
+																																																																																																																																																																																								  <td width="720" id="content_tbl">
+																																																																																																																																																																																								  
+																																																																																																																																																																																								  <h1 style="text-align: center; color: #2E75C7; font-size: 32px; margin-bottom: 40px;">Contact Us</h1>
+																																																																																																																																																																																								  
+																																																																																																																																																																																								  <!-- OpenStreetMap Location Section -->
+																																																																																																																																																																																								  <div style="width: 100%; background-color: #ccc; padding: 40px 20px; text-align: center; margin-bottom: 40px; border-radius: 8px;">
+																																																																																																																																																																																								      <h3 style="margin: 0; color: #333;"><strong>OpenStreetMap Location</strong></h3>
+																																																																																																																																																																																									      <iframe style="width: 100%; height: 300px; border: none; border-radius: 8px; margin-top: 15px;" 
+																																																																																																																																																																																										          src="https://www.openstreetmap.org/export/embed.html?bbox=85.1823,25.5941,85.2023,25.6041&layer=mapnik&marker=25.5991,85.1923" 
+																																																																																																																																																																																												          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+																																																																																																																																																																																														      </iframe>
+																																																																																																																																																																																															  </div>
+																																																																																																																																																																																															  
+																																																																																																																																																																																															  <!-- Contact Information and Form Section -->
+																																																																																																																																																																																															  <div style="display: flex; gap: 30px; margin-bottom: 40px;">
+																																																																																																																																																																																															      
+																																																																																																																																																																																																      <!-- Contact Information (Left) -->
+																																																																																																																																																																																																	      <div style="flex: 1; background-color: #aaa; padding: 30px; border-radius: 8px;">
+																																																																																																																																																																																																		          <h3 style="text-align: center; color: #333; margin-top: 0;"><strong>Contact Information</strong></h3>
+																																																																																																																																																																																																				          
+																																																																																																																																																																																																						          <div style="margin-top: 20px; color: #333; line-height: 1.8;">
+																																																																																																																																																																																																								              <div style="margin-bottom: 15px;">
+																																																																																																																																																																																																											                  <strong>Venue Name:</strong> ABC Conference Hall
+																																																																																																																																																																																																															              </div>
+																																																																																																																																																																																																																		              
+																																																																																																																																																																																																																					              <div style="margin-bottom: 15px;">
+																																																																																																																																																																																																																								                  <strong>Address:</strong> Indian Institute of Technology Patna, Bihta Road, Kanpa
+																																																																																																																																																																																																																												              </div>
+																																																																																																																																																																																																																															              
+																																																																																																																																																																																																																																		              <div style="margin-bottom: 15px;">
+																																																																																																																																																																																																																																					                  <strong>Phone:</strong> +91 9xxxxxxxxx
+																																																																																																																																																																																																																																									              </div>
+																																																																																																																																																																																																																																												              
+																																																																																																																																																																																																																																															              <div style="margin-bottom: 15px;">
+																																																																																																																																																																																																																																																		                  <strong>Email:</strong> <a href="mailto:info@conference.com" style="color: #333; text-decoration: none;">info@conference.com</a>
+																																																																																																																																																																																																																																																						              </div>
+																																																																																																																																																																																																																																																									              
+																																																																																																																																																																																																																																																												              <div>
+																																																																																																																																																																																																																																																															                  <strong>Details:</strong> Parking available, Near main road
+																																																																																																																																																																																																																																																																			              </div>
+																																																																																																																																																																																																																																																																						          </div>
+																																																																																																																																																																																																																																																																								      </div>
+																																																																																																																																																																																																																																																																									      
+																																																																																																																																																																																																																																																																										      <!-- Contact Form (Right) -->
+																																																																																																																																																																																																																																																																											      <div style="flex: 1; background-color: #aaa; padding: 30px; border-radius: 8px;">
+																																																																																																																																																																																																																																																																												          <h3 style="text-align: center; color: #333; margin-top: 0;"><strong>Contact Form</strong></h3>
+																																																																																																																																																																																																																																																																														          
+																																																																																																																																																																																																																																																																																          <form style="margin-top: 20px;" onsubmit="handleContactSubmit(event)">
+																																																																																																																																																																																																																																																																																		              <div style="margin-bottom: 18px;">
+																																																																																																																																																																																																																																																																																					                  <label style="display: block; margin-bottom: 8px; color: #333; font-weight: bold;">Name:</label>
+																																																																																																																																																																																																																																																																																									                  <input type="text" name="name" required style="width: 100%; padding: 10px; border: 1px solid #999; border-radius: 4px; box-sizing: border-box; font-family: 'SF UI Text', system-ui, sans-serif; font-size: 14px;">
+																																																																																																																																																																																																																																																																																													              </div>
+																																																																																																																																																																																																																																																																																																              
+																																																																																																																																																																																																																																																																																																			              <div style="margin-bottom: 18px;">
+																																																																																																																																																																																																																																																																																																						                  <label style="display: block; margin-bottom: 8px; color: #333; font-weight: bold;">Email:</label>
+																																																																																																																																																																																																																																																																																																										                  <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid #999; border-radius: 4px; box-sizing: border-box; font-family: 'SF UI Text', system-ui, sans-serif; font-size: 14px;">
+																																																																																																																																																																																																																																																																																																														              </div>
+																																																																																																																																																																																																																																																																																																																	              
+																																																																																																																																																																																																																																																																																																																				              <div style="margin-bottom: 18px;">
+																																																																																																																																																																																																																																																																																																																							                  <label style="display: block; margin-bottom: 8px; color: #333; font-weight: bold;">Message:</label>
+																																																																																																																																																																																																																																																																																																																											                  <textarea name="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid #999; border-radius: 4px; box-sizing: border-box; font-family: 'SF UI Text', system-ui, sans-serif; font-size: 14px; resize: vertical;"></textarea>
+																																																																																																																																																																																																																																																																																																																															              </div>
+																																																																																																																																																																																																																																																																																																																																		              
+																																																																																																																																																																																																																																																																																																																																					              <div style="text-align: center;">
+																																																																																																																																																																																																																																																																																																																																								                  <button type="submit" style="background-color: #2E75C7; color: white; padding: 12px 30px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-family: 'SF UI Text', system-ui, sans-serif; font-size: 14px;">Submit</button>
+																																																																																																																																																																																																																																																																																																																																												              </div>
+																																																																																																																																																																																																																																																																																																																																															          </form>
+																																																																																																																																																																																																																																																																																																																																																	      </div>
+																																																																																																																																																																																																																																																																																																																																																		  </div>
+																																																																																																																																																																																																																																																																																																																																																		  
+																																																																																																																																																																																																																																																																																																																																																		  </td>
+																																																																																																																																																																																																																																																																																																																																																		  
+																																																																																																																																																																																																																																																																																																																																																		  </tr>
+																																																																																																																																																																																																																																																																																																																																																		  </table>
+																																																																																																																																																																																																																																																																																																																																																		  
+																																																																																																																																																																																																																																																																																																																																																		  </td>
+																																																																																																																																																																																																																																																																																																																																																		  <td>&nbsp;</td>
+																																																																																																																																																																																																																																																																																																																																																		  </tr>
+																																																																																																																																																																																																																																																																																																																																																		  
+																																																																																																																																																																																																																																																																																																																																																		  <tr>
+																																																																																																																																																																																																																																																																																																																																																		  <td>&nbsp;</td>
+																																																																																																																																																																																																																																																																																																																																																		  <td id="footer">Copyright&copy; 2027 Optimization and Machine Learning Conference</td>
+																																																																																																																																																																																																																																																																																																																																																		  <td>&nbsp;</td>
+																																																																																																																																																																																																																																																																																																																																																		  </tr>
+																																																																																																																																																																																																																																																																																																																																																		  
+																																																																																																																																																																																																																																																																																																																																																		  </table>
+																																																																																																																																																																																																																																																																																																																																																		  
+																																																																																																																																																																																																																																																																																																																																																		  </body>
+																																																																																																																																																																																																																																																																																																																																																		  </html>>
