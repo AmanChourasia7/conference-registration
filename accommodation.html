@@ -86,10 +86,36 @@
 
 <script language="javascript">
 function selectRoom(name, price) {
-  alert(name + ' selected. Price is ' + price + ' per night.');
+  const checkIn = document.getElementById('checkIn').value;
+  const checkOut = document.getElementById('checkOut').value;
+  if (!checkIn || !checkOut) {
+    alert('Please select both check-in and check-out dates before selecting a room.');
+    return;
+  }
+  if (new Date(checkIn) >= new Date(checkOut)) {
+    alert('Check-out date should be later than check-in date.');
+    return;
+  }
+  const nights = (new Date(checkOut) - new Date(checkIn)) / (1000 * 60 * 60 * 24);
+  alert(`${name} selected. Price is ${price} per night. Duration: ${nights} night(s).`);
 }
 function checkoutRoom(name) {
-  alert('Proceed to checkout for ' + name + '.');
+  const checkIn = document.getElementById('checkIn').value;
+  const checkOut = document.getElementById('checkOut').value;
+  if (!checkIn || !checkOut || new Date(checkIn) >= new Date(checkOut)) {
+    alert('Please set valid check-in/check-out dates before checkout.');
+    return;
+  }
+  alert('Proceed to checkout for ' + name + ' (from ' + checkIn + ' to ' + checkOut + ').');
+}
+function validateDateRange() {
+  const checkIn = document.getElementById('checkIn');
+  const checkOut = document.getElementById('checkOut');
+  if (checkIn.value && checkOut.value && new Date(checkIn.value) >= new Date(checkOut.value)) {
+    checkOut.setCustomValidity('Check-out must be after check-in.');
+  } else {
+    checkOut.setCustomValidity('');
+  }
 }
 </script>
 </head>
@@ -159,8 +185,8 @@ function checkoutRoom(name) {
 <h1 style="text-align:center; margin-top: 0; color: #212121;">Accommodation page</h1>
 
 <div class="accommodation-hero">
-  <div style="font-size:22px; font-weight:800; margin-bottom: 12px;">Check-in Date: <input type="date" id="checkIn" /></div>
-  <div style="font-size:22px; font-weight:800; margin-bottom: 10px;">Check-out Date: <input type="date" id="checkOut" /></div>
+  <div style="font-size:22px; font-weight:800; margin-bottom: 12px;">Check-in Date: <input type="date" id="checkIn" onchange="validateDateRange()" /></div>
+  <div style="font-size:22px; font-weight:800; margin-bottom: 10px;">Check-out Date: <input type="date" id="checkOut" onchange="validateDateRange()" /></div>
   <div style="font-size:20px; color:#091f61; font-weight:700; margin-top: 8px;">Search: <input type="search" id="accommodationSearch" placeholder="Search room type..." oninput="filterRooms()" /></div>
 </div>
 
