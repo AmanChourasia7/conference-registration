@@ -24,3 +24,22 @@ export async function saveRegistration(data) {
     throw error;
   }
 }
+
+// function to store contact messages
+export async function saveContactMessage(data) {
+  try {
+    const docRef = await addDoc(collection(db, "contact_messages"), {
+      name: data.name,
+      email: data.email,
+      message: data.message,
+      createdAt: serverTimestamp()
+    });
+
+    console.log("Contact message stored with ID:", docRef.id);
+    return docRef.id;
+
+  } catch (error) {
+    console.error("Error adding contact message:", error);
+    throw error;
+  }
+}
