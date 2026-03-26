@@ -1,1 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>OML 2027 - Accommodation</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="author" content="Aman Chourasia"/>
+<meta name="description" content="Accommodation details for OML 2027 conference."/>
+<meta name="keywords" content="OML, Accommodation, Conference Hotel, Rooms, Booking"/>
 
+<link rel="SHORTCUT ICON" href="assets/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<style>
+  .accommodation-hero {
+    width: 100%;
+    background: #bdb9b9;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 28px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .accommodation-hero label {
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 14px;
+  }
+  .accommodation-hero input[type="date"] {
+    margin: 0 12px 8px 0;
+    padding: 8px 10px;
+    border: 1px solid #999;
+    border-radius: 5px;
+  }
+  .accommodation-hero input[type="search"] {
+    margin-top: 12px;
+    padding: 8px 10px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    width: 240px;
+  }
+  .room-card {
+    background: #c0bcbc;
+    border-radius: 10px;
+    padding: 22px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .room-details {
+    flex: 1.2;
+  }
+  .room-details h2 {
+    margin: 0 0 8px 0;
+  }
+  .room-details p {
+    margin: 3px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .room-actions {
+    min-width: 180px;
+    text-align: right;
+  }
+  .room-actions button {
+    background: #0f2f92;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  .room-actions button.checkout {
+    background: #1a1a1a;
+  }
+  .room-actions .price {
+    font-size: 18px;
+    font-weight: 800;
+    color: #141414;
+    margin: 4px 0 8px 0;
+  }
+</style>
+
+<script language="javascript">
+function selectRoom(name, price) {
+  alert(name + ' selected. Price is ' + price + ' per night.');
+}
+function checkoutRoom(name) {
+  alert('Proceed to checkout for ' + name + '.');
+}
+</script>
+</head>
+
+<body>
+<table align="center" class="maintable">
+<tr>
+<td>&nbsp;</td>
+<td id="logo">
+	<div class="hero-banner" aria-label="Conference banner">
+		<img src="assets/background-slider.png" alt="Conference banner" class="hero-bg-image">
+
+		<div class="hero-overlay">
+			<div class="hero-top-row">
+				<div class="hero-logo hero-logo-left"></div>
+				<div class="hero-logo hero-logo-right"></div>
+			</div>
+
+			<div class="hero-main-text">
+				1<sup>st</sup> Conference on<br>
+				Optimization and Machine Learning
+			</div>
+
+			<div class="hero-bottom-right">
+				Tutorial: 8 - 9 January 2027, LH001, Indian Institute of Technology Patna<br>
+				Scientific Programme: 10 - 14 January 2027, LH004,  Indian Institute of Technology Patna
+			</div>
+		</div>
+	</div>
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td id="content">
+
+<table width="980px" align="center">
+<tr>
+
+<td width="230" rowspan="2" id="menu_tbl">
+<a href="index.html" id="menu_tbl">Home</a><br>
+<a href="committees.html" id="menu_tbl">Committees</a><br>
+<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a><br>
+<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a><br>
+<a href="poster-session.html" id="menu_tbl">Poster Session</a><br>
+<a href="public-lecture.html" id="menu_tbl">Public Lecture</a><br>
+<a href="rump-session.html" id="menu_tbl">Rump Session</a><br>
+<a href="photos.html" id="menu_tbl">Photos</a><br>
+<a href="submissions.html" id="menu_tbl">Submissions</a><br>
+ 
+<a href="registration.html" id="menu_tbl">Registration</a><br>
+<a href="participant-list.html" id="menu_tbl">Participants</a><br>
+<a href="conference-venue.html" id="menu_tbl">Conference Venue</a><br>
+<a href="accommodation.html" id="menu_tbl">Accommodation</a><br>
+<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a><br>
+ 
+<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a><br>
+<a href="related-conferences.html" id="menu_tbl">Related Conferences</a><br>
+<a href="oml-charter.html" id="menu_tbl">OML Charter</a><br>
+<a href="contact-us.html" id="menu_tbl">Contact Us</a><br>
+<br/>
+</td>
+
+<td width="720" id="content_tbl">
+
+<h1 style="text-align:center; margin-top: 0; color: #212121;">Accommodation page</h1>
+
+<div class="accommodation-hero">
+  <div style="font-size:22px; font-weight:800; margin-bottom: 12px;">Check-in Date: <input type="date" id="checkIn" /></div>
+  <div style="font-size:22px; font-weight:800; margin-bottom: 10px;">Check-out Date: <input type="date" id="checkOut" /></div>
+  <div style="font-size:20px; color:#091f61; font-weight:700; margin-top: 8px;">Search: <input type="search" id="accommodationSearch" placeholder="Search room type..." oninput="filterRooms()" /></div>
+</div>
+
+<div id="roomsContainer">
+  <div class="room-card" data-room-type="deluxe">
+    <div class="room-details">
+      <h2>Deluxe Room</h2>
+      <div class="price">Price: ₹3000 per night</div>
+      <p>Description: AC room, WiFi, Breakfast included</p>
+    </div>
+    <div class="room-actions">
+      <button onclick="selectRoom('Deluxe Room', '₹3000')">Select Room</button><br>
+      <button class="checkout" onclick="checkoutRoom('Deluxe Room')">Checkout</button>
+    </div>
+  </div>
+
+  <div class="room-card" data-room-type="normal">
+    <div class="room-details">
+      <h2>Normal Room</h2>
+      <div class="price">Price: ₹1000 per night</div>
+      <p>Description: Cleaned room, Breakfast included</p>
+    </div>
+    <div class="room-actions">
+      <button onclick="selectRoom('Normal Room', '₹1000')">Select Room</button><br>
+      <button class="checkout" onclick="checkoutRoom('Normal Room')">Checkout</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function filterRooms() {
+  const query = document.getElementById('accommodationSearch').value.toLowerCase().trim();
+  const cards = document.querySelectorAll('.room-card');
+  cards.forEach(card => {
+    const type = card.getAttribute('data-room-type') || '';
+    const name = card.querySelector('h2').textContent.toLowerCase();
+    if (!query || name.includes(query) || type.includes(query)) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</td>
+
+</tr>
+</table>
+
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td id="footer">Copyright&copy; 2027 Optimization and Machine Learning Conference</td>
+<td>&nbsp;</td>
+</tr>
+
+</table>
+
+</body>
+</html>
