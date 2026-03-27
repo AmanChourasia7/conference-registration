@@ -147,6 +147,19 @@ function toggle_plain() {
     padding: 8px;
     text-align: center;
 }
+.topic-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: #000;
+    background: #fff;
+    border: 1px solid #a0a0a0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-weight: 700;
+}
+.topic-btn:hover {
+    background: #c6c6c6;
+}
 .rump-schedule-card {
     min-height: 120px;
 }
@@ -166,12 +179,12 @@ function toggle_plain() {
     <div class="rump-section">
         <h2>Topics</h2>
         <ul class="rump-topic-list">
-            <li>Artificial Intelligence</li>
-            <li>Machine Learning</li>
-            <li>Natural Language Processing</li>
-            <li>Healthcare & Technology</li>
-            <li>Security</li>
-            <li>Robotics</li>
+            <li><a class="topic-btn" href="topics/artificial-intelligence.html">Artificial Intelligence</a></li>
+            <li><a class="topic-btn" href="topics/machine-learning.html">Machine Learning</a></li>
+            <li><a class="topic-btn" href="topics/nlp.html">Natural Language Processing</a></li>
+            <li><a class="topic-btn" href="topics/healthcare-technology.html">Healthcare & Technology</a></li>
+            <li><a class="topic-btn" href="topics/security.html">Security</a></li>
+            <li><a class="topic-btn" href="topics/robotics.html">Robotics</a></li>
         </ul>
     </div>
 </div>
