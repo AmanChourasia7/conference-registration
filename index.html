@@ -9,7 +9,7 @@
 
 <link rel="SHORTCUT ICON" href="assets/favicon.ico"/>
 <link rel="stylesheet" type="text/css" href="css/main.css">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script language="javascript"> 
 function toggle() {
 	var ele = document.getElementById("toggleText");
@@ -23,7 +23,9 @@ function toggle() {
 		text.innerHTML = "<b>hide directions</b>";
 	}
 }
-
+function toggleMenu() {
+    document.body.classList.toggle("mobile-menu-open");
+}
 function toggle2() {
 	var ele = document.getElementById("toggleText2");
 	var text = document.getElementById("displayText2");
@@ -48,8 +50,7 @@ function toggle_plain() {
 }
 </script>
 </head>
-
-<body>
+<body class="nav-ready">
 <table align="center" class="maintable">
 <tr>
 <td>&nbsp;</td>
@@ -84,11 +85,15 @@ function toggle_plain() {
 <tr>
 <td>&nbsp;</td>
 <td id="content">
-
 <table width="980px" align="center">
 <tr>
-
-<td width="230" rowspan="2" id="menu_tbl">
+<td colspan="3">
+    <button class="mobile-menu-toggle" onclick="toggleMenu()">
+        <span class="hamburger-icon"></span>
+    </button>
+</td>
+</tr>
+<td width="230" rowspan="2" id="menu_box">
 <a href="index.html" id="menu_tbl">Home</a><br>
 <a href="committees.html" id="menu_tbl">Committees</a><br>
 <a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a><br>
@@ -198,6 +203,5 @@ Pdf files of Programme Booklet: <a href="#">Download Here</a>
 </tr>
 
 </table>
-
 </body>
 </html>
