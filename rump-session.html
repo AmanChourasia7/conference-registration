@@ -114,186 +114,67 @@ function toggle_plain() {
 
 <td width="720" id="content_tbl">
 
-<h3 id="content">Rump Session</h3>
+<style>
+.rump-card, .rump-topic-card, .rump-schedule-card, .rump-section {
+    background: #d8d8d8;
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 14px;
+}
+.rump-card h2, .rump-section h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.rump-card p, .rump-topic-list li, .rump-section p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.5;
+}
+.rump-topic-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 10px;
+    margin: 0;
+    list-style: none;
+}
+.rump-topic-list li {
+    background: #e8e8e8;
+    border-radius: 6px;
+    padding: 8px;
+    text-align: center;
+}
+.rump-schedule-card {
+    min-height: 120px;
+}
+</style>
 
-<p><b>Saturday, 16 January 2027</b></p>
+<div class="rump-section">
+    <div class="rump-card">
+        <h2>Research Sessions</h2>
+        <p><strong>RUMP SESSIONS</strong><br>Rapid presentations showcasing cutting-edge research, innovative posters, and live demonstrations</p>
+    </div>
 
-<!-- SESSION 1 -->
-<p><b>Rump Session I</b></p>
+    <div class="rump-schedule-card">
+        <h2>Session schedule</h2>
+        <p>Session 1: 18:00 - 18:30 (6 talks, lightning format), Session 2: 19:00 - 19:30 (6 talks, rapid sharing)</p>
+    </div>
 
-<table class="timetable" width="100%">
-<tbody>
-
-<tr>
-<th>Start time</th>
-<th>Speaker & Title</th>
-<th>End time</th>
-<th>Assigned time</th>
-<th>Actual time</th>
-</tr>
-
-<tr>
-<td>18:00</td>
-<td>
-<b>Dr. A. Sharma <a href="#" class="orcid"></a></b><br>
-<i>Why Gradient Descent Still Surprises Us</i>
-</td>
-<td>18:05</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>18:05</td>
-<td>
-<b>Prof. V. Singh <a href="#" class="orcid"></a></b><br>
-<i>Convexity: Myth or Reality?</i>
-</td>
-<td>18:10</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>18:10</td>
-<td>
-<b>Dr. N. Gupta <a href="#" class="orcid"></a></b><br>
-<i>When Optimization Fails Gracefully</i>
-</td>
-<td>18:15</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>18:15</td>
-<td>
-<b>Prof. A. Mehta <a href="#" class="orcid"></a></b><br>
-<i>Deep Learning Without Optimization?</i>
-</td>
-<td>18:20</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>18:20</td>
-<td>
-<b>Dr. S. Iyer <a href="#" class="orcid"></a></b><br>
-<i>Noise is Not Always the Enemy</i>
-</td>
-<td>18:25</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>18:25</td>
-<td>
-<b>Prof. K. Verma <a href="#" class="orcid"></a></b><br>
-<i>RL Optimization: Still an Open Problem</i>
-</td>
-<td>18:30</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>18:30</td>
-<td colspan="4"><b>Open Floor & Lightning Discussions</b></td>
-</tr>
-
-</tbody>
-</table>
-
-
-<!-- SESSION 2 -->
-<p><b>Rump Session II</b></p>
-
-<table class="timetable" width="100%">
-<tbody>
-
-<tr>
-<th>Start time</th>
-<th>Speaker & Title</th>
-<th>End time</th>
-<th>Assigned time</th>
-<th>Actual time</th>
-</tr>
-
-<tr>
-<td>19:00</td>
-<td>
-<b>Dr. P. Nair <a href="#" class="orcid"></a></b><br>
-<i>Scaling Optimization to Billions of Parameters</i>
-</td>
-<td>19:05</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>19:05</td>
-<td>
-<b>Prof. R. Das <a href="#" class="orcid"></a></b><br>
-<i>Second-Order Methods Are Back?</i>
-</td>
-<td>19:10</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>19:10</td>
-<td>
-<b>Dr. R. Malhotra <a href="#" class="orcid"></a></b><br>
-<i>Probabilistic Optimization: Where Next?</i>
-</td>
-<td>19:15</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>19:15</td>
-<td>
-<b>Prof. A. Banerjee <a href="#" class="orcid"></a></b><br>
-<i>Generalization vs Optimization</i>
-</td>
-<td>19:20</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>19:20</td>
-<td>
-<b>Dr. K. Roy <a href="#" class="orcid"></a></b><br>
-<i>Vision Models and Optimization Limits</i>
-</td>
-<td>19:25</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>19:25</td>
-<td>
-<b>Prof. M. Iyer <a href="#" class="orcid"></a></b><br>
-<i>NLP Optimization at Scale</i>
-</td>
-<td>19:30</td>
-<td>5 min</td>
-<td></td>
-</tr>
-
-<tr>
-<td>19:30</td>
-<td colspan="4"><b>Open Floor, Debate & Informal Interaction</b></td>
-</tr>
-
-</tbody>
-</table>
+    <div class="rump-section">
+        <h2>Topics</h2>
+        <ul class="rump-topic-list">
+            <li>Artificial Intelligence</li>
+            <li>Machine Learning</li>
+            <li>Natural Language Processing</li>
+            <li>Healthcare & Technology</li>
+            <li>Security</li>
+            <li>Robotics</li>
+        </ul>
+    </div>
+</div>
 
 <br><br>
 
@@ -308,7 +189,7 @@ function toggle_plain() {
 
 <tr>
 <td>&nbsp;</td>
-<td id="footer">Copyright&copy; 2027 Optimization and Machine Learning Conference</td>
+<td id="footer">© 2026 Conference. All rights reserved.</td>
 <td>&nbsp;</td>
 </tr>
 
