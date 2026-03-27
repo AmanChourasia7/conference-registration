@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>OML 2027 - HOME</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="author" content="Aman Chourasia"/>
+<meta name="description" content="The official website of OML 2027. OML 2027 is the 1st conference on optimization and machine learning to be held in India in January 2027."/>
+<meta name="keywords" content="OML, OML2027, OML 2027, 1st Conference on Optimization and Machine Learning, Optimization and Machine Learning Conference, India, Research Conference, Machine Learning, Optimization, AI Conference"/>
+
+<link rel="SHORTCUT ICON" href="assets/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<script language="javascript"> 
+function toggle() {
+	var ele = document.getElementById("toggleText");
+	var text = document.getElementById("displayText");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+		text.innerHTML = "<b>show directions</b>";
+  	}
+	else {
+		ele.style.display = "block";
+		text.innerHTML = "<b>hide directions</b>";
+	}
+}
+
+function toggle2() {
+	var ele = document.getElementById("toggleText2");
+	var text = document.getElementById("displayText2");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+		text.innerHTML = "<b>show directions</b>";
+  	}
+	else {
+		ele.style.display = "block";
+		text.innerHTML = "<b>hide directions</b>";
+	}
+} 
+
+function toggle_plain() {
+	var ele = document.getElementById("toggleText");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+  	}
+	else {
+		ele.style.display = "block";
+	}
+}
+</script>
+</head>
+
+<body>
+<table align="center" class="maintable">
+<tr>
+<td>&nbsp;</td>
+<td id="logo">
+	<div class="hero-banner" aria-label="Conference banner">
+		<img src="assets/background-slider.png" alt="Conference banner" class="hero-bg-image">
+
+		<div class="hero-overlay">
+			<div class="hero-top-row">
+				<div class="hero-logo hero-logo-left">
+					
+                </div>
+				<div class="hero-logo hero-logo-right"></div>
+			</div>
+
+			<div class="hero-main-text">
+				1<sup>st</sup> Conference on<br>
+				Optimization and Machine Learning
+			</div>
+
+			<div class="hero-bottom-right">
+				Tutorial: 8 - 9 January 2027, LH001, Indian Institute of Technology Patna<br>
+				Scientific Programme: 10 - 14 January 2027, LH004,  Indian Institute of Technology Patna
+			</div>
+		</div>
+	</div>
+
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td id="content">
+
+<table width="980px" align="center">
+<tr>
+
+<td width="230" rowspan="2" id="menu_tbl">
+<a href="index.html" id="menu_tbl">Home</a><br>
+<a href="committees.html" id="menu_tbl">Committees</a><br>
+<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a><br>
+<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a><br>
+<a href="poster-session.html" id="menu_tbl">Poster Session</a><br>
+<a href="public-lecture.html" id="menu_tbl">Public Lecture</a><br>
+<a href="rump-session.html" id="menu_tbl">Rump Session</a><br>
+<a href="photos.html" id="menu_tbl">Photos</a><br>
+<a href="submissions.html" id="menu_tbl">Submissions</a><br>
+ 
+<a href="registration.html" id="menu_tbl">Registration</a><br>
+<a href="participant-list.html" id="menu_tbl">Participants</a><br>
+<a href="conference-venue.html" id="menu_tbl">Conference Venue</a><br>
+<a href="accommodation.html" id="menu_tbl">Accommodation</a><br>
+<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a><br>
+ 
+<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a><br>
+<a href="related-conferences.html" id="menu_tbl">Related Conferences</a><br>
+<a href="oml-charter.html" id="menu_tbl">OML Charter</a><br>
+<a href="contact-us.html" id="menu_tbl">Contact Us</a><br>
+<br/>
+</td>
+
+<td width="500" id="content_tbl">
+
+<style>
+.participants-panel {
+    background: #ececec;
+    box-shadow: 0 1px 5px rgba(0,0,0,.13);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 0 0 20px;
+}
+.participants-panel h2 {
+    margin: 0 0 6px;
+    font-size: 30px;
+    letter-spacing: 0.4px;
+}
+.participants-panel p {
+    margin: 0 0 18px;
+    color: #444;
+}
+.participant-search-wrap {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.participant-search-wrap input {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 14px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+}
+.participant-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.participant-filters button {
+    border: 1px solid #2E75C7;
+    background: #fff;
+    color: #2E75C7;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+.participant-filters button.active,
+.participant-filters button:hover {
+    background: #2E75C7;
+    color: #fff;
+}
+.participant-list {
+    min-height: 210px;
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    border-radius: 8px;
+    padding: 16px;
+}
+.participant-card {
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.participant-card h4 {
+    margin: 0 0 4px;
+    font-size: 18px;
+}
+</style>
+
+<div class="participants-panel">
+    <h2>PARTICIPANTS</h2>
+    <p>Meet our speakers, organizers, and attendees from around the world</p>
+
+    <div class="participant-search-wrap">
+        <input id="participantSearch" type="text" placeholder="Search by name, Affiliation, Paper tittle..." aria-label="Search participants">
+        <div class="participant-filters" role="group" aria-label="Participant filters">
+            <button data-filter="all" class="active">All</button>
+            <button data-filter="speaker">Speaker</button>
+            <button data-filter="attendee">Attendees</button>
+            <button data-filter="organizer">Organizers</button>
+        </div>
+    </div>
+
+    <div id="participantList" class="participant-list">
+        <p style="color:#666; margin:0;">No participants are currently visible. Use the filter buttons or search to display participants.</p>
+    </div>
+</div>
+
+<script>
+const participants = [
+    { name:'Aditi Sharma', affiliation:'IIT Delhi', role:'speaker', paper:'Efficient Optimization Algorithms' },
+    { name:'Hari Kumar', affiliation:'IIT Bombay', role:'attendee', paper:'Deep Learning in Robotics' },
+    { name:'Nisha Gupta', affiliation:'IIT Kharagpur', role:'organizer', paper:'Conference Coordinator' },
+    { name:'Sameer Rao', affiliation:'IIT Madras', role:'speaker', paper:'Large-Scale ML Systems' },
+    { name:'Priya Menon', affiliation:'IIT Patna', role:'attendee', paper:'Gradient Methods for Sparse Recovery' }
+];
+
+const listElm = document.getElementById('participantList');
+const searchElm = document.getElementById('participantSearch');
+let activeRole = 'all';
+
+function renderParticipants() {
+    const query = searchElm.value.trim().toLowerCase();
+    const filtered = participants.filter(p => {
+        const matchRole = activeRole === 'all' || p.role === activeRole;
+        const text = `${p.name} ${p.affiliation} ${p.paper}`.toLowerCase();
+        const matchText = query === '' || text.includes(query);
+        return matchRole && matchText;
+    });
+
+    if (filtered.length === 0) {
+        listElm.innerHTML = '<p style="color:#666;margin:0;">No participants found with the selected filters or search term.</p>';
+        return;
+    }
+
+    listElm.innerHTML = filtered.map(p => `
+        <div class="participant-card">
+            <h4>${p.name}</h4>
+            <div><strong>Affiliation:</strong> ${p.affiliation}</div>
+            <div><strong>Role:</strong> ${p.role}</div>
+            <div><strong>Paper:</strong> ${p.paper}</div>
+        </div>
+    `).join('');
+}
+
+searchElm.addEventListener('input', renderParticipants);
+
+document.querySelectorAll('.participant-filters button').forEach(button => {
+    button.addEventListener('click', () => {
+        activeRole = button.getAttribute('data-filter');
+        document.querySelectorAll('.participant-filters button').forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        renderParticipants();
+    });
+});
+
+renderParticipants();
+</script>
+
+</td>
+
+<td width="250" id="sponsor" align="center">
+
+<table class="righttable">
+<tr><td id="righttable">
+<br>
+<div align="left">
+Pdf files of Programme Booklet: <a href="#">Download Here</a>
+<br>
+</div>
+<br>
+
+<center>
+</center>
+
+</td></tr>
+</table>
+
+<br>
+
+<table class="righttable">
+<tr><td><center><strong>Supported by:</strong></center></td></tr>
+<tr><td id="righttable">
+<br>
+
+<p id="content"><center>
+<img width="120" src="https://iisc.ac.in/wp-content/uploads/2020/08/IISc_Master_Seal_Black.jpg" id="logo"><br><br>
+<img width="120" src="https://upload.wikimedia.org/wikipedia/sa/6/66/IIT_Delhi_logo.png" id="logo"><br><br>
+</center></p>
+
+</td></tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td id="footer">Copyright&copy; 2027 Optimization and Machine Learning Conference</td>
+<td>&nbsp;</td>
+</tr>
+
+</table>
+
+</body>
+</html>
