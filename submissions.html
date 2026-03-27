@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Paper Submission</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      color: #111;
+    }
+    .wrapper {
+      max-width: 920px;
+      margin: 30px auto 20px;
+      padding: 0 14px;
+    }
+    .panel {
+      background: #e4e4e4;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      padding: 16px;
+    }
+    .panel h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+    .panel p {
+      margin: 0;
+      line-height: 1.5;
+    }
+    .guidelines {
+      border: 2px solid #3f7ad8;
+      background: #fff;
+      padding: 16px;
+    }
+    .guidelines ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+    .submission-form {
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 16px;
+    }
+    .field {
+      margin-bottom: 14px;
+    }
+    .field label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #a9a9a9;
+      border-radius: 5px;
+      font-size: 15px;
+      box-sizing: border-box;
+      background: #fafafa;
+    }
+    .upload-box {
+      border: 2px dashed #999;
+      border-radius: 6px;
+      background: #f7f8fa;
+      padding: 22px;
+      text-align: center;
+      color: #555;
+      margin-bottom: 8px;
+      cursor: pointer;
+    }
+    .upload-box input {
+      display: none;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 6px;
+      background: #2d7aee;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .info-block {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 26px;
+      color: #444;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrapper">
+    <section class="panel">
+      <h2>PAPER SUBMISSION</h2>
+      <p style="float:right; text-align:right; margin:0;">Submit Your Paper<br />Submit your research paper for consideration at Conference 2026</p>
+      <div style="clear:both;"></div>
+    </section>
+
+    <section class="panel guidelines">
+      <h3>SUBMISSION GUIDELINES</h3>
+      <ul>
+        <li>File Format: PDF only (.pdf)</li>
+        <li>File Size: Maximum 10 MB</li>
+        <li>Paper Length: 6-8 pages including references</li>
+        <li>Formatting: Use the IEEE conference template</li>
+        <li>Anonymization: Remove all author information for blind review</li>
+        <li>Language: English only</li>
+        <li>Deadline: April 1, 2026, 11:59 PM EST</li>
+        <li>Originality: Submitted papers must be original and not previously published</li>
+      </ul>
+    </section>
+
+    <section class="panel submission-form">
+      <h3>SUBMISSION FORM</h3>
+      <div class="field">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Your full name" required />
+      </div>
+      <div class="field">
+        <label for="email">Institute Email</label>
+        <input type="email" id="email" placeholder="yourname@institute.edu" required />
+      </div>
+      <div class="field">
+        <label for="title">Paper Title</label>
+        <input type="text" id="title" placeholder="Paper title" required />
+      </div>
+      <div class="field">
+        <label>Upload Paper</label>
+        <label class="upload-box" for="paperUpload">Click to Upload or Drag & Drop<br>PDF(max 10mb)</label>
+        <input id="paperUpload" type="file" accept="application/pdf" />
+      </div>
+      <button class="button" id="submit-btn">Submit Paper</button>
+    </section>
+
+    <section class="info-block">
+      <h3>After Submission</h3>
+      <p>Once you submit your paper, you will receive an immediate confirmation email with your submission ID. The review process typically takes 4-6 weeks. You will be notified of the decision via email. If you need to update your submission before the deadline, please contact us at <a href="mailto:submissions@conference2026.org">submissions@conference2026.org</a>.</p>
+    </section>
+
+    <div class="footer">© 2026 Conference. All rights reserved.</div>
+  </main>
+
+  <script>
+    const form = document.querySelector('.submission-form');
+    const submitBtn = document.getElementById('submit-btn');
+    submitBtn.addEventListener('click', e => {
+      e.preventDefault();
+      alert('Thank you! Your submission has been received.');
+    });
+    const uploadBox = document.querySelector('.upload-box');
+    const fileInput = document.getElementById('paperUpload');
+    uploadBox.addEventListener('dragover', e => { e.preventDefault(); uploadBox.style.background = '#e2e6f3'; });
+    uploadBox.addEventListener('dragleave', e => { e.preventDefault(); uploadBox.style.background = '#f7f8fa'; });
+    uploadBox.addEventListener('drop', e => {
+      e.preventDefault();
+      fileInput.files = e.dataTransfer.files;
+      uploadBox.style.background = '#f7f8fa';
+    });
+    uploadBox.addEventListener('click', () => fileInput.click());
+  </script>
+</body>
+
+</html>
