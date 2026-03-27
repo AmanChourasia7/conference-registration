@@ -1,125 +1,222 @@
-
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Paper Submission</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      color: #111;
-    }
-    .wrapper {
-      max-width: 920px;
-      margin: 30px auto 20px;
-      padding: 0 14px;
-    }
-    .panel {
-      background: #e4e4e4;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 14px;
-      padding: 16px;
-    }
-    .panel h2 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      letter-spacing: 1px;
-    }
-    .panel p {
-      margin: 0;
-      line-height: 1.5;
-    }
-    .guidelines {
-      border: 2px solid #3f7ad8;
-      background: #fff;
-      padding: 16px;
-    }
-    .guidelines ul {
-      margin: 12px 0 0;
-      padding-left: 18px;
-    }
-    .submission-form {
-      background: #fff;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      padding: 16px;
-    }
-    .field {
-      margin-bottom: 14px;
-    }
-    .field label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 6px;
-    }
-    .field input,
-    .field textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #a9a9a9;
-      border-radius: 5px;
-      font-size: 15px;
-      box-sizing: border-box;
-      background: #fafafa;
-    }
-    .upload-box {
-      border: 2px dashed #999;
-      border-radius: 6px;
-      background: #f7f8fa;
-      padding: 22px;
-      text-align: center;
-      color: #555;
-      margin-bottom: 8px;
-      cursor: pointer;
-    }
-    .upload-box input {
-      display: none;
-    }
-    .button {
-      display: inline-block;
-      margin-top: 6px;
-      background: #2d7aee;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      padding: 10px 14px;
-      cursor: pointer;
-      font-size: 15px;
-      font-weight: 700;
-    }
-    .info-block {
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 14px;
-      line-height: 1.5;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 26px;
-      color: #444;
-      font-size: 14px;
-    }
-  </style>
+<title>OML 2027 - HOME</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<meta name="author" content="Aman Chourasia"/>
+<meta name="description" content="The official website of OML 2027. OML 2027 is the 1st conference on optimization and machine learning to be held in India in January 2027."/>
+<meta name="keywords" content="OML, OML2027, OML 2027, 1st Conference on Optimization and Machine Learning, Optimization and Machine Learning Conference, India, Research Conference, Machine Learning, Optimization, AI Conference"/>
+
+<link rel="SHORTCUT ICON" href="assets/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<script language="javascript"> 
+function toggle() {
+	var ele = document.getElementById("toggleText");
+	var text = document.getElementById("displayText");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+		text.innerHTML = "<b>show directions</b>";
+  	}
+	else {
+		ele.style.display = "block";
+		text.innerHTML = "<b>hide directions</b>";
+	}
+}
+
+function toggle2() {
+	var ele = document.getElementById("toggleText2");
+	var text = document.getElementById("displayText2");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+		text.innerHTML = "<b>show directions</b>";
+  	}
+	else {
+		ele.style.display = "block";
+		text.innerHTML = "<b>hide directions</b>";
+	}
+} 
+
+function toggle_plain() {
+	var ele = document.getElementById("toggleText");
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+  	}
+	else {
+		ele.style.display = "block";
+	}
+}
+</script>
 </head>
 
 <body>
-  <main class="wrapper">
-    <section class="panel">
-      <h2>PAPER SUBMISSION</h2>
-      <p style="float:right; text-align:right; margin:0;">Submit Your Paper<br />Submit your research paper for consideration at Conference 2026</p>
-      <div style="clear:both;"></div>
-    </section>
+<table align="center" class="maintable">
+<tr>
+<td>&nbsp;</td>
+<td id="logo">
+	<div class="hero-banner" aria-label="Conference banner">
+		<img src="assets/background-slider.png" alt="Conference banner" class="hero-bg-image">
 
-    <section class="panel guidelines">
-      <h3>SUBMISSION GUIDELINES</h3>
-      <ul>
+		<div class="hero-overlay">
+			<div class="hero-top-row">
+				<div class="hero-logo hero-logo-left">
+					
+                </div>
+				<div class="hero-logo hero-logo-right"></div>
+			</div>
+
+			<div class="hero-main-text">
+				1<sup>st</sup> Conference on<br>
+				Optimization and Machine Learning
+			</div>
+
+			<div class="hero-bottom-right">
+				Tutorial: 8 - 9 January 2027, LH001, Indian Institute of Technology Patna<br>
+				Scientific Programme: 10 - 16 January 2027, LH004,  Indian Institute of Technology Patna
+			</div>
+		</div>
+	</div>
+
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td id="content">
+
+<table width="980px" align="center">
+<tr>
+
+<td width="230" rowspan="2" id="menu_tbl">
+<a href="index.html" id="menu_tbl">Home</a><br>
+<a href="committees.html" id="menu_tbl">Committees</a><br>
+<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a><br>
+<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a><br>
+<a href="poster-session.html" id="menu_tbl">Poster Session</a><br>
+<a href="public-lecture.html" id="menu_tbl">Public Lecture</a><br>
+<a href="rump-session.html" id="menu_tbl">Rump Session</a><br>
+<a href="photos.html" id="menu_tbl">Photos</a><br>
+<a href="submissions.html" id="menu_tbl">Submissions</a><br>
+ 
+<a href="registration.html" id="menu_tbl">Registration</a><br>
+<a href="participant-list.html" id="menu_tbl">Participants</a><br>
+<a href="conference-venue.html" id="menu_tbl">Conference Venue</a><br>
+<a href="accommodation.html" id="menu_tbl">Accommodation</a><br>
+<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a><br>
+ 
+<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a><br>
+<a href="related-conferences.html" id="menu_tbl">Related Conferences</a><br>
+<a href="oml-charter.html" id="menu_tbl">OML Charter</a><br>
+<a href="contact-us.html" id="menu_tbl">Contact Us</a><br>
+<br/>
+</td>
+
+<td width="720" id="content_tbl">
+
+<style>
+.submission-panel {
+    background: #e6e6e6;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 18px;
+    margin-bottom: 14px;
+}
+.submission-panel h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+.submission-panel p.subtitle {
+    margin: 0;
+    text-align: right;
+    font-size: 16px;
+}
+.guidelines {
+    background: #fff;
+    border: 3px solid #5aa8ff;
+    border-radius: 6px;
+    padding: 12px 14px;
+}
+.guidelines h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+.guidelines ul {
+    margin: 0;
+    padding-left: 20px;
+    line-height: 1.5;
+}
+.form-panel {
+    background: #e6e6e6;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 18px;
+    margin-top: 10px;
+}
+.form-field {
+    margin-bottom: 12px;
+}
+.form-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.form-field input[type=text],
+.form-field input[type=email],
+.form-field input[type=file] {
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #999;
+    border-radius: 4px;
+    background: #fff;
+}
+.upload-box {
+    border: 1px solid #777;
+    background: #fff;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+}
+.upload-box input {
+    display: none;
+}
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #555;
+    background: #fff;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.after-submission {
+    background: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 18px;
+    margin-top: 10px;
+    line-height: 1.5;
+    font-size: 15px;
+}
+.footer-note {
+    text-align: center;
+    margin-top: 14px;
+    padding: 10px;
+    background: #e6e6e6;
+    border-radius: 4px;
+    font-size: 14px;
+}
+</style>
+
+<div class="submission-panel">
+    <h2>PAPER SUBMISSION</h2>
+    <p class="subtitle">Submit Your Paper<br />Submit your research paper for consideration at Conference 2026</p>
+</div>
+
+<div class="submission-panel guidelines">
+    <h3>SUBMISSION GUIDELINES</h3>
+    <ul>
         <li>File Format: PDF only (.pdf)</li>
         <li>File Size: Maximum 10 MB</li>
         <li>Paper Length: 6-8 pages including references</li>
@@ -128,57 +225,54 @@
         <li>Language: English only</li>
         <li>Deadline: April 1, 2026, 11:59 PM EST</li>
         <li>Originality: Submitted papers must be original and not previously published</li>
-      </ul>
-    </section>
+    </ul>
+</div>
 
-    <section class="panel submission-form">
-      <h3>SUBMISSION FORM</h3>
-      <div class="field">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Your full name" required />
-      </div>
-      <div class="field">
-        <label for="email">Institute Email</label>
-        <input type="email" id="email" placeholder="yourname@institute.edu" required />
-      </div>
-      <div class="field">
-        <label for="title">Paper Title</label>
-        <input type="text" id="title" placeholder="Paper title" required />
-      </div>
-      <div class="field">
-        <label>Upload Paper</label>
-        <label class="upload-box" for="paperUpload">Click to Upload or Drag & Drop<br>PDF(max 10mb)</label>
+<div class="submission-panel form-panel">
+    <h3>SUBMISSION FORM</h3>
+    <div class="form-field">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" placeholder="Full Name" />
+    </div>
+    <div class="form-field">
+        <label for="instituteEmail">Institute Email</label>
+        <input id="instituteEmail" type="email" placeholder="Institute Email" />
+    </div>
+    <div class="form-field">
+        <label for="paperTitle">Paper Title</label>
+        <input id="paperTitle" type="text" placeholder="Paper Title" />
+    </div>
+    <div class="form-field">
+        <label for="paperUpload">Upload Paper</label>
+        <label class="upload-box" for="paperUpload">Click to Upload<br />or<br />Drag & Drop<br />PDF (max 10mb)</label>
         <input id="paperUpload" type="file" accept="application/pdf" />
-      </div>
-      <button class="button" id="submit-btn">Submit Paper</button>
-    </section>
+    </div>
+    <button class="submit-btn" type="button" onclick="alert('Paper submitted successfully!')">Submit Paper</button>
+</div>
 
-    <section class="info-block">
-      <h3>After Submission</h3>
-      <p>Once you submit your paper, you will receive an immediate confirmation email with your submission ID. The review process typically takes 4-6 weeks. You will be notified of the decision via email. If you need to update your submission before the deadline, please contact us at <a href="mailto:submissions@conference2026.org">submissions@conference2026.org</a>.</p>
-    </section>
+<div class="submission-panel after-submission">
+    <h3>After Submission</h3>
+    <p>Once you submit your paper, you will receive an immediate confirmation email with your submission ID. The review process typically takes 4-6 weeks. You will be notified of the decision via email. If you need to update your submission before the deadline, please contact us at submissions@conference2026.org</p>
+</div>
 
-    <div class="footer">© 2026 Conference. All rights reserved.</div>
-  </main>
+<div class="footer-note">© 2026 Conference. All rights reserved.</div>
 
-  <script>
-    const form = document.querySelector('.submission-form');
-    const submitBtn = document.getElementById('submit-btn');
-    submitBtn.addEventListener('click', e => {
-      e.preventDefault();
-      alert('Thank you! Your submission has been received.');
-    });
-    const uploadBox = document.querySelector('.upload-box');
-    const fileInput = document.getElementById('paperUpload');
-    uploadBox.addEventListener('dragover', e => { e.preventDefault(); uploadBox.style.background = '#e2e6f3'; });
-    uploadBox.addEventListener('dragleave', e => { e.preventDefault(); uploadBox.style.background = '#f7f8fa'; });
-    uploadBox.addEventListener('drop', e => {
-      e.preventDefault();
-      fileInput.files = e.dataTransfer.files;
-      uploadBox.style.background = '#f7f8fa';
-    });
-    uploadBox.addEventListener('click', () => fileInput.click());
-  </script>
+</td>
+
+</tr>
+</table>
+
+</td>
+<td>&nbsp;</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td id="footer">© 2026 Conference. All rights reserved.</td>
+<td>&nbsp;</td>
+</tr>
+
+</table>
+
 </body>
-
 </html>
