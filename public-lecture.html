@@ -115,68 +115,141 @@ function toggle_plain() {
 
 <td width="720" id="content_tbl">
 
-<h3 id="content">Public Lecture</h3>
+<style>
+.public-lecture-section {
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    border: 1px solid #d8d8d8;
+}
+.public-lecture-section h2 {
+    margin: 0 0 6px;
+    font-size: 30px;
+    letter-spacing: 0.5px;
+}
+.public-lecture-section p.lead {
+    margin: 0 0 20px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+.lecture-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+}
+.lecture-meta .meta-box {
+    background: #e5e5e5;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+.lecture-meta .meta-box span.title {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 4px;
+}
+.speaker-panel {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 14px;
+    background: #e5e5e5;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 16px;
+}
+.speaker-photo {
+    background:#d7d7d7;
+    border-radius: 8px;
+    min-height: 145px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#444;
+    font-weight:700;
+}
+.speaker-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.speaker-details h3 { margin:0; font-size:20px; }
+.section-block {
+    background:#e5e5e5;
+    border-radius:8px;
+    padding:13px;
+    margin-bottom:14px;
+}
+.section-block h3 {
+    margin:0 0 8px;
+    font-size:18px;
+    letter-spacing:0.8px;
+}
+.section-block p,
+.section-block ul {
+    margin:0;
+    padding:0;
+    color:#333;
+    line-height:1.5;
+}
+.section-block ul {
+    list-style:none;
+}
+.section-block ul li {
+    padding: 6px 0;
+    border-bottom: 1px solid #ccc;
+}
+.section-block ul li:last-child { border-bottom: none; }
+.announcements .notice {
+    margin:0;
+    padding:12px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+</style>
 
-<p>
-<b>Friday, 15 January 2027</b>
-</p>
+<div class="public-lecture-section">
+    <h2>Public Lecture</h2>
+    <p class="lead">The Future of AI: Ethics and Innovation<br>An exploration of how artificial intelligence is reshaping our world and the ethical considerations we must address as we advance.</p>
 
-<table class="timetable" width="100%">
-<tbody>
+    <div class="lecture-meta">
+        <div class="meta-box"><span class="title">Date</span>April 15, 2026</div>
+        <div class="meta-box"><span class="title">Time</span>2:00 PM - 4:00 PM EST</div>
+        <div class="meta-box"><span class="title">Venue</span>Grand Hall, Convention Center</div>
+    </div>
 
-<tr>
-<td width="15%">16:00-17:00</td>
-<td><b>Registration & Entry</b><br>
-Venue: Main Auditorium
-</td>
-</tr>
+    <div class="speaker-panel">
+        <div class="speaker-photo">Photo of the speaker</div>
+        <div class="speaker-details">
+            <h3>Prof. Anjali Bose</h3>
+            <p><strong>Title:</strong> Chair, AI Ethics Group</p>
+            <p><strong>Details:</strong> Globally recognized researcher in AI fairness, accountability and governance. Prof. Bose leads multidisciplinary teams exploring ethical AI policy and responsible innovation.</p>
+        </div>
+    </div>
 
-<tr>
-<td>17:00-17:15</td>
-<td>
-<b>Welcome Address</b><br>
-Conference Organizing Committee<br>
-Introduction to the public lecture and speaker.
-</td>
-</tr>
+    <div class="section-block">
+        <h3>Lecture Description</h3>
+        <p>This talk will cover the current state of AI ethics research, practical cases of deploying AI systems responsibly, and strategies for innovation that embed ethical considerations from ideation through deployment.</p>
+    </div>
 
-<tr>
-<td>17:15-18:15</td>
-<td>
-<b>Prof. Arjun Mehta 
-<a href="https://orcid.org/0000-0000-0000-0000" class="orcid" target="_blank"></a>
-</b><br>
-<i>The Future of Optimization in Artificial Intelligence and Quantum Systems</i><br>
-An accessible overview of how modern optimization techniques are shaping advances in artificial intelligence, large-scale machine learning, and emerging quantum technologies. The lecture will bridge theory and real-world impact, aimed at a broad academic and public audience.<br>
-<a href="#">Abstract</a> | <a href="#">Slides</a> | <a href="#">Watch</a>
-</td>
-</tr>
+    <div class="section-block">
+        <h3>Resources</h3>
+        <ul>
+            <li>Lecture Slides</li>
+            <li>Research Paper</li>
+            <li>Additional Reading Material</li>
+        </ul>
+    </div>
 
-<tr>
-<td>18:15-18:45</td>
-<td>
-<b>Q&A and Open Discussion</b><br>
-Audience interaction with the speaker.
-</td>
-</tr>
-
-<tr>
-<td>18:45-19:00</td>
-<td>
-<b>Vote of Thanks</b><br>
-Closing remarks and acknowledgements.
-</td>
-</tr>
-
-<tr>
-<td>19:00 onwards</td>
-<td><b>High Tea & Informal Interaction</b></td>
-</tr>
-
-</tbody>
-</table>
-
-<br><br>
+    <div class="section-block announcements">
+        <h3>Announcements</h3>
+        <div class="notice">Q&A session will follow the lecture<br>Recording will be available within 48 hours<br>Light refreshments will be served during the break</div>
+    </div>
+</div>
 
 </td>
 
