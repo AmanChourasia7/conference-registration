@@ -1,123 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Conference Registration</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
 
-  <link rel="stylesheet" href="css/main.css">
+<head>
+	<title>Registration</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body class="nav-ready">
+	<table align="center" class="maintable">
+		<tr>
+			<td>&nbsp;</td>
+			<td id="logo">
+				<div id="hero-container"></div>
 
-<header>
-  <h1>Conference Registration</h1>
-  <p>International Conference on Computing and Data Analytics</p>
-</header>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
 
-<main>
+		<tr>
+			<td>&nbsp;</td>
+			<td id="content">
+				<table width="980px" align="center">
+					<tr>
+						<td colspan="3">
 
-<section>
-  <h2>Participant Registration</h2>
+						</td>
+					</tr>
+					<td width="230" rowspan="2" id="menu_box">
+						<a href="index.html" id="menu_tbl">Home</a>
+						<a href="committees.html" id="menu_tbl">Committees</a>
+						<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
+						<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
+						<a href="poster-session.html" id="menu_tbl">Poster Session</a>
+						<a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
+						<a href="rump-session.html" id="menu_tbl">Rump Session</a>
+						<a href="photos.html" id="menu_tbl">Photos</a>
+						<a href="submissions.html" id="menu_tbl">Submissions</a>
 
-  <form id="registration-form">
+						<a href="registration.html" id="menu_tbl">Registration</a>
+						<a href="participant-list.html" id="menu_tbl">Participants</a>
+						<a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
+						<a href="accommodation.html" id="menu_tbl">Accommodation</a>
+						<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
 
-    <div>
-      <label for="name">Full Name</label><br>
+						<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
+						<a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
+						<a href="oml-charter.html" id="menu_tbl">OML Charter</a>
+						<a href="contact-us.html" id="menu_tbl">Contact Us</a>
+
+					</td>
+
+					<td width="720" id="content_tbl">
+
+						<h3 id="content">Registration</h3>
+<p>This login page is for authors, participants, and organizers of the OML Conference.</p>
+<style>
+/* ===== Registration Form Only ===== */
+
+#registration-form {
+    max-width: 420px;
+    margin-top: 10px;
+}
+
+/* spacing between fields */
+#registration-form .form-group {
+    margin-bottom: 16px;
+}
+
+/* labels */
+#registration-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* inputs, select, textarea */
+#registration-form input,
+#registration-form select,
+#registration-form textarea {
+    width: 100%;
+    padding: 11px 12px;
+
+    border: 2px solid #d0d7e2;
+    border-radius: 6px;
+
+    font-size: 14px;
+    background: #fff;
+
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* focus state */
+#registration-form input:focus,
+#registration-form select:focus,
+#registration-form textarea:focus {
+    outline: none;
+    border-color: #2E75C7;
+    box-shadow: 0 0 0 2px rgba(46,117,199,0.15);
+}
+
+/* textarea resize control */
+#registration-form textarea {
+    resize: vertical;
+}
+
+/* button */
+#registration-form .register-btn {
+    width: 100%;
+    padding: 12px;
+
+    background: #2E75C7;
+    color: #fff;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.05s ease;
+}
+
+#registration-form .register-btn:hover {
+    background: #1f5ea8;
+}
+
+#registration-form .register-btn:active {
+    transform: scale(0.98);
+}
+
+/* force consistent sizing */
+#registration-form,
+#registration-form .form-group,
+#registration-form input,
+#registration-form select,
+#registration-form textarea,
+#registration-form .register-btn {
+    box-sizing: border-box;
+}
+
+/* form width */
+#registration-form {
+    width: 400px;
+}
+
+/* inputs + select + textarea */
+#registration-form input,
+#registration-form select,
+#registration-form textarea {
+    width: 400px;
+}
+
+/* button */
+#registration-form .register-btn {
+    width: 400px;
+}
+</style>
+
+
+  <form id="registration-form" autocomplete="on">
+
+    <div class="form-group">
+      <label for="name">Full Name</label>
       <input
         type="text"
         id="name"
         name="name"
-        placeholder="Enter your full name"
         required
+        minlength="3"
+        maxlength="100"
+        placeholder="Enter your full name"
       >
     </div>
 
-    <br>
-
-    <div>
-      <label for="email">Email Address</label><br>
+    <div class="form-group">
+      <label for="email">Email Address</label>
       <input
         type="email"
         id="email"
         name="email"
-        placeholder="Enter your email"
         required
+        maxlength="254"
+        placeholder="Enter your email"
+        autocomplete="email"
       >
     </div>
 
-    <br>
-
-    <div>
-      <label for="institution">Institution / Organization</label><br>
+    <div class="form-group">
+      <label for="institution">Institution / Organization</label>
       <input
         type="text"
         id="institution"
         name="institution"
+        maxlength="150"
         placeholder="University / Company"
       >
     </div>
 
-    <br>
-
-    <div>
-      <label for="country">Country</label><br>
+    <div class="form-group">
+      <label for="country">Country</label>
       <input
         type="text"
         id="country"
         name="country"
+        maxlength="80"
         placeholder="Country"
       >
     </div>
 
-    <br>
-
-    <div>
-      <label for="role">Participant Type</label><br>
+    <div class="form-group">
+      <label for="role">Participant Type</label>
       <select id="role" name="role">
-
+        <option value="">Select type</option>
         <option value="student">Student</option>
         <option value="researcher">Researcher</option>
         <option value="faculty">Faculty</option>
         <option value="industry">Industry Professional</option>
-
       </select>
     </div>
 
-    <br>
-
-    <div>
-      <label for="message">Additional Message</label><br>
+    <div class="form-group">
+      <label for="message">Additional Message</label>
       <textarea
         id="message"
         name="message"
         rows="4"
+        maxlength="500"
         placeholder="Optional message"
       ></textarea>
     </div>
 
-    <br>
-
-    <button type="submit">
+    <button type="submit" class="register-btn">
       Register
     </button>
 
   </form>
 
-</section>
+<ul style="font-size:12px; color:#555; margin-top:20px; padding-left:18px; line-height:1.6; text-align:justify;">
 
-</main>
+<li>Provide accurate personal and institutional information during registration to ensure proper identification, communication, and participation throughout all conference activities and sessions.</li>
 
-<footer>
+<li>Ensure your email address is valid, accessible, and regularly checked, as all important updates, confirmations, and announcements will be communicated electronically.</li>
 
-  <p>
-    BS–MS (2025–2030) — Computer Science and Data Analytics  
-    Indian Institute of Technology Patna
-  </p>
+<li>Select the appropriate participant category that correctly reflects your academic or professional status to avoid discrepancies during verification and conference documentation processes.</li>
 
-</footer>
+<li>Complete your registration well before the official deadline to secure participation, as late or incomplete submissions may not be accepted by organizers.</li>
 
-<script type="module" src="js/registration.js"></script>
+<li>Adhere strictly to all conference policies, guidelines, and professional standards, maintaining respectful and appropriate conduct throughout your participation in all events.</li>
 
+</ul>
+<script type="module" src="js/login.js"></script>
+					</td>
+		</tr>
+	</table>
+
+	</td>
+	<td>&nbsp;</td>
+	</tr>
+
+<tr>
+    <td>&nbsp;</td>
+    <td>
+        <table width="100%">
+            <tr id="footer-row"></tr>
+        </table>
+    </td>
+    <td>&nbsp;</td>
+</tr>
+
+	</table>
+    <script src="sections/footer.js"></script>
+	<script src="sections/hero.js"></script>
+	<script src="js/main.js"></script>
+  <script src="js/registration.js"></script>
 </body>
+
 </html>
