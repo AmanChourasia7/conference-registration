@@ -125,7 +125,6 @@ img#logo {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  height: 60px;
 }
 
 .hero-logo {
