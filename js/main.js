@@ -35,4 +35,23 @@ function toggle_plain() {
 	else {
 		ele.style.display = "block";
 	}
-}
+}// CLOSE MENU WHEN CLICKING OUTSIDE
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("menu_box");
+    const button = document.querySelector(".mobile-menu-toggle");
+
+    // if click is NOT inside menu AND NOT on button
+    if (!menu.contains(e.target) && !button.contains(e.target)) {
+        document.body.classList.remove("mobile-menu-open");
+    }
+});
+
+// PREVENT MENU FROM CLOSING WHEN CLICKING INSIDE
+document.getElementById("menu_box").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
+
+// PREVENT BUTTON CLICK FROM IMMEDIATE CLOSE
+document.querySelector(".mobile-menu-toggle").addEventListener("click", function(e) {
+    e.stopPropagation();
+});
