@@ -1,179 +1,177 @@
 /* =========================================================
    Global Background
    ========================================================= */
-html{background:#2E75C7}
-
-body {
-    background: url("../assets/background.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-position: top;
-    background-attachment: fixed;
-
-    /* Modern font stack */
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    margin: 0;
-    overflow-x: hidden;
+html {
+  background: #2e75c7;
 }
 
+body {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: top;
+  background-attachment: fixed;
+
+  /* Modern font stack */
+  font-family: "SF UI Text", system-ui, sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
 
 /* =========================================================
    Main Layout Table
    ========================================================= */
 table.maintable {
-    padding: 0px;
-    width: 1020px;
-    height: 100%;
-    margin: 0px auto;
-    vertical-align: top;
-    border-collapse: collapse;
-    border-spacing: 0;
-    table-layout: fixed;
+  padding: 0px;
+  width: 1020px;
+  height: 100%;
+  margin: 0px auto;
+  vertical-align: top;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
 }
 
 td#content > table {
-    width: 100% !important;
-    max-width: 980px;
+  width: 100% !important;
+  max-width: 980px;
 }
 
 table.maintable td {
-    padding: 0;
+  padding: 0;
 }
 
 table.maintable > tbody > tr > td:first-child,
 table.maintable > tbody > tr > td:last-child {
-    width: 0;
-    font-size: 0;
-    line-height: 0;
+  width: 0;
+  font-size: 0;
+  line-height: 0;
 }
 
 td#side {
-    width: 10px;
+  width: 10px;
 }
-
 
 /* =========================================================
    Information Table
    ========================================================= */
 table#tbl_information {
-    border: 1px solid black;
-    width: 700px;
-    margin: 0px;
-    padding: 0px;
+  border: 1px solid black;
+  width: 700px;
+  margin: 0px;
+  padding: 0px;
 }
 
 tr#tbl_information {
-    background-color: #f0f0f0;
-    color: black;
+  background-color: #f0f0f0;
+  color: black;
 }
-
 
 /* =========================================================
    Logo Section
    ========================================================= */
 tr.logo {
-    padding: 0px;
-    margin: 0px;
-    vertical-align: top;
+  padding: 0px;
+  margin: 0px;
+  vertical-align: top;
 }
 
 td#logo {
-    text-align: right;
-    height: 380px;
-    line-height: 0;
+  text-align: right;
+  line-height: 0;
 }
 
 img#logo {
-    border: 0;
-    vertical-align: top;
+  border: 0;
+  vertical-align: top;
 }
 
 .hero-banner {
-    position: relative;
-    width: 1020px;
-    height: 380px;
-    overflow: hidden;
-    border: 0;
-    background: #000;
+  position: relative;
+  width: 1020px;
+  height: 380px;
+  overflow: hidden;
+  border: 0;
+  background: #000;
 }
 
 .hero-banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.60);
-    z-index: 1;
-    pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero-bg-image {
-    position: absolute;
-    inset: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .hero-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    color: #fff;
-    padding: 18px 22px;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  color: #fff;
+  padding: 18px 22px;
 }
 
 .hero-top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 60px;
 }
 
 .hero-logo {
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    text-transform: uppercase;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
 }
 
 .hero-logo-left {
-    padding: 6px 10px;
+  padding: 6px 10px;
 }
 
 .hero-logo-image {
-    display: block;
-    height: 40px;
-    width: auto;
+  display: block;
+  height: 40px;
+  width: auto;
 }
 
 .hero-main-text {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    text-align: right;
-    font-size: 56px;
-    line-height: 1;
-    font-weight: 300;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  text-align: right;
+  font-size: 56px;
+  line-height: 1;
+  font-weight: 300;
 }
 
 .hero-main-text sup {
-    font-size: 40%;
-    line-height: 0;
-    top: -0.8em;
-    position: relative;
+  font-size: 40%;
+  line-height: 0;
+  top: -0.8em;
+  position: relative;
 }
 
 .hero-bottom-right {
-    position: absolute;
-    right: 20px;
-    bottom: 16px;
-    text-align: right;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.4;
-    letter-spacing: 0.2px;
+  position: absolute;
+  right: 20px;
+  bottom: 16px;
+  text-align: right;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
 }
 
 /* Remove link styling for logo */
@@ -181,179 +179,208 @@ a:link#logo,
 a:visited#logo,
 a:active#logo,
 a:hover#logo {
-    text-decoration: none;
+  text-decoration: none;
 }
-
 
 /* =========================================================
    Content Area
    ========================================================= */
 td#content {
-    text-align: left;
-    font-family: 'SF UI Text', system-ui, sans-serif;
+  text-align: left;
+  font-family: "SF UI Text", system-ui, sans-serif;
 }
-
 
 /* =========================================================
    Left Menu
    ========================================================= */
-td#menu_tbl {
-    margin-top: 0px;
-    text-align: left;
-    vertical-align: top;
-    width: 230px;
+td#menu_box {
+  margin-top: 0px;
+  text-align: left;
+  vertical-align: top;
+  width: 230px;
 
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 180%;
-    padding-top: 1px;
+  margin-top: 0px;
+  text-align: left;
+  vertical-align: top;
+  width: 220px;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 180%;
 }
 
 .mobile-menu-toggle {
-    display: none;
+  display: none;
+}
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+  /* Tap effect (mobile) */
+
+  .mobile-menu-toggle:active {
+    transform: translateX(3px) scale(0.95); /* 🔥 sideways move */
+  }
+  .mobile-menu-toggle .hamburger-icon {
+    display: inline-block;
+    transition: transform 1s ease;
+  }
+
+  .mobile-menu-toggle:active .hamburger-icon {
+    transform: translateX(4px); /* 🔥 icon moves right */
+  }
+
+  .mobile-menu-toggle {
+    transition: all 0.25s ease;
+  }
+  .mobile-menu-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+    z-index: 9999;
+
+    width: 42px;
+    height: 42px;
+
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    width: 100%;
-    margin: 0 0 14px;
-    border: 1px solid #2E75C7;
-    background: #2E75C7;
-    color: #fff;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-}
 
-.mobile-menu-toggle .hamburger-icon {
-    display: inline-flex;
-    align-items: center;
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+
+    cursor: pointer;
+  }
+
+  .mobile-menu-toggle .hamburger-icon::before {
+    font-size: 20px;
+    color: white;
+  }
 }
 
 .mobile-menu-toggle .hamburger-icon::before {
-    content: "\2630";
-    font-size: 18px;
-    line-height: 1;
+  content: "\2630";
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
 }
 
 body.mobile-menu-open .mobile-menu-toggle .hamburger-icon::before {
-    content: "\2715";
+  content: "\2715";
 }
 
 /* Menu links */
-a:link#menu_tbl,
-a:visited#menu_tbl {
-    text-decoration: none;
-    color: #333;
-    line-height:2;
+a:link#menu_box,
+a:visited#menu_box {
+  text-decoration: none;
+  color: #333;
+  line-height: 2;
 }
 
-a:active#menu_tbl {
-    text-decoration: none;
+a:active#menu_box {
+  text-decoration: none;
 }
 
-a:hover#menu_tbl {
-    text-decoration: none;
-    color: #2E75C7;
-    position: relative;
-    display: inline-block;
+a:hover#menu_box {
+  text-decoration: none;
+  color: #2e75c7;
+  position: relative;
+  display: inline-block;
 }
 
-a:hover#menu_tbl::before,
-a:hover#menu_tbl::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
+a:hover#menu_box::before,
+a:hover#menu_box::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
-a:hover#menu_tbl::before {
-    top: -1px;
-    border-top: 2px solid #2E75C7;
+a:hover#menu_box::before {
+  top: -1px;
+  border-top: 2px solid #2e75c7;
 }
 
-a:hover#menu_tbl::after {
-    bottom: -1px;
-    border-bottom: 2px solid #2E75C7;
+a:hover#menu_box::after {
+  bottom: -1px;
+  border-bottom: 2px solid #2e75c7;
 }
-
 
 /* =========================================================
    Breadcrumb Navigation
    ========================================================= */
 td#breadcrumb {
-    width: 750px;
-    height: 20px;
+  width: 750px;
+  height: 20px;
 
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-size: 12px;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-size: 12px;
 
-    text-align: left;
-    vertical-align: top;
-    text-transform: uppercase;
-    margin: 0;
+  text-align: left;
+  vertical-align: top;
+  text-transform: uppercase;
+  margin: 0;
 }
 
 b#breadcrumb {
-    text-decoration: underline;
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-size: 14px;
-    font-variant: small-caps;
+  text-decoration: underline;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-size: 14px;
+  font-variant: small-caps;
 }
 
 .orcid {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    vertical-align: middle;
-    background-image: url("../assets/orcid.png");
-    background-size: contain;
-    background-repeat: no-repeat;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  background-image: url("../assets/orcid.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 /* =========================================================
    Content Table
    ========================================================= */
 td#content_tbl {
-    vertical-align: top;
-    padding: 0;
-    margin: 0;
+  vertical-align: top;
+  padding: 0;
+  margin: 0;
 }
-
 
 /* =========================================================
    Headings
    ========================================================= */
 h2#content {
-    text-transform: uppercase;
-    background: #FFF;
-    color: #000;
+  text-transform: uppercase;
+  background: #fff;
+  color: #000;
 
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-size: 18px;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-size: 18px;
 }
 
 h3#content {
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-size: 16px;
-    color: #2E75C7;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-size: 16px;
+  color: #2e75c7;
 
-    line-height: 120%;
-    text-align: left;
-    vertical-align: top;
+  line-height: 120%;
+  text-align: left;
+  vertical-align: top;
 
-    padding-top: 0;
-    margin-top: 0;
+  padding-top: 0;
+  margin-top: 0;
 }
 
 h3 {
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    margin-top: 20px;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  margin-top: 20px;
 }
-
 
 /* =========================================================
    General Text Content
@@ -364,252 +391,338 @@ ol#content,
 table#tbl_information,
 ul#content,
 p#content {
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-size: 15px;
-    padding-top: 1rem;
-    line-height: 120%;
-    text-align: justify;
-    vertical-align: top;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-size: 15px;
+  padding-top: 1rem;
+  line-height: 120%;
+  text-align: justify;
+  vertical-align: top;
 }
-
 
 /* =========================================================
    Timetable Styling
    ========================================================= */
 table.timetable td,
 table.timetable tr {
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-size: 15px;
-    line-height: 120%;
-    vertical-align: top;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 120%;
+  vertical-align: top;
 }
 
 table.timetable td {
-    border-bottom: 1px #6699CC dotted;
-    text-align: left;
-    padding-bottom: 15px;
+  border-bottom: 1px #6699cc dotted;
+  text-align: left;
+  padding-bottom: 15px;
 }
 
 td#topline {
-    border-bottom: 1px #6699CC dotted;
-    border-top: 1px #6699CC dotted;
-    text-align: left;
-    padding-bottom: 15px;
+  border-bottom: 1px #6699cc dotted;
+  border-top: 1px #6699cc dotted;
+  text-align: left;
+  padding-bottom: 15px;
 }
-
 
 /* =========================================================
    Lists and Papers
    ======================================================== */
 li.paper {
-    margin-bottom: 10px;
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-size: 15px;
+  margin-bottom: 10px;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-size: 15px;
 }
-
 
 /* =========================================================
    Images
    ========================================================= */
 img#poster {
-    border: solid #003;
+  border: solid #003;
 }
-
 
 /* =========================================================
    Footer
    ========================================================= */
 td#footer {
-height: 20PX;
-    text-align: left;
-    vertical-align: top;
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    padding-left: 1rem;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    font-size: 12px;
-    border-top: #ccc solid;
+  height: 20px;
+  text-align: left;
+  vertical-align: top;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  padding-left: 1rem;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-size: 12px;
+  border-top: #ccc solid;
 }
 
+tbody {
+  background: white;
+}
 
 /* =========================================================
    Sponsor Section
    ========================================================= */
 td#sponsor {
-    margin-top: 0px;
-    margin-left: 10px;
+  margin-top: 0px;
+  padding-left: 1rem !important;
 
-    text-align: left;
-    vertical-align: top;
-    width: 230px;
+  text-align: left;
+  vertical-align: top;
+  width: 230px;
 
-    font-family: 'SF UI Text', system-ui, sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    line-height: 180%;
+  font-family: "SF UI Text", system-ui, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 180%;
 }
-
 
 /* =========================================================
    Right Sidebar Tables
    ========================================================= */
 table.righttable {
-    padding: 0px;
-    width: 200px;
-    height: 100%;
+  padding: 0px;
+  width: 200px;
+  height: 100%;
 
-    margin: 0px auto;
-    vertical-align: top;
+  margin: 0px auto;
+  vertical-align: top;
 
-    font-family: 'SF UI Text', system-ui, sans-serif;
+  font-family: "SF UI Text", system-ui, sans-serif;
 }
 
 td#righttable {
-    border: 1px solid #CCC;
+  border: 2px solid #ccc;
 }
-
 
 /* =========================================================
    Info Tables
    ========================================================= */
 table.info {
-    border-width: 0px;
-    border-spacing: 0px;
-    border-style: none;
-    border-collapse: collapse;
-    background-color: transparent;
+  border-width: 0px;
+  border-spacing: 0px;
+  border-style: none;
+  border-collapse: collapse;
+  background-color: transparent;
 }
 
 table.info th,
 table.info td {
-    border-width: 1px;
-    padding: 1px;
-    border-style: inset;
-    border-color: gray;
-    background-color: transparent;
-    text-align: left;
+  border-width: 1px;
+  padding: 1px;
+  border-style: inset;
+  border-color: gray;
+  background-color: transparent;
+  text-align: left;
 }
-
 
 /* =========================================================
    Page Container
    ========================================================= */
 #page {
-    background-color: rgba(239, 239, 239, 0.7);
+  background-color: rgba(239, 239, 239, 0.7);
 
-    width: 650px;
-    margin: 10px auto;
-    padding: 10px 150px 20px 50px;
+  width: 650px;
+  margin: 10px auto;
+  padding: 10px 150px 20px 50px;
 
-    min-height: 600px;
+  min-height: 600px;
 
-    border: 2px solid #fff;
-    outline: 1px solid #ccc;
+  border: 2px solid #fff;
+  outline: 1px solid #ccc;
 
-    text-align: left;
+  text-align: left;
 }
 
 @media (max-width: 900px) {
-    html {
-        background: #2E75C7;
-    }
+  html {
+    background: #2e75c7;
+  }
 
-    table.maintable {
-        width: 100%;
-    }
+  table.maintable {
+    width: 100%;
+  }
 
-    .hero-banner {
-        width: 100%;
-        height: 250px;
-    }
+  .hero-banner {
+    width: 100%;
+    height: 250px;
+  }
 
-    .hero-overlay {
-        padding: 14px;
-    }
+  .hero-overlay {
+    padding: 14px;
+  }
 
-    .hero-main-text {
-        position: static;
-        margin-top: 18px;
-        font-size: clamp(30px, 8vw, 42px);
-        line-height: 1.05;
-        text-align: left;
-    }
+  .hero-main-text {
+    position: static;
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.05;
+    text-align: left;
+  }
 
-    .hero-bottom-right {
-        position: static;
-        margin-top: 14px;
-        font-size: 14px;
-        text-align: left;
-    }
+  .hero-bottom-right {
+    position: static;
+    margin-top: 14px;
+    font-size: 14px;
+    text-align: left;
+  }
 
-    td#content {
-        padding: 0 12px;
-    }
+  td#content {
+    padding: 0 12px;
+  }
 
-    td#content > table,
-    td#content > table > tbody,
-    td#content > table > tbody > tr {
-        display: block;
-        width: 100% !important;
-    }
+  td#content > table,
+  td#content > table > tbody,
+  td#content > table > tbody > tr {
+    display: block;
+    width: 100% !important;
+  }
 
-    td#content > table > tbody > tr > td {
-        display: block;
-        width: 100% !important;
-        box-sizing: border-box;
-    }
+  td#content > table > tbody > tr > td {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+  }
 
-    .mobile-menu-toggle {
-        display: inline-flex;
-    }
+  .mobile-menu-toggle {
+    display: inline-flex;
+  }
 
-    body.nav-ready td#menu_tbl {
-        display: none;
-    }
+  /* Initial (hidden above screen) */
+  body.nav-ready td#menu_box {
+    position: absolute;
+    left: 0;
+    top: 0; /* start from top edge */
 
-    body.nav-ready.mobile-menu-open td#menu_tbl {
-        display: block;
-        background: #fff;
-        border: 1px solid #d6e4f5;
-        border-radius: 10px;
-        padding: 10px 12px;
-        margin-bottom: 12px;
-    }
+    width: 100%;
 
-    td#menu_tbl a,
-    a#menu_tbl {
-        display: block;
-        padding: 10px 0;
-        line-height: 1.35;
-        border-bottom: 1px solid #edf2f8;
-    }
+    background: #fff;
+    padding: 12px 15px;
 
-    td#menu_tbl a:last-child,
-    a#menu_tbl:last-child {
-        border-bottom: 0;
-    }
+    transform: translateY(-100%); /* 🔥 move ABOVE viewport */
+    opacity: 0;
 
-    td#content_tbl,
-    td#sponsor {
-        margin-top: 0;
-        margin-left: 0;
-    }
+    z-index: 9999;
+    overflow-y: auto;
 
-    table.righttable {
-        width: 100%;
-    }
+    border-bottom: 2px solid #ccc;
+  }
 
-    td#content_tbl table {
-        width: 100% !important;
-        max-width: 100%;
-    }
+  /* Open state (slides DOWN) */
+  body.nav-ready.mobile-menu-open td#menu_box {
+    top: 60px;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  body.nav-ready.mobile-menu-open td#menu_box {
+    display: block;
 
-    table.timetable {
-        min-width: 640px;
-    }
+    transform: translateX(0); /* final position */
+    opacity: 1;
+  }
+  td#menu_box a {
+    display: block;
+    transform: translateX(-20px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
 
-    img {
-        max-width: 100%;
-        height: auto;
-    }
+  body.mobile-menu-open td#menu_box a {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+td#menu_box a,
+a#menu_box {
+  display: block;
+  padding: 6px 0;
+  line-height: 1.35;
+}
+
+td#menu_box a:last-child,
+a#menu_box:last-child {
+  border-bottom: 0;
+}
+
+td#content_tbl,
+td#sponsor {
+  margin-top: 0;
+  margin-left: 0;
+}
+
+table.righttable {
+  width: 100%;
+}
+
+td#content_tbl table {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+table.timetable {
+  width: 100%;
+}
+.profile-menu {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  z-index: 10001;
+}
+
+/* Menu links */
+a:link#menu_tbl,
+a:visited#menu_tbl {
+  text-decoration: none;
+  color: #333;
+}
+
+a:active#menu_tbl {
+  text-decoration: none;
+}
+
+a:hover#menu_tbl {
+  text-decoration: none;
+  color: #2e75c7;
+  position: relative;
+  display: inline-block;
+}
+
+a:hover#menu_tbl::before,
+a:hover#menu_tbl::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+a:hover#menu_tbl::before {
+  top: -1px;
+  border-top: 2px solid #2e75c7;
+}
+
+a:hover#menu_tbl::after {
+  bottom: -1px;
+  border-bottom: 2px solid #2e75c7;
+}
+
+@media (max-width: 900px) {
+  .mobile-menu-toggle {
+    position: absolute;
+
+    top: 15px;
+    right: 15px; /* move to right */
+    left: auto; /* disable left positioning */
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+
+    z-index: 9999;
+    cursor: pointer;
+  }
 }

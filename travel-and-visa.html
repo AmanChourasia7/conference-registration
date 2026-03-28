@@ -1,355 +1,79 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
-<title>OML 2027 - Travel & Visa</title>
-<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-<meta name="author" content="Aman Chourasia"/>
-<meta name="description" content="Travel and visa information for OML 2027 at IIT Patna."/>
-<meta name="keywords" content="OML 2027, travel, visa, IIT Patna, conference, logistics"/>
-
-<link rel="SHORTCUT ICON" href="assets/favicon.ico"/>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-
-<script language="javascript"> 
-function toggle() {
-    var ele = document.getElementById("toggleText");
-    var text = document.getElementById("displayText");
-    if(ele.style.display == "block") {
-        ele.style.display = "none";
-        text.innerHTML = "<b>show directions</b>";
-    }
-    else {
-        ele.style.display = "block";
-        text.innerHTML = "<b>hide directions</b>";
-    }
-}
-
-function toggle2() {
-    var ele = document.getElementById("toggleText2");
-    var text = document.getElementById("displayText2");
-    if(ele.style.display == "block") {
-        ele.style.display = "none";
-        text.innerHTML = "<b>show directions</b>";
-    }
-    else {
-        ele.style.display = "block";
-        text.innerHTML = "<b>hide directions</b>";
-    }
-} 
-
-function toggle_plain() {
-    var ele = document.getElementById("toggleText");
-    if(ele.style.display == "block") {
-        ele.style.display = "none";
-    }
-    else {
-        ele.style.display = "block";
-    }
-}
-</script>
-
-<style>
-.travel-card {
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 18px;
-    margin-bottom: 20px;
-}
-.travel-card h4,
-.card-title {
-    margin-top: 0;
-    color: #2E75C7;
-}
-.travel-grid,
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-.summary-box,
-.info-panel,
-.charter-summary {
-    background: #f7fbff;
-    border-left: 4px solid #2E75C7;
-    padding: 16px;
-    margin-bottom: 22px;
-}
-.conference-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-.conference-table th,
-.conference-table td {
-    border: 1px solid #ddd;
-    padding: 12px 10px;
-    vertical-align: top;
-}
-.conference-table th {
-    background: #eef6ff;
-    color: #00285a;
-    text-align: left;
-}
-.conference-thumb {
-    width: 140px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-.conference-card {
-    background: rgba(255,255,255,0.94);
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    padding: 18px;
-}
-.conference-card h4 {
-    margin-bottom: 8px;
-}
-.conference-card p,
-.card-meta,
-.charter-section p {
-    margin: 0 0 10px;
-}
-.card-meta {
-    font-size: 0.95em;
-    color: #444;
-    margin-bottom: 10px;
-}
-.card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.charter-section {
-    margin-bottom: 20px;
-}
-.charter-download {
-    background: #2E75C7;
-    display: inline-block;
-    color: #fff;
-    padding: 10px 16px;
-    border-radius: 6px;
-    text-decoration: none;
-    margin-top: 10px;
-}
-@media (max-width: 980px) {
-    .travel-grid,
-    .card-grid,
-    .conference-table,
-    .conference-card,
-    .conference-grid {
-        grid-template-columns: 1fr;
-    }
-    .conference-thumb {
-        width: 100%;
-        height: auto;
-    }
-}
-</style>
-
+	<title>OML Charter</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-<table align="center" class="maintable">
-<tr>
-<td>&nbsp;</td>
-<td id="logo">
-    <div class="hero-banner" aria-label="Conference banner">
-        <img src="assets/background-slider.png" alt="Conference banner" class="hero-bg-image">
+<body class="nav-ready">
+	<table align="center" class="maintable">
+		<tr>
+			<td>&nbsp;</td>
+			<td id="logo">
+				<div id="hero-container"></div>
 
-        <div class="hero-overlay">
-            <div class="hero-top-row">
-                <div class="hero-logo hero-logo-left"></div>
-                <div class="hero-logo hero-logo-right"></div>
-            </div>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
 
-            <div class="hero-main-text">
-                1<sup>st</sup> Conference on<br>
-                Optimization and Machine Learning
-            </div>
+		<tr>
+			<td>&nbsp;</td>
+			<td id="content">
+				<table width="980px" align="center">
+					<tr>
+						<td colspan="3">
 
-            <div class="hero-bottom-right">
-                Tutorial: 8 - 9 January 2027, LH001, Indian Institute of Technology Patna<br>
-                Scientific Programme: 10 - 14 January 2027, LH004, Indian Institute of Technology Patna
-            </div>
-        </div>
-    </div>
+						</td>
+					</tr>
+					<td width="230" rowspan="2" id="menu_box">
+						<a href="index.html" id="menu_tbl">Home</a>
+						<a href="committees.html" id="menu_tbl">Committees</a>
+						<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
+						<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
+						<a href="poster-session.html" id="menu_tbl">Poster Session</a>
+						<a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
+						<a href="rump-session.html" id="menu_tbl">Rump Session</a>
+						<a href="photos.html" id="menu_tbl">Photos</a>
+						<a href="submissions.html" id="menu_tbl">Submissions</a>
 
-</td>
-<td>&nbsp;</td>
-</tr>
+						<a href="registration.html" id="menu_tbl">Registration</a>
+						<a href="participant-list.html" id="menu_tbl">Participants</a>
+						<a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
+						<a href="accommodation.html" id="menu_tbl">Accommodation</a>
+						<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
 
-<tr>
-<td>&nbsp;</td>
-<td id="content">
+						<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
+						<a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
+						<a href="oml-charter.html" id="menu_tbl">OML Charter</a>
+						<a href="contact-us.html" id="menu_tbl">Contact Us</a>
 
-<table width="980px" align="center">
-<tr>
+					</td>
 
-<td width="230" rowspan="2" id="menu_tbl">
-<a href="index.html" id="menu_tbl">Home</a><br>
-<a href="committees.html" id="menu_tbl">Committees</a><br>
-<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a><br>
-<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a><br>
-<a href="poster-session.html" id="menu_tbl">Poster Session</a><br>
-<a href="public-lecture.html" id="menu_tbl">Public Lecture</a><br>
-<a href="rump-session.html" id="menu_tbl">Rump Session</a><br>
-<a href="photos.html" id="menu_tbl">Photos</a><br>
-<a href="submissions.html" id="menu_tbl">Submissions</a><br>
- 
-<a href="registration.html" id="menu_tbl">Registration</a><br>
-<a href="participant-list.html" id="menu_tbl">Participants</a><br>
-<a href="conference-venue.html" id="menu_tbl">Conference Venue</a><br>
-<a href="accommodation.html" id="menu_tbl">Accommodation</a><br>
-<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a><br>
- 
-<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a><br>
-<a href="related-conferences.html" id="menu_tbl">Related Conferences</a><br>
-<a href="oml-charter.html" id="menu_tbl">OML Charter</a><br>
-<a href="contact-us.html" id="menu_tbl">Contact Us</a><br>
-<br/>
-</td>
+					<td width="720" id="content_tbl">
 
+						<h3 id="content">Travel and Visa Information</h3>
 
-<td width="720" id="content_tbl">
-<h3 id="content">Travel & Visa Information</h3>
-<p id="content">Welcome to OML 2027 at the Indian Institute of Technology Patna. This page provides practical travel guidance for domestic and international attendees, including transport options, visa requirements, required supporting documents, and official reference links.</p>
+						
+					</td>
+		</tr>
+	</table>
 
-<div class="summary-box">
-<strong>Quick travel snapshot</strong>
-<ul id="content">
-<li>Nearest airport: Jay Prakash Narayan International Airport (PAT)</li>
-<li>Nearest railway stations: Patna Junction (PNBE) and Rajendra Nagar Terminal (RJPB)</li>
-<li>Local transport: taxi, app-based ride services, auto-rickshaw, campus shuttle</li>
-<li>Visa resources: official Indian visa website and e-Visa portal</li>
-</ul>
-</div>
+	</td>
+	<td>&nbsp;</td>
+	</tr>
 
-<div class="travel-grid">
-<div class="travel-card">
-<h4>Arrival by Air</h4>
-<p>The nearest airport is Jay Prakash Narayan International Airport (PAT), about 18 km from IIT Patna. PAT offers flights from major Indian cities, including Delhi, Mumbai, Kolkata, Bengaluru, and Hyderabad.</p>
-<ul id="content">
-<li>Taxi or app-based ride: 35–45 minutes to the campus.</li>
-<li>Prepaid taxi counters are available inside the arrival terminal.</li>
-<li>Delegate shuttle service updates will be shared with registered attendees.</li>
-</ul>
-</div>
-<div class="travel-card">
-<h4>Arrival by Train</h4>
-<p>Patna Junction (PNBE) and Rajendra Nagar Terminal (RJPB) are the main railway stations. Both stations are well connected by trains from across India.</p>
-<ul id="content">
-<li>Travel time from the station to IIT Patna is 25–35 minutes by taxi.</li>
-<li>Book early through IRCTC or authorized travel agents.</li>
-<li>Prepaid taxis and auto-rickshaws are available at station exits.</li>
-</ul>
-</div>
-</div>
+	<tr>
+		<td>&nbsp;</td>
+		<td id="footer">Copyright&copy; 2027 Optimization and Machine Learning Conference</td>
+		<td>&nbsp;</td>
+	</tr>
 
-<div class="travel-grid">
-<div class="travel-card">
-<h4>Arrival by Road</h4>
-<p>Patna is linked by national highways and frequent bus services from nearby cities such as Varanasi, Ranchi, and Kolkata.</p>
-<ul id="content">
-<li>IIT Patna is accessible via Bailey Road and NH19.</li>
-<li>Private cabs and tourist buses are recommended for comfort.</li>
-<li>State-run and private buses arrive at Patna bus terminals, with taxis available from there.</li>
-</ul>
-</div>
-<div class="travel-card">
-<h4>Local Transport</h4>
-<p>Local transport options include taxis, app-based ride services, auto-rickshaws, and campus shuttle buses.</p>
-<ul id="content">
-<li>Prepaid taxis offer safer and more predictable fares.</li>
-<li>Auto-rickshaws are useful for shorter trips inside Patna.</li>
-<li>Allow extra time during peak traffic hours.</li>
-</ul>
-</div>
-</div>
+	</table>
 
-<h3 id="content">Visa Guidance for International Delegates</h3>
-<p id="content">International participants should start visa applications early. IIT Patna and the conference organizers cannot issue visas, but we can provide invitation letters and registration details to support the application.</p>
-
-<div class="travel-card">
-<h4>Visa Types</h4>
-<ul id="content">
-<li><strong>e-Tourist Visa</strong>: For short-term travel and tourism in India.</li>
-<li><strong>e-Business Visa</strong>: For business travel and conference attendance.</li>
-<li><strong>Sticker / Regular Visa</strong>: Apply via your nearest Indian embassy or consulate if required.</li>
-</ul>
-</div>
-
-<div class="travel-card">
-<h4>Supporting Documents</h4>
-<ul id="content">
-<li>Passport valid for at least six months beyond arrival.</li>
-<li>Passport-size photograph and scanned passport biodata page.</li>
-<li>Confirmed return or onward travel itinerary.</li>
-<li>Conference invitation letter and registration confirmation.</li>
-<li>Hotel booking or accommodation details.</li>
-<li>Any additional documents requested by your consulate.</li>
-</ul>
-</div>
-
-<div class="info-panel">
-<strong>Official visa reference links</strong>
-<ul id="content">
-<li><a href="https://indianvisaonline.gov.in/evisa/tvoa.html" target="_blank" rel="noopener">Indian Government e-Visa portal</a></li>
-<li><a href="https://indianvisa.gov.in" target="_blank" rel="noopener">Indian Visa Services</a></li>
-</ul>
-</div>
-
-<h3 id="content">Travel Support Contacts</h3>
-<div class="travel-card">
-<h4>Travel-related questions</h4>
-<ul id="content">
-<li><strong>Email:</strong> <a href="mailto:travel@oml2027.org">travel@oml2027.org</a></li>
-<li><strong>General conference support:</strong> <a href="mailto:info@oml2027.org">info@oml2027.org</a></li>
-<li><strong>Phone:</strong> +91 0612 1234567</li>
-</ul>
-</div>
-</td>
-
-<td width="250" id="sponsor" align="center">
-
-<table class="righttable">
-<tr><td id="righttable">
-<br>
-<div align="left">
-Conference documents and travel advisories will be shared with registered delegates.<br>
-</div>
-<br>
-</td></tr>
-</table>
-
-<br>
-
-<table class="righttable">
-<tr><td><center><strong>Supported by:</strong></center></td></tr>
-<tr><td id="righttable">
-<br>
-<p id="content"><center>
-<img width="120" src="https://iisc.ac.in/wp-content/uploads/2020/08/IISc_Master_Seal_Black.jpg" id="logo"><br><br>
-<img width="120" src="https://upload.wikimedia.org/wikipedia/sa/6/66/IIT_Delhi_logo.png" id="logo"><br><br>
-</center></p>
-
-</td></tr>
-</table>
-
-</td>
-</tr>
-</table>
-
-</td>
-<td>&nbsp;</td>
-</tr>
-
-<tr>
-<td>&nbsp;</td>
-<td id="footer">Copyright&copy; 2027 Optimization and Machine Learning Conference</td>
-<td>&nbsp;</td>
-</tr>
-
-</table>
-
+	<script src="sections/hero.js"></script>
 </body>
+
 </html>
