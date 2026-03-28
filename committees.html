@@ -6,7 +6,7 @@
 <meta name="author" content="Aman Chourasia"/>
 <meta name="description" content="The official website of OML 2027. OML 2027 is the 1st conference on optimization and machine learning to be held in India in January 2027."/>
 <meta name="keywords" content="OML, OML2027, OML 2027, 1st Conference on Optimization and Machine Learning, Optimization and Machine Learning Conference, India, Research Conference, Machine Learning, Optimization, AI Conference"/>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="SHORTCUT ICON" href="assets/favicon.ico"/>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 
@@ -37,6 +37,10 @@ function toggle2() {
 	}
 } 
 
+function toggleMenu() {
+    document.body.classList.toggle("mobile-menu-open");
+}
+
 function toggle_plain() {
 	var ele = document.getElementById("toggleText");
 	if(ele.style.display == "block") {
@@ -48,8 +52,7 @@ function toggle_plain() {
 }
 </script>
 </head>
-
-<body>
+<body class="nav-ready">
 <table align="center" class="maintable">
 <tr>
 <td>&nbsp;</td>
@@ -84,11 +87,16 @@ function toggle_plain() {
 <tr>
 <td>&nbsp;</td>
 <td id="content">
-
 <table width="980px" align="center">
 <tr>
+<td colspan="3">
+    <button class="mobile-menu-toggle" onclick="toggleMenu()">
+        <span class="hamburger-icon"></span>
+    </button>
+</td>
+</tr>
 
-<td width="230" rowspan="2" id="menu_tbl">
+<td width="230" rowspan="2" id="menu_box">
 <a href="index.html" id="menu_tbl">Home</a><br>
 <a href="committees.html" id="menu_tbl">Committees</a><br>
 <a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a><br>
