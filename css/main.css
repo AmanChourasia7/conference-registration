@@ -707,7 +707,7 @@ a:hover#menu_tbl::after {
 @media (max-width: 900px) {
   .mobile-menu-toggle {
     position: absolute;
-
+    background:#2E75C7;
     top: 15px;
     right: 15px; /* move to right */
     left: auto; /* disable left positioning */
