@@ -55,7 +55,7 @@
 					<td width="720" id="content_tbl">
 
 						<h3 id="content">Registration</h3>
-<p>This login page is for authors, participants, and organizers of the OML Conference.</p>
+<p>This registration page is for authors and participants of the OML Conference.</p>
 <style>
 /* ===== Registration Form Only ===== */
 
@@ -179,7 +179,7 @@
     </div>
 
     <div class="form-group">
-      <label for="email">Email Address</label>
+      <label for="email">Email</label>
       <input
         type="email"
         id="email"
@@ -192,13 +192,13 @@
     </div>
 
     <div class="form-group">
-      <label for="institution">Institution / Organization</label>
+      <label for="institution">Affiliation</label>
       <input
         type="text"
         id="institution"
         name="institution"
         maxlength="150"
-        placeholder="University / Company"
+        placeholder="e.g., University, Company, Organization"
       >
     </div>
 
@@ -214,13 +214,12 @@
     </div>
 
     <div class="form-group">
-      <label for="role">Participant Type</label>
+      <label for="role">Category</label>
       <select id="role" name="role">
         <option value="">Select type</option>
-        <option value="student">Student</option>
-        <option value="researcher">Researcher</option>
-        <option value="faculty">Faculty</option>
-        <option value="industry">Industry Professional</option>
+        <option value="student">Author</option>
+        <option value="researcher">Speaker</option>
+        <option value="researcher">Participant</option>
       </select>
     </div>
 
