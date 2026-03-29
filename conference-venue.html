@@ -26,6 +26,17 @@
             margin: 0;
         }
 
+        .venue-direction {
+            background: #ccc;
+            border-radius: 10px;
+            padding: 18px;
+            margin: 10px auto 20px;
+            width: min(400px, 100%);
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
         .venue-map {
             width: 100%;
             height: 280px;
@@ -130,13 +141,15 @@
 
                         <div class="venue-main">
                             <div class="venue-header">
-                                <h2>OpenStreetMap Venue Location</h2>
+                                <h2>OpenStreetMap Venue Location:</h2>
                             </div>
 
                             <div class="venue-map">
-                                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=84.9272%2C25.5608%2C84.9222%2C25.5632&layer=mapnik&marker=25.5620%2C84.9247"
+                                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=84.9222%2C25.5608%2C84.9272%2C25.5632&layer=mapnik&marker=25.5620%2C84.9247"
                                     allowfullscreen="" loading="lazy"></iframe>
                             </div>
+
+                            <div class="venue-direction">Venue Direction Map</div>
 
                             <div class="venue-info">
                                 <h3>About</h3>
