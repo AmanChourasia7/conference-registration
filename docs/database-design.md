@@ -90,16 +90,25 @@ registrations
    ├── docID_1
    │     ├── name
    │     ├── email
-   │     ├── institution
-   │     ├── country
-   │     ├── role
-   │     ├── message
+   │     ├── affiliation
+   │     ├── citizenship
+   │     ├── category
    │     └── createdAt
    │
    ├── docID_2
    │     ├── name
    │     ├── email
-   │     ├── institution
+   │     ├── affiliation
+   │     ├── citizenship
+   │     ├── category
+   │     └── createdAt
+   │
+   ├── docID_3
+   │     ├── name
+   │     ├── email
+   │     ├── affiliation
+   │     ├── citizenship
+   │     ├── category
    │     └── createdAt
 ```
 
