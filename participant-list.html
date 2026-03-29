@@ -5,6 +5,7 @@
 	<title>Participants List</title>
 	<meta name="description" content="View the complete list of registered conference participants at the OML conference." />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="SHORTCUT ICON" href="assets/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -54,19 +55,19 @@
 
 					</td>
 
-					<td width="720" id="content_tbl">
+		<td width="720" id="content_tbl">
 
-						<h3 id="content">Participants List</h3>
+            <h3 id="content">Participants  List</h3>
 
-                        <style>
+<p>Meet our speakers, organizers, and attendees from around the face of the earth.</p>
+
+<style>
 .participants-panel {
-    margin: 0 0 20px;
+
+ 
+    overflow: hidden;
 }
-.participants-panel h2 {
-    margin: 0 0 6px;
-    font-size: 30px;
-    letter-spacing: 0.4px;
-}
+
 .participants-panel p {
     margin: 0 0 18px;
     color: #444;
@@ -77,9 +78,10 @@
     margin-bottom: 14px;
 }
 .participant-search-wrap input {
+    width: auto;
     font-size: 16px;
     padding: 12px 14px;
-    border: 1px solid #bbb;
+    border: 2px solid #bbb;
     border-radius: 8px;
 }
 .participant-filters {
@@ -104,13 +106,18 @@
 .participant-list {
     min-height: 210px;
     background: #fff;
-    border-radius: 8px;
+    overflow: auto;
+
+    /* GRID ADDED */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
 }
 .participant-card {
-    border: 1px solid #ddd;
-    padding: 12px;
+    padding: 10px;
     border-radius: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    justify-items: anchor-center;
 }
 .participant-card h4 {
     margin: 0 0 4px;
@@ -118,13 +125,12 @@
 }
 </style>
 
+
 <div class="participants-panel">
 
-    <p>Meet our speakers, organizers, and attendees from around the world</p>
-
     <div class="participant-search-wrap">
-        <input id="participantSearch" type="text" placeholder="Search by name, Affiliation, Paper tittle..." aria-label="Search participants">
-        <div class="participant-filters" role="group" aria-label="Participant filters">
+        <input id="participantSearch" type="text" placeholder="Search by name, Affiliation" aria-label="Search participants">
+        <div class="participant-filters" role="group" aria-label="Participant filters" style="justify-content: right;t">
             <button data-filter="all" class="active">All</button>
             <button data-filter="speaker">Speaker</button>
             <button data-filter="attendee">Attendees</button>
@@ -139,11 +145,16 @@
 
 <script>
 const participants = [
-    { name:'Aditi Sharma', affiliation:'IIT Delhi', role:'speaker', paper:'Efficient Optimization Algorithms' },
-    { name:'Hari Kumar', affiliation:'IIT Bombay', role:'attendee', paper:'Deep Learning in Robotics' },
-    { name:'Nisha Gupta', affiliation:'IIT Kharagpur', role:'organizer', paper:'Conference Coordinator' },
-    { name:'Sameer Rao', affiliation:'IIT Madras', role:'speaker', paper:'Large-Scale ML Systems' },
-    { name:'Priya Menon', affiliation:'IIT Patna', role:'attendee', paper:'Gradient Methods for Sparse Recovery' }
+{ name:'Aditi Sharma', affiliation:'IIT Delhi', role:'speaker' },
+{ name:'Hari Kumar', affiliation:'IIT Bombay', role:'attendee'},
+{ name:'Nisha Gupta', affiliation:'IIT Kharagpur', role:'organizer'},
+{ name:'Sameer Rao', affiliation:'IIT Madras', role:'speaker' },
+{ name:'Priya Menon', affiliation:'IIT Patna', role:'attendee' },
+{ name:'Rohit Verma', affiliation:'IIT Kanpur', role:'speaker' },
+{ name:'Sneha Iyer', affiliation:'IIT Hyderabad', role:'attendee'},
+{ name:'Karan Malhotra', affiliation:'IIT Roorkee', role:'organizer'},
+{ name:'Ananya Bose', affiliation:'IIT Guwahati', role:'speaker' },
+{ name:'Vikram Singh', affiliation:'IIT BHU', role:'attendee'}
 ];
 
 const listElm = document.getElementById('participantList');
@@ -166,10 +177,9 @@ function renderParticipants() {
 
     listElm.innerHTML = filtered.map(p => `
         <div class="participant-card">
-            <h4>${p.name}</h4>
-            <div><strong>Affiliation:</strong> ${p.affiliation}</div>
-            <div><strong>Role:</strong> ${p.role}</div>
-            <div><strong>Paper:</strong> ${p.paper}</div>
+            <h4>${p.name} <a href="#" class="orcid"></a></h4>
+            <div><strong></strong> ${p.affiliation}</div>
+            <div><strong></strong> ${p.role}</div>
         </div>
     `).join('');
 }
@@ -188,9 +198,7 @@ document.querySelectorAll('.participant-filters button').forEach(button => {
 renderParticipants();
 </script>
 
-
-						
-					</td>
+</td>
 		</tr>
 	</table>
 
