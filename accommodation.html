@@ -2,84 +2,252 @@
 <html>
 
 <head>
-	<title>Accommodation</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accommodation</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .accommodation-main {
+            background: #f6f6f6;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .accommodation-hero {
+            background: #ccc;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .accommodation-hero h2 {
+            margin: 0;
+        }
+
+        .search-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-group input {
+            padding: 8px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            width: 160px;
+        }
+
+        .search-group button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            background: #2e75c7;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .room-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .room-card {
+            background: #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .room-meta {
+            min-width: 240px;
+        }
+
+        .room-meta h3 {
+            margin: 0 0 8px;
+        }
+
+        .room-meta p {
+            margin: 4px 0;
+            font-weight: 600;
+        }
+
+        .room-details {
+            flex: 1;
+        }
+
+        .room-actions {
+            text-align: right;
+            min-width: 180px;
+        }
+
+        .room-actions button {
+            padding: 10px 14px;
+            background: #2e75c7;
+            color: white;
+            border: 0;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .room-actions button:hover {
+            background: #1f56a1;
+        }
+
+        @media (max-width: 900px) {
+            .room-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .room-actions {
+                text-align: left;
+            }
+        }
+    </style>
 </head>
 
 <body class="nav-ready">
 
-	<table align="center" class="maintable">
-		<tr>
-			<td>&nbsp;</td>
-			<td id="logo">
-				<div id="hero-container"></div>
+    <table align="center" class="maintable">
+        <tr>
+            <td>&nbsp;</td>
+            <td id="logo">
+                <div id="hero-container"></div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
 
-			</td>
-			<td>&nbsp;</td>
-		</tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td id="content">
+                <table width="980px" align="center">
+                    <tr>
+                        <td colspan="3"></td>
+                    </tr>
+                    <td width="230" rowspan="2" id="menu_box">
+                        <a href="index.html" id="menu_tbl">Home</a>
+                        <a href="committees.html" id="menu_tbl">Committees</a>
+                        <a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
+                        <a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
+                        <a href="poster-session.html" id="menu_tbl">Poster Session</a>
+                        <a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
+                        <a href="rump-session.html" id="menu_tbl">Rump Session</a>
+                        <a href="photos.html" id="menu_tbl">Photos</a>
+                        <a href="submissions.html" id="menu_tbl">Submissions</a>
+                        <a href="registration.html" id="menu_tbl">Registration</a>
+                        <a href="participant-list.html" id="menu_tbl">Participants</a>
+                        <a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
+                        <a href="accommodation.html" id="menu_tbl">Accommodation</a>
+                        <a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
+                        <a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
+                        <a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
+                        <a href="oml-charter.html" id="menu_tbl">OML Charter</a>
+                        <a href="contact-us.html" id="menu_tbl">Contact Us</a>
+                    </td>
 
-		<tr>
-			<td>&nbsp;</td>
-			<td id="content">
-				<table width="980px" align="center">
-					<tr>
-						<td colspan="3">
+                    <td width="720" id="content_tbl">
+                        <h3 id="content">Accommodation</h3>
 
-						</td>
-					</tr>
-					<td width="230" rowspan="2" id="menu_box">
-						<a href="index.html" id="menu_tbl">Home</a>
-						<a href="committees.html" id="menu_tbl">Committees</a>
-						<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
-						<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
-						<a href="poster-session.html" id="menu_tbl">Poster Session</a>
-						<a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
-						<a href="rump-session.html" id="menu_tbl">Rump Session</a>
-						<a href="photos.html" id="menu_tbl">Photos</a>
-						<a href="submissions.html" id="menu_tbl">Submissions</a>
+                        <div class="accommodation-main">
+                            <section class="accommodation-hero">
+                                <h2>Accommodation Options</h2>
+                                <div class="search-group">
+                                    <label for="checkin">Check-in Date:</label>
+                                    <input type="date" id="checkin" name="checkin" required>
+                                    <label for="checkout">Check-out Date:</label>
+                                    <input type="date" id="checkout" name="checkout" required>
+                                    <button id="searchRooms" type="button">Search</button>
+                                </div>
+                            </section>
 
-						<a href="registration.html" id="menu_tbl">Registration</a>
-						<a href="participant-list.html" id="menu_tbl">Participants</a>
-						<a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
-						<a href="accommodation.html" id="menu_tbl">Accommodation</a>
-						<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
+                            <div class="room-list" id="roomList">
+                                <article class="room-card" data-room="deluxe">
+                                    <div class="room-meta">
+                                        <h3>Deluxe Room</h3>
+                                        <p>Price: ₹3000 per night</p>
+                                    </div>
+                                    <div class="room-details">
+                                        <p><strong>Description:</strong> AC room, WiFi, Breakfast included, king-size bed,
+                                            room service</p>
+                                    </div>
+                                    <div class="room-actions">
+                                        <button type="button" class="selectRoom">Select Room</button>
+                                        <p>Checkout: ₹3000 + taxes</p>
+                                    </div>
+                                </article>
 
-						<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
-						<a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
-						<a href="oml-charter.html" id="menu_tbl">OML Charter</a>
-						<a href="contact-us.html" id="menu_tbl">Contact Us</a>
+                                <article class="room-card" data-room="normal">
+                                    <div class="room-meta">
+                                        <h3>Normal Room</h3>
+                                        <p>Price: ₹1000 per night</p>
+                                    </div>
+                                    <div class="room-details">
+                                        <p><strong>Description:</strong> Cleaned room, Breakfast included, fan
+                                            cooling</p>
+                                    </div>
+                                    <div class="room-actions">
+                                        <button type="button" class="selectRoom">Select Room</button>
+                                        <p>Checkout: ₹1000 + taxes</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </td>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
 
-					</td>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <table width="100%">
+                    <tr id="footer-row"></tr>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
 
-					<td width="720" id="content_tbl">
+    <script>
+        document.getElementById('searchRooms').addEventListener('click', function () {
+            var checkin = document.getElementById('checkin').value;
+            var checkout = document.getElementById('checkout').value;
+            if (!checkin || !checkout) {
+                alert('Please select both check-in and check-out dates.');
+                return;
+            }
+            if (checkin >= checkout) {
+                alert('Check-out must be after check-in.');
+                return;
+            }
+            alert('Rooms filtered for ' + checkin + ' to ' + checkout + '.');
+        });
 
-						<h3 id="content">Accommodation</h3>
+        document.querySelectorAll('.selectRoom').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var roomType = this.closest('.room-card').getAttribute('data-room');
+                alert('You selected ' + roomType + ' room.');
+            });
+        });
+    </script>
 
-						
-					</td>
-		</tr>
-	</table>
-
-	</td>
-	<td>&nbsp;</td>
-	</tr>
-
-<tr>
-    <td>&nbsp;</td>
-    <td>
-        <table width="100%">
-            <tr id="footer-row"></tr>
-        </table>
-    </td>
-    <td>&nbsp;</td>
-</tr>
-
-	</table>
     <script src="sections/footer.js"></script>
-	<script src="sections/hero.js"></script>
-	<script src="js/main.js"></script>
+    <script src="sections/hero.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
