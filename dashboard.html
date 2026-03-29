@@ -1,36 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Registration</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body class="nav-ready">
+	<table align="center" class="maintable">
+		<tr>
+			<td>&nbsp;</td>
+			<td id="logo">
+				<div id="hero-container"></div>
 
-<h1>Conference Registration Dashboard</h1>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
 
-<button id="logout-btn">Logout</button>
+		<tr>
+			<td>&nbsp;</td>
+			<td id="content">
+				<table width="980px" align="center">
+					<tr>
+						<td colspan="3">
 
-<h2>Registrations</h2>
+						</td>
+					</tr>
+					<td width="230" rowspan="2" id="menu_box">
+						<a href="index.html" id="menu_tbl">Home</a>
+						<a href="committees.html" id="menu_tbl">Committees</a>
+						<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
+						<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
+						<a href="poster-session.html" id="menu_tbl">Poster Session</a>
+						<a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
+						<a href="rump-session.html" id="menu_tbl">Rump Session</a>
+						<a href="photos.html" id="menu_tbl">Photos</a>
+						<a href="submissions.html" id="menu_tbl">Submissions</a>
 
-<table border="1">
+						<a href="registration.html" id="menu_tbl">Registration</a>
+						<a href="participant-list.html" id="menu_tbl">Participants</a>
+						<a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
+						<a href="accommodation.html" id="menu_tbl">Accommodation</a>
+						<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
 
-<thead>
-<tr>
-  <th>Name</th>
-  <th>Email</th>
-  <th>Institution</th>
-</tr>
-</thead>
+						<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
+						<a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
+						<a href="oml-charter.html" id="menu_tbl">OML Charter</a>
+						<a href="contact-us.html" id="menu_tbl">Contact Us</a>
 
-<tbody id="registration-table">
-</tbody>
+					</td>
 
-</table>
+					<td width="720" id="content_tbl">
+
+						<h3 id="content">Dashboard</h3>
+<p>This is dashboard for administrators of the OML Conference.</p>
+<style>
+/* ===== Container ===== */
+.dashboard-container {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* header (logout right) */
+.dashboard-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+/* logout button */
+#logout-btn {
+    padding: 8px 14px;
+    background: #2E75C7;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#logout-btn:hover {
+    background: #1f5ea8;
+}
+
+
+/* ===== Full Width Table ===== */
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: #fff;
+}
+
+/* header */
+.dashboard-table thead {
+    background: #2E75C7;
+    color: #fff;
+}
+
+.dashboard-table th {
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+}
+
+/* rows */
+.dashboard-table td {
+    padding: 10px;
+    border-bottom: 1px solid #e5eaf2;
+}
+
+/* zebra */
+.dashboard-table tbody tr:nth-child(even) {
+    background: #f8fbff;
+}
+
+/* hover */
+.dashboard-table tbody tr:hover {
+    background: #eef5ff;
+}
+
+/* ===== Responsive (wrap instead of scroll) ===== */
+.dashboard-table th,
+.dashboard-table td {
+    white-space: normal;
+}
+</style>
+
+
+<div class="dashboard-container">
+
+  <div class="dashboard-header">
+    <button id="logout-btn">Logout</button>
+  </div>
+
+  <table class="dashboard-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Affiliation</th>
+        <th>Citizenship</th>
+        <th>Category</th>
+        <th>Flag</th>
+      </tr>
+    </thead>
+
+    <tbody id="registration-table">
+    </tbody>
+  </table>
+
+</div>
 
 <script type="module" src="js/dashboard.js"></script>
+					</td>
+		</tr>
+	</table>
 
+	</td>
+	<td>&nbsp;</td>
+	</tr>
+
+<tr>
+    <td>&nbsp;</td>
+    <td>
+        <table width="100%">
+            <tr id="footer-row"></tr>
+        </table>
+    </td>
+    <td>&nbsp;</td>
+</tr>
+
+	</table>
+    <script src="sections/footer.js"></script>
+	<script src="sections/hero.js"></script>
+	<script src="js/main.js"></script>
+  <script src="js/registration.js"></script>
 </body>
+
 </html>

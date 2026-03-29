@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
             &copy; 2027 QML Conference
         </td>
         <td id="footer-right">
-           <a href="login.html">Register</a>
+           <a href="registration.html">Register</a>
             <a href="login.html">Login</a>
             <a href="report.html">Report!</a>
         </td>
