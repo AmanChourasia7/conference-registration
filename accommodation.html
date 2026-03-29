@@ -174,6 +174,7 @@
                             </section>
 
                             <div class="room-list" id="roomList">
+                                <div id="roomSelectionMessage" style="margin-bottom: 12px; font-weight: 700; display: none;">You selected: <span id="selectedRoomType"></span></div>
                                 <article class="room-card" data-room="deluxe">
                                     <div class="room-meta">
                                         <h3>Deluxe Room</h3>
@@ -240,7 +241,10 @@
         document.querySelectorAll('.selectRoom').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var roomType = this.closest('.room-card').getAttribute('data-room');
-                alert('You selected ' + roomType + ' room.');
+                var message = document.getElementById('roomSelectionMessage');
+                var selectedType = document.getElementById('selectedRoomType');
+                selectedType.textContent = roomType.charAt(0).toUpperCase() + roomType.slice(1) + ' Room';
+                message.style.display = 'block';
             });
         });
     </script>
