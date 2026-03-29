@@ -2,85 +2,218 @@
 <html>
 
 <head>
-	<title>Contact Us</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="SHORTCUT ICON" href="assets/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="SHORTCUT ICON" href="assets/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Contact page local styles */
+        .contact-main {
+            background: #f6f6f6;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .map-section {
+            margin-bottom: 20px;
+        }
+
+        .map-wrapper {
+            width: 100%;
+            height: 260px;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .contact-grid {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info,
+        .contact-form {
+            flex: 1 1 320px;
+            background: #ddd;
+            padding: 18px;
+            border-radius: 8px;
+        }
+
+        .contact-info h4,
+        .contact-form h4 {
+            margin-top: 0;
+        }
+
+        .contact-form form {
+            display: grid;
+            gap: 10px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .contact-form button {
+            padding: 10px 20px;
+            background: #2e75c7;
+            color: #fff;
+            border: 0;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .contact-form button:hover {
+            background: #1f56a1;
+        }
+
+        @media (max-width: 860px) {
+            .contact-grid {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body class="nav-ready">
 
-	<table align="center" class="maintable">
-		<tr>
-			<td>&nbsp;</td>
-			<td id="logo">
-				<div id="hero-container"></div>
+    <table align="center" class="maintable">
+        <tr>
+            <td>&nbsp;</td>
+            <td id="logo">
+                <div id="hero-container"></div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
 
-			</td>
-			<td>&nbsp;</td>
-		</tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td id="content">
+                <table width="980px" align="center">
+                    <tr>
+                        <td colspan="3"></td>
+                    </tr>
+                    <td width="230" rowspan="2" id="menu_box">
+                        <a href="index.html" id="menu_tbl">Home</a>
+                        <a href="committees.html" id="menu_tbl">Committees</a>
+                        <a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
+                        <a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
+                        <a href="poster-session.html" id="menu_tbl">Poster Session</a>
+                        <a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
+                        <a href="rump-session.html" id="menu_tbl">Rump Session</a>
+                        <a href="photos.html" id="menu_tbl">Photos</a>
+                        <a href="submissions.html" id="menu_tbl">Submissions</a>
+                        <a href="registration.html" id="menu_tbl">Registration</a>
+                        <a href="participant-list.html" id="menu_tbl">Participants</a>
+                        <a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
+                        <a href="accommodation.html" id="menu_tbl">Accommodation</a>
+                        <a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
+                        <a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
+                        <a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
+                        <a href="oml-charter.html" id="menu_tbl">OML Charter</a>
+                        <a href="contact-us.html" id="menu_tbl">Contact Us</a>
+                    </td>
 
-		<tr>
-			<td>&nbsp;</td>
-			<td id="content">
-				<table width="980px" align="center">
-					<tr>
-						<td colspan="3">
+                    <td width="720" id="content_tbl">
+                        <h3 id="content">Contact Us</h3>
 
-						</td>
-					</tr>
-					<td width="230" rowspan="2" id="menu_box">
-						<a href="index.html" id="menu_tbl">Home</a>
-						<a href="committees.html" id="menu_tbl">Committees</a>
-						<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
-						<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
-						<a href="poster-session.html" id="menu_tbl">Poster Session</a>
-						<a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
-						<a href="rump-session.html" id="menu_tbl">Rump Session</a>
-						<a href="photos.html" id="menu_tbl">Photos</a>
-						<a href="submissions.html" id="menu_tbl">Submissions</a>
+                        <div class="contact-main">
+                            <section class="map-section">
+                                <h4>OpenStreetMap Location</h4>
+                                <div class="map-wrapper">
+                                    <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=84.9272%2C25.5608%2C84.9222%2C25.5632&layer=mapnik&marker=25.5620%2C84.9247"
+                                        allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            </section>
 
-						<a href="registration.html" id="menu_tbl">Registration</a>
-						<a href="participant-list.html" id="menu_tbl">Participants</a>
-						<a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
-						<a href="accommodation.html" id="menu_tbl">Accommodation</a>
-						<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
+                            <div class="contact-grid">
+                                <article class="contact-info">
+                                    <h4>Contact Information</h4>
+                                    <p><strong>Venue Name:</strong> ABC Conference Hall</p>
+                                    <p><strong>Address:</strong> Indian Institute of Technology Patna, Bihta Road,
+                                        Kanpa</p>
+                                    <p><strong>Phone:</strong> +91 9xxxxxxxx</p>
+                                    <p><strong>Email:</strong> <a href="mailto:info@conference.com">info@conference.com</a>
+                                    </p>
+                                    <p><strong>Details:</strong> Parking available, near main road</p>
+                                </article>
 
-						<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
-						<a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
-						<a href="oml-charter.html" id="menu_tbl">OML Charter</a>
-						<a href="contact-us.html" id="menu_tbl">Contact Us</a>
+                                <aside class="contact-form">
+                                    <h4>Contact Form</h4>
+                                    <form id="contactForm">
+                                        <label for="name">Name:</label>
+                                        <input type="text" id="name" name="name" required>
 
-					</td>
+                                        <label for="email">Email:</label>
+                                        <input type="email" id="email" name="email" required>
 
-					<td width="720" id="content_tbl">
+                                        <label for="message">Message:</label>
+                                        <textarea id="message" name="message" rows="5" required></textarea>
 
-						<h3 id="content">Contact Us</h3>
+                                        <button type="submit">Submit</button>
+                                    </form>
+                                    <p id="contactResponse" style="margin-top:10px;color:#0b5700;display:none;"></p>
+                                </aside>
+                            </div>
+                        </div>
+                    </td>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
 
-						
-					</td>
-		</tr>
-	</table>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <table width="100%">
+                    <tr id="footer-row"></tr>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
 
-	</td>
-	<td>&nbsp;</td>
-	</tr>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-<tr>
-    <td>&nbsp;</td>
-    <td>
-        <table width="100%">
-            <tr id="footer-row"></tr>
-        </table>
-    </td>
-    <td>&nbsp;</td>
-</tr>
+            var name = document.getElementById('name').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var message = document.getElementById('message').value.trim();
+            var response = document.getElementById('contactResponse');
 
-	</table>
+            if (!name || !email || !message) {
+                response.textContent = 'Please fill in all fields before submitting.';
+                response.style.color = '#b11';
+                response.style.display = 'block';
+                return;
+            }
+
+            response.textContent = 'Thank you, ' + name + '! Your message has been received (dummy submit).';
+            response.style.color = '#0b5700';
+            response.style.display = 'block';
+
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+
     <script src="sections/footer.js"></script>
-	<script src="sections/hero.js"></script>
-	<script src="js/main.js"></script>
+    <script src="sections/hero.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
