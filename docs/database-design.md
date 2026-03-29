@@ -1,4 +1,4 @@
-# Database Design
+<img width="320" height="825" alt="image" src="https://github.com/user-attachments/assets/75e3655a-07a3-453d-bf6e-881041ec0378" /># Database Design
 
 This document describes the database design used in the Conference Registration System. The application uses Firebase Firestore, a NoSQL database by Google. The design models the main entities involved in the system using class diagrams. The database is designed to support two operations:
 * Storing participant registrations
@@ -36,10 +36,9 @@ classDiagram
 class Registration {
   string name
   string email
-  string institution
-  string country
-  string role
-  string message
+  string affiliation
+  string citizenship
+  string category
   timestamp createdAt
 }
 
