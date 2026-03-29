@@ -2,84 +2,156 @@
 <html>
 
 <head>
-	<title>OML Charter</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photos</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="SHORTCUT ICON" href="assets/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .photos-main {
+            background: #f6f6f6;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .photos-title {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .gallery-section {
+            margin-bottom: 24px;
+        }
+
+        .gallery-heading {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: #2e75c7;
+        }
+
+        .gallery-grid {
+            display: grid;
+            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .gallery-item {
+            background: #ccc;
+            border-radius: 8px;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .gallery-item.large {
+            height: 220px;
+        }
+
+        @media (max-width: 760px) {
+            .gallery-item {
+                height: 140px;
+            }
+        }
+    </style>
 </head>
 
 <body class="nav-ready">
 
-	<table align="center" class="maintable">
-		<tr>
-			<td>&nbsp;</td>
-			<td id="logo">
-				<div id="hero-container"></div>
+    <table align="center" class="maintable">
+        <tr>
+            <td>&nbsp;</td>
+            <td id="logo">
+                <div id="hero-container"></div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
 
-			</td>
-			<td>&nbsp;</td>
-		</tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td id="content">
+                <table width="980px" align="center">
+                    <tr>
+                        <td colspan="3"></td>
+                    </tr>
+                    <td width="230" rowspan="2" id="menu_box">
+                        <a href="index.html" id="menu_tbl">Home</a>
+                        <a href="committees.html" id="menu_tbl">Committees</a>
+                        <a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
+                        <a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
+                        <a href="poster-session.html" id="menu_tbl">Poster Session</a>
+                        <a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
+                        <a href="rump-session.html" id="menu_tbl">Rump Session</a>
+                        <a href="photos.html" id="menu_tbl">Photos</a>
+                        <a href="submissions.html" id="menu_tbl">Submissions</a>
+                        <a href="registration.html" id="menu_tbl">Registration</a>
+                        <a href="participant-list.html" id="menu_tbl">Participants</a>
+                        <a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
+                        <a href="accommodation.html" id="menu_tbl">Accommodation</a>
+                        <a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
+                        <a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
+                        <a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
+                        <a href="oml-charter.html" id="menu_tbl">OML Charter</a>
+                        <a href="contact-us.html" id="menu_tbl">Contact Us</a>
+                    </td>
 
-		<tr>
-			<td>&nbsp;</td>
-			<td id="content">
-				<table width="980px" align="center">
-					<tr>
-						<td colspan="3">
+                    <td width="720" id="content_tbl">
+                        <h3 id="content">Photos</h3>
 
-						</td>
-					</tr>
-					<td width="230" rowspan="2" id="menu_box">
-						<a href="index.html" id="menu_tbl">Home</a>
-						<a href="committees.html" id="menu_tbl">Committees</a>
-						<a href="scientific-programme.html" id="menu_tbl">Scientific Programme</a>
-						<a href="tutorial-programme.html" id="menu_tbl">Tutorial Programme</a>
-						<a href="poster-session.html" id="menu_tbl">Poster Session</a>
-						<a href="public-lecture.html" id="menu_tbl">Public Lecture</a>
-						<a href="rump-session.html" id="menu_tbl">Rump Session</a>
-						<a href="photos.html" id="menu_tbl">Photos</a>
-						<a href="submissions.html" id="menu_tbl">Submissions</a>
+                        <div class="photos-main">
+                            <div class="photos-title">
+                                <h2>Day 1 - Conference Highlights</h2>
+                            </div>
 
-						<a href="registration.html" id="menu_tbl">Registration</a>
-						<a href="participant-list.html" id="menu_tbl">Participants</a>
-						<a href="conference-venue.html" id="menu_tbl">Conference Venue</a>
-						<a href="accommodation.html" id="menu_tbl">Accommodation</a>
-						<a href="travel-and-visa.html" id="menu_tbl">Travel and Visa</a>
+                            <section class="gallery-section">
+                                <div class="gallery-grid">
+                                    <div class="gallery-item large">Image 1</div>
+                                    <div class="gallery-item">Image 2</div>
+                                    <div class="gallery-item">Image 3</div>
+                                </div>
+                            </section>
 
-						<a href="previous-conferences.html" id="menu_tbl">List of OML Conferences</a>
-						<a href="related-conferences.html" id="menu_tbl">Related Conferences</a>
-						<a href="oml-charter.html" id="menu_tbl">OML Charter</a>
-						<a href="contact-us.html" id="menu_tbl">Contact Us</a>
+                            <div class="photos-title">
+                                <h2>Day 2 - Workshops and Events</h2>
+                            </div>
 
-					</td>
+                            <section class="gallery-section">
+                                <div class="gallery-grid">
+                                    <div class="gallery-item">Image 4</div>
+                                    <div class="gallery-item">Image 5</div>
+                                    <div class="gallery-item">Image 6</div>
+                                </div>
+                            </section>
 
-					<td width="720" id="content_tbl">
+                            <section class="gallery-section">
+                                <div class="gallery-grid">
+                                    <div class="gallery-item large">Image 7</div>
+                                </div>
+                            </section>
+                        </div>
+                    </td>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
 
-						<h3 id="content">Photos</h3>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <table width="100%">
+                    <tr id="footer-row"></tr>
+                </table>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
 
-						
-					</td>
-		</tr>
-	</table>
-
-	</td>
-	<td>&nbsp;</td>
-	</tr>
-
-<tr>
-    <td>&nbsp;</td>
-    <td>
-        <table width="100%">
-            <tr id="footer-row"></tr>
-        </table>
-    </td>
-    <td>&nbsp;</td>
-</tr>
-
-	</table>
     <script src="sections/footer.js"></script>
-	<script src="sections/hero.js"></script>
-	<script src="js/main.js"></script>
+    <script src="sections/hero.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
