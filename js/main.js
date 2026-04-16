@@ -7,8 +7,9 @@ const db = getFirestore(app);
 function toggle() {
 	var ele = document.getElementById("toggleText");
 	var text = document.getElementById("displayText");
-	if(ele && text){
-		if(ele.style.display == "block") {
+
+	if (ele && text) {
+		if (ele.style.display == "block") {
 			ele.style.display = "none";
 			text.innerHTML = "<b>show directions</b>";
 		} else {
@@ -19,14 +20,15 @@ function toggle() {
 }
 
 function toggleMenu() {
-    document.body.classList.toggle("mobile-menu-open");
+	document.body.classList.toggle("mobile-menu-open");
 }
 
 function toggle2() {
 	var ele = document.getElementById("toggleText2");
 	var text = document.getElementById("displayText2");
-	if(ele && text){
-		if(ele.style.display == "block") {
+
+	if (ele && text) {
+		if (ele.style.display == "block") {
 			ele.style.display = "none";
 			text.innerHTML = "<b>show directions</b>";
 		} else {
@@ -38,8 +40,9 @@ function toggle2() {
 
 function toggle_plain() {
 	var ele = document.getElementById("toggleText");
-	if(ele){
-		if(ele.style.display == "block") {
+
+	if (ele) {
+		if (ele.style.display == "block") {
 			ele.style.display = "none";
 		} else {
 			ele.style.display = "block";
@@ -50,45 +53,47 @@ function toggle_plain() {
 // RUN AFTER DOM LOAD
 document.addEventListener("DOMContentLoaded", async function () {
 
-  // MENU SAFETY
-  const menu = document.getElementById("menu_box");
-  const button = document.querySelector(".mobile-menu-toggle");
+	// SAFE MENU HANDLING
+	const menu = document.getElementById("menu_box");
+	const button = document.querySelector(".mobile-menu-toggle");
 
-  if (menu && button) {
-    document.addEventListener("click", function(e) {
-      if (!menu.contains(e.target) && !button.contains(e.target)) {
-        document.body.classList.remove("mobile-menu-open");
-      }
-    });
+	if (menu && button) {
 
-    menu.addEventListener("click", function(e) {
-      e.stopPropagation();
-    });
+		document.addEventListener("click", function (e) {
+			if (!menu.contains(e.target) && !button.contains(e.target)) {
+				document.body.classList.remove("mobile-menu-open");
+			}
+		});
 
-    button.addEventListener("click", function(e) {
-      e.stopPropagation();
-    });
-  }
+		menu.addEventListener("click", function (e) {
+			e.stopPropagation();
+		});
 
-  // FIREBASE FETCH
-  try {
-    const snap = await getDoc(doc(db, "pages", "home"));
+		button.addEventListener("click", function (e) {
+			e.stopPropagation();
+		});
+	}
 
-    console.log("Firestore response:", snap.data()); // debug
+	// FIREBASE FETCH
+	try {
+		const snap = await getDoc(doc(db, "pages", "home"));
 
-    if (snap.exists()) {
-      const el = document.getElementById("page-title");
-      if (el) {
-        el.innerText = snap.data().title;
-      } else {
-        console.log("Element #page-title not found");
-      }
-    } else {
-      console.log("Document pages/home not found");
-    }
+		console.log("Firestore response:", snap.data());
 
-  } catch (err) {
-    console.error("Firebase error:", err);
-  }
+		if (snap.exists()) {
+			const el = document.getElementById("page-title");
+
+			if (el) {
+				el.innerText = snap.data().title;
+			} else {
+				console.log("Element #page-title not found");
+			}
+		} else {
+			console.log("Document pages/home not found");
+		}
+
+	} catch (err) {
+		console.error("Firebase error:", err);
+	}
 
 });
