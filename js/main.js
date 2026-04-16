@@ -1,76 +1,92 @@
-import { db } from "../firebase/firebase-config.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { app } from "../firebase/firebase-config.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+
+const db = getFirestore(app);
 
 // NAVIGATION BAR MOBILE TOGGLE
 function toggle() {
 	var ele = document.getElementById("toggleText");
 	var text = document.getElementById("displayText");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-		text.innerHTML = "<b>show directions</b>";
-  	}
-	else {
-		ele.style.display = "block";
-		text.innerHTML = "<b>hide directions</b>";
+	if(ele && text){
+		if(ele.style.display == "block") {
+			ele.style.display = "none";
+			text.innerHTML = "<b>show directions</b>";
+		} else {
+			ele.style.display = "block";
+			text.innerHTML = "<b>hide directions</b>";
+		}
 	}
 }
+
 function toggleMenu() {
     document.body.classList.toggle("mobile-menu-open");
 }
+
 function toggle2() {
 	var ele = document.getElementById("toggleText2");
 	var text = document.getElementById("displayText2");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-		text.innerHTML = "<b>show directions</b>";
-  	}
-	else {
-		ele.style.display = "block";
-		text.innerHTML = "<b>hide directions</b>";
+	if(ele && text){
+		if(ele.style.display == "block") {
+			ele.style.display = "none";
+			text.innerHTML = "<b>show directions</b>";
+		} else {
+			ele.style.display = "block";
+			text.innerHTML = "<b>hide directions</b>";
+		}
 	}
-} 
+}
 
 function toggle_plain() {
 	var ele = document.getElementById("toggleText");
-	if(ele.style.display == "block") {
-    		ele.style.display = "none";
-  	}
-	else {
-		ele.style.display = "block";
+	if(ele){
+		if(ele.style.display == "block") {
+			ele.style.display = "none";
+		} else {
+			ele.style.display = "block";
+		}
 	}
-}// CLOSE MENU WHEN CLICKING OUTSIDE
-document.addEventListener("click", function(e) {
-    const menu = document.getElementById("menu_box");
-    const button = document.querySelector(".mobile-menu-toggle");
+}
 
-    // if click is NOT inside menu AND NOT on button
-    if (!menu.contains(e.target) && !button.contains(e.target)) {
-        document.body.classList.remove("mobile-menu-open");
-    }
-});
-
-// PREVENT MENU FROM CLOSING WHEN CLICKING INSIDE
-document.getElementById("menu_box").addEventListener("click", function(e) {
-    e.stopPropagation();
-});
-
-// PREVENT BUTTON CLICK FROM IMMEDIATE CLOSE
-document.querySelector(".mobile-menu-toggle").addEventListener("click", function(e) {
-    e.stopPropagation();
-});
-
+// RUN AFTER DOM LOAD
 document.addEventListener("DOMContentLoaded", async function () {
+
+  // MENU SAFETY
+  const menu = document.getElementById("menu_box");
+  const button = document.querySelector(".mobile-menu-toggle");
+
+  if (menu && button) {
+    document.addEventListener("click", function(e) {
+      if (!menu.contains(e.target) && !button.contains(e.target)) {
+        document.body.classList.remove("mobile-menu-open");
+      }
+    });
+
+    menu.addEventListener("click", function(e) {
+      e.stopPropagation();
+    });
+
+    button.addEventListener("click", function(e) {
+      e.stopPropagation();
+    });
+  }
 
   // FIREBASE FETCH
   try {
     const snap = await getDoc(doc(db, "pages", "home"));
 
+    console.log("Firestore response:", snap.data()); // debug
+
     if (snap.exists()) {
       const el = document.getElementById("page-title");
       if (el) {
         el.innerText = snap.data().title;
+      } else {
+        console.log("Element #page-title not found");
       }
+    } else {
+      console.log("Document pages/home not found");
     }
+
   } catch (err) {
     console.error("Firebase error:", err);
   }
