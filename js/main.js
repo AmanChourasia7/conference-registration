@@ -1,3 +1,6 @@
+import { db } from "../firebase/firebase-config.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 // NAVIGATION BAR MOBILE TOGGLE
 function toggle() {
 	var ele = document.getElementById("toggleText");
@@ -54,4 +57,22 @@ document.getElementById("menu_box").addEventListener("click", function(e) {
 // PREVENT BUTTON CLICK FROM IMMEDIATE CLOSE
 document.querySelector(".mobile-menu-toggle").addEventListener("click", function(e) {
     e.stopPropagation();
+});
+
+document.addEventListener("DOMContentLoaded", async function () {
+
+  // FIREBASE FETCH
+  try {
+    const snap = await getDoc(doc(db, "pages", "home"));
+
+    if (snap.exists()) {
+      const el = document.getElementById("page-title");
+      if (el) {
+        el.innerText = snap.data().title;
+      }
+    }
+  } catch (err) {
+    console.error("Firebase error:", err);
+  }
+
 });
