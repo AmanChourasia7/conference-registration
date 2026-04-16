@@ -364,7 +364,7 @@ h2#content {
   font-size: 18px;
 }
 
-h3#content {
+h3#content, h3.page-title {
   font-family: "SF UI Text", system-ui, sans-serif;
   font-size: 16px;
   color: #2e75c7;
