@@ -76,7 +76,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 	// FIREBASE FETCH
 	try {
-		const snap = await getDoc(doc(db, "pages", "home"));
+		const pageName = window.location.pathname.split("/").pop().replace(".html", "") || "index";
+		let docName = pageName === "index" ? "home" : pageName;
+
+		const snap = await getDoc(doc(db, "pages", docName));
 
 		console.log("Firestore response:", snap.data());
 
@@ -96,7 +99,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 			}
 
 		} else {
-			console.log("Document pages/home not found");
+			console.log("Document pages/" + docName + " not found");
 		}
 
 	} catch (err) {
