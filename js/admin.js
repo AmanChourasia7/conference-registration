@@ -1,33 +1,43 @@
 import { app } from "../firebase/firebase-config.js";
 import { getFirestore, doc, getDoc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
 const db = getFirestore(app);
-
-// ADMIN AUTH CHECK (added)
 const auth = getAuth(app);
 
+// ADMIN AUTH CHECK
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
-    window.location.href = "login.html";
+    // not logged in ----------> show error code
+    document.body.innerHTML = "<h2>401 Unauthorized</h2><p>You must login to access this page.</p>";
     return;
   }
 
-  // ✅ show logged-in email (added)
+  // show email
   const emailEl = document.getElementById("admin-email");
   if (emailEl) {
     emailEl.innerText = user.email;
   }
 
+  // check role
   const userDoc = await getDoc(doc(db, "users", user.uid));
 
   if (!userDoc.exists() || userDoc.data().role !== "admin") {
-    alert("Not admin");
-    window.location.href = "index.html";
+    document.body.innerHTML = "<h2>403 Forbidden</h2><p>Access denied. Admins only.</p>";
+    return;
   }
 
 });
+
+// LOGOUT
+const logoutBtn = document.getElementById("logout-btn");
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.href = "login.html";
+  });
+}
 
 const pageSelect = document.getElementById("page-select");
 const titleInput = document.getElementById("title-input");
