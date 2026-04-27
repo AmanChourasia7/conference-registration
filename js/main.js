@@ -81,13 +81,20 @@ document.addEventListener("DOMContentLoaded", async function () {
 		console.log("Firestore response:", snap.data());
 
 		if (snap.exists()) {
-			const el = document.getElementById("page-title");
+			const data = snap.data();
 
+			const el = document.getElementById("page-title");
 			if (el) {
-				el.innerText = snap.data().title;
+				el.innerText = data.title;
 			} else {
 				console.log("Element #page-title not found");
 			}
+
+			const contentEl = document.getElementById("home-content");
+			if (contentEl && data.content) {
+				contentEl.innerHTML = data.content;
+			}
+
 		} else {
 			console.log("Document pages/home not found");
 		}
