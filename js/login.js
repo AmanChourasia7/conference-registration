@@ -5,10 +5,13 @@ import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-document.querySelector("button").addEventListener("click", async () => {
+const form = document.getElementById("login-form");
 
-  const email = document.querySelector("input[type='email']").value;
-  const password = document.querySelector("input[type='password']").value;
+form.addEventListener("submit", async (e) => {
+  e.preventDefault(); // VERY IMPORTANT
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -23,7 +26,6 @@ document.querySelector("button").addEventListener("click", async () => {
 
     const role = userDoc.data().role;
 
-    // 🔑 ROLE BASED REDIRECT
     if (role === "admin") {
       window.location.href = "admin.html";
     } else {
@@ -31,8 +33,7 @@ document.querySelector("button").addEventListener("click", async () => {
     }
 
   } catch (err) {
-    alert("Login failed");
     console.error(err);
+    document.getElementById("error-message").innerText = "Invalid email or password";
   }
-
 });
