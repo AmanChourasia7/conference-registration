@@ -1,43 +1,53 @@
-// js/registration.js
+import { app } from "../firebase/firebase-config.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
-import { saveRegistration } from "../firebase/firestore.js";
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-document.addEventListener("DOMContentLoaded", function () {
+const form = document.getElementById("registration-form");
 
-  const form = document.getElementById("registration-form");
-  if (!form) return; // prevents crash if not on page
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-  form.addEventListener("submit", async function (event) {
-    event.preventDefault();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const institution = document.getElementById("institution").value;
+  const country = document.getElementById("country").value;
+  const roleInput = document.getElementById("role").value;
+  const password = document.getElementById("password").value;
 
-    // collect all fields (aligned with your HTML)
-    const data = {
-      name: document.getElementById("name").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      institution: document.getElementById("institution").value.trim(),
-      country: document.getElementById("country").value.trim(),
-      role: document.getElementById("role").value,
-      message: document.getElementById("message").value.trim(),
-      createdAt: new Date().toISOString()
-    };
+  try {
+    // 1. CREATE AUTH USER
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-    // basic validation (extra safety)
-    if (!data.name || !data.email) {
-      alert("Please fill required fields.");
-      return;
-    }
+    // 2. SAVE USER (for roles)
+    await setDoc(doc(db, "users", user.uid), {
+      name: name,
+      email: email,
+      role: roleInput || "participant",
+      blocked: false
+    });
 
-    try {
-      const id = await saveRegistration(data);
+    // 3. SAVE REGISTRATION (admin will view this)
+    await addDoc(collection(db, "registrations"), {
+      uid: user.uid,
+      name: name,
+      email: email,
+      institution: institution,
+      country: country,
+      category: roleInput,
+      createdAt: new Date()
+    });
 
-      alert("Registration successful.\nID: " + id);
+    alert("Registration successful");
 
-      form.reset();
+    // redirect to login
+    window.location.href = "login.html";
 
-    } catch (error) {
-      console.error(error);
-      alert("Registration failed. Please try again.");
-    }
-  });
-
+  } catch (err) {
+    console.error(err);
+    alert("Registration failed: " + err.message);
+  }
 });
