@@ -1,29 +1,21 @@
-import { login } from "../firebase/auth-service.js";
+import { app } from "../firebase/firebase-config.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
-const form = document.getElementById("login-form");
+const auth = getAuth(app);
 
-form.addEventListener("submit", async function(event) {
-
-  event.preventDefault();
-
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+document.querySelector("button").addEventListener("click", async () => {
+  const email = document.querySelector("input[type='email']").value;
+  const password = document.querySelector("input[type='password']").value;
 
   try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
 
-    await login(email, password);
+    // redirect after login
+    window.location.href = "admin.html";
 
-    alert("Login successful");
-
-    window.location.href = "dashboard.html";
-
-  } catch (error) {
-
-    document.getElementById("error-message").innerText =
-      "Login failed. Check credentials.";
-
-    console.error(error);
-
+  } catch (err) {
+    alert("Login failed");
+    console.error(err);
   }
-
 });
