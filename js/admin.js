@@ -14,6 +14,12 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
+  // ✅ show logged-in email (added)
+  const emailEl = document.getElementById("admin-email");
+  if (emailEl) {
+    emailEl.innerText = user.email;
+  }
+
   const userDoc = await getDoc(doc(db, "users", user.uid));
 
   if (!userDoc.exists() || userDoc.data().role !== "admin") {
