@@ -1,313 +1,200 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin Panel</title>
 
   <style>
-    :root {
-      --bg: #eaf6f7;
-      --panel: #ffffff;
-      --panel-soft: #f6fbfc;
-      --text: #13313c;
-      --muted: #5d7882;
-      --line: #cfe3e7;
-      --accent: #2b7a78;
-      --accent-2: #3f9ca6;
-      --danger: #b14d4d;
-      --shadow: 0 12px 28px rgba(19, 49, 60, 0.08);
-      --radius: 18px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: inherit;
-      line-height: 1.5;
+      background: #f5f7fa;
+      color: #1a1a1a;
     }
 
-    .shell {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 28px 18px 42px;
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    h2, h3 {
+      margin-top: 0;
     }
 
     .topbar {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 22px 24px;
-      margin-bottom: 18px;
-    }
-
-    .topbar h1 {
-      margin: 0;
-      font-size: 30px;
-      letter-spacing: 0.2px;
-    }
-
-    .topbar p {
-      margin: 8px 0 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .status-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 14px;
+      justify-content: space-between;
       align-items: center;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--panel-soft);
-      color: var(--muted);
+      margin-bottom: 25px;
       font-size: 14px;
     }
 
-    .status-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent-2);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1.4fr 0.9fr;
-      gap: 18px;
-    }
-
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-    }
-
-    .card h2 {
-      margin: 0 0 12px;
-      font-size: 20px;
-    }
-
-    .card .subtle {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 16px;
-    }
-
-    .field {
-      margin-bottom: 16px;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
+    .email {
+      color: #555;
     }
 
     select,
     input,
     textarea {
       width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #fff;
-      color: var(--text);
-      padding: 12px 14px;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.05s ease;
-      font: inherit;
-    }
+      padding: 10px;
+      margin-top: 6px;
+      margin-bottom: 16px;
 
-    select:focus,
-    input:focus,
-    textarea:focus {
-      border-color: var(--accent-2);
-      box-shadow: 0 0 0 3px rgba(63, 156, 166, 0.14);
+      border: 1px solid #d6dbe1;
+      border-radius: 6px;
     }
 
     textarea {
-      min-height: 360px;
+      min-height: 200px;
       resize: vertical;
-      line-height: 1.6;
     }
 
-    .row-actions {
+    .actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
-      margin-top: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
     }
 
     button {
-      border: 0;
-      border-radius: 999px;
-      padding: 11px 16px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      border: none;
+      background: #2E75C7;
+      color: white;
       cursor: pointer;
-      font: inherit;
-      transition: transform 0.05s ease, opacity 0.2s ease, background 0.2s ease;
+      font-size: 13px;
     }
 
     button:hover {
-      opacity: 0.95;
+      background: #1f5ea8;
     }
 
-    button:active {
-      transform: scale(0.98);
+    .secondary {
+      background: #e9eef5;
+      color: #333;
     }
 
-    #load-btn {
-      background: var(--accent);
-      color: #fff;
+    .secondary:hover {
+      background: #d8e2ee;
     }
 
-    #save-btn {
-      background: var(--accent-2);
-      color: #fff;
+    .section {
+      margin-top: 40px;
     }
 
-    #backup-btn {
-      background: #d8eef0;
-      color: var(--text);
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
     }
 
-    #logout-btn {
-      background: #edf2f3;
-      color: var(--danger);
-      border: 1px solid var(--line);
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #e5e9ef;
+      text-align: left;
     }
 
-    .stack {
-      display: grid;
-      gap: 18px;
+    th {
+      background: #f0f3f7;
+      font-weight: 600;
     }
 
-    .mini-card {
-      background: var(--panel-soft);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px;
+    .table-actions button {
+      margin-right: 6px;
+      padding: 5px 8px;
+      font-size: 12px;
     }
 
-    .mini-card h3 {
-      margin: 0 0 10px;
-      font-size: 16px;
-    }
-
-    .mini-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .placeholder-box {
-      border: 1px dashed #bcd4da;
-      border-radius: 16px;
-      padding: 18px;
-      background: #fbfeff;
-      color: var(--muted);
-      font-size: 14px;
-      min-height: 120px;
-    }
-
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      textarea {
-        min-height: 280px;
-      }
-    }
   </style>
+
 </head>
 
 <body>
-  <div class="shell">
-    <header class="topbar">
-      <h1>Admin Panel</h1>
-      <p>Manage pages, registrations, and users from one place.</p>
 
-      <div class="status-row">
-        <div class="status-pill">
-          <span class="status-dot"></span>
-          Logged in as <b id="admin-email"></b>
-        </div>
-      </div>
-    </header>
+<div class="container">
 
-    <main class="grid">
-      <section class="card">
-        <h2>Page Editor</h2>
-        <div class="subtle">Select a page, load its content, edit it, and save.</div>
-
-        <div class="field">
-          <label for="page-select">Page</label>
-          <select id="page-select">
-            <option value="home">Home</option>
-            <option value="committees">Committees</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="title-input">Title</label>
-          <input type="text" id="title-input" placeholder="Page title" />
-        </div>
-
-        <div class="field">
-          <label for="content-input">Content</label>
-          <textarea id="content-input" placeholder="Page HTML content"></textarea>
-        </div>
-
-        <div class="row-actions">
-          <button id="load-btn" type="button">Load</button>
-          <button id="save-btn" type="button">Save</button>
-          <button id="backup-btn" type="button">Backup All Pages</button>
-          <button id="logout-btn" type="button">Logout</button>
-        </div>
-      </section>
-
-      <aside class="stack">
-        <section class="mini-card">
-          <h3>Users</h3>
-          <p>Next we will connect a table here for roles, blocking, and access control.</p>
-        </section>
-
-        <section class="mini-card">
-          <h3>Registrations</h3>
-          <p>Next we will show all registration records here with manage actions.</p>
-        </section>
-
-        <section class="mini-card">
-          <h3>Backup</h3>
-          <p>The backup button downloads all page data as one JSON file for safe keeping.</p>
-        </section>
-
-        <section class="placeholder-box">
-          This area is reserved for the users table and registrations table once you wire them into admin.js.
-        </section>
-      </aside>
-    </main>
+  <!-- HEADER -->
+  <div class="topbar">
+    <h2>Admin Panel</h2>
+    <div class="email">
+      Logged in as: <b id="admin-email"></b>
+    </div>
   </div>
 
-  <script type="module" src="js/admin.js"></script>
+  <!-- PAGE EDITOR -->
+  <div class="section">
+
+    <h3>Page Editor</h3>
+
+    <select id="page-select">
+      <option value="home">Home</option>
+      <option value="committees">Committees</option>
+    </select>
+
+    <input type="text" id="title-input" placeholder="Title">
+    <textarea id="content-input"></textarea>
+
+    <div class="actions">
+      <button id="load-btn">Load</button>
+      <button id="save-btn">Save</button>
+      <button id="backup-btn" class="secondary">Backup</button>
+      <button id="logout-btn" class="secondary">Logout</button>
+    </div>
+
+  </div>
+
+  <!-- USERS -->
+  <div class="section">
+
+    <h3>Users</h3>
+
+    <button id="load-users" class="secondary">Load Users</button>
+
+    <table id="users-table">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Blocked</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+  </div>
+
+  <!-- REGISTRATIONS -->
+  <div class="section">
+
+    <h3>Registrations</h3>
+
+    <button id="load-registrations" class="secondary">Load Registrations</button>
+
+    <table id="registrations-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Institution</th>
+          <th>Country</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+  </div>
+
+</div>
+
+<script type="module" src="js/admin.js"></script>
+
 </body>
 </html>
