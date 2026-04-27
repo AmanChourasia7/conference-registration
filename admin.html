@@ -6,21 +6,21 @@
   <style>
     body {
       margin: 0;
-      background: #f5f7fa;
+      background: #f4f6f8;
       color: #1a1a1a;
     }
 
-    .container {
+    .wrapper {
       max-width: 1000px;
-      margin: 40px auto;
+      margin: 30px auto;
       background: #ffffff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 28px;
+      border-radius: 8px;
     }
 
-    h2, h3 {
-      margin-top: 0;
+    h2 {
+      margin: 0 0 20px 0;
+      font-weight: 600;
     }
 
     .topbar {
@@ -35,16 +35,29 @@
       color: #555;
     }
 
+    .section {
+      margin-top: 35px;
+    }
+
+    .label {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: block;
+    }
+
     select,
     input,
     textarea {
       width: 100%;
       padding: 10px;
-      margin-top: 6px;
       margin-bottom: 16px;
 
       border: 1px solid #d6dbe1;
       border-radius: 6px;
+
+      font-size: 14px;
+      background: #fff;
     }
 
     textarea {
@@ -56,17 +69,19 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 10px;
+      margin-top: 10px;
     }
 
     button {
-      padding: 8px 14px;
+      padding: 9px 14px;
       border-radius: 6px;
-      border: none;
+      border: 1px solid #d6dbe1;
+
       background: #2E75C7;
-      color: white;
+      color: #fff;
+
+      font-size: 14px;
       cursor: pointer;
-      font-size: 13px;
     }
 
     button:hover {
@@ -74,16 +89,12 @@
     }
 
     .secondary {
-      background: #e9eef5;
+      background: #eef2f6;
       color: #333;
     }
 
     .secondary:hover {
-      background: #d8e2ee;
-    }
-
-    .section {
-      margin-top: 40px;
+      background: #e1e7ee;
     }
 
     table {
@@ -95,8 +106,8 @@
 
     th, td {
       padding: 10px;
-      border-bottom: 1px solid #e5e9ef;
       text-align: left;
+      border-bottom: 1px solid #e2e6ea;
     }
 
     th {
@@ -116,9 +127,8 @@
 
 <body>
 
-<div class="container">
+<div class="wrapper">
 
-  <!-- HEADER -->
   <div class="topbar">
     <h2>Admin Panel</h2>
     <div class="email">
@@ -129,14 +139,16 @@
   <!-- PAGE EDITOR -->
   <div class="section">
 
-    <h3>Page Editor</h3>
-
+    <label class="label">Page</label>
     <select id="page-select">
       <option value="home">Home</option>
       <option value="committees">Committees</option>
     </select>
 
-    <input type="text" id="title-input" placeholder="Title">
+    <label class="label">Title</label>
+    <input type="text" id="title-input">
+
+    <label class="label">Content</label>
     <textarea id="content-input"></textarea>
 
     <div class="actions">
@@ -153,9 +165,9 @@
 
     <h3>Users</h3>
 
-    <button id="load-users" class="secondary">Load Users</button>
+    <button id="load-users-btn" class="secondary">Load Users</button>
 
-    <table id="users-table">
+    <table>
       <thead>
         <tr>
           <th>Email</th>
@@ -164,7 +176,7 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody id="users-table"></tbody>
     </table>
 
   </div>
@@ -174,9 +186,9 @@
 
     <h3>Registrations</h3>
 
-    <button id="load-registrations" class="secondary">Load Registrations</button>
+    <button id="load-registrations-btn" class="secondary">Load Registrations</button>
 
-    <table id="registrations-table">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -184,10 +196,9 @@
           <th>Institution</th>
           <th>Country</th>
           <th>Category</th>
-          <th>Actions</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody id="registrations-table"></tbody>
     </table>
 
   </div>
