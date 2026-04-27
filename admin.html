@@ -2,32 +2,274 @@
 <html>
 <head>
   <title>Admin Panel</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <style>
+    body {
+      margin: 0;
+      background: #d9f0f2;
+      color: #10343b;
+    }
+
+    .admin-shell {
+      max-width: 1180px;
+      margin: 24px auto;
+      padding: 18px;
+    }
+
+    .admin-topbar {
+      background: #eaf8f9;
+      border: 1px solid #8fc7cd;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 22px rgba(16, 52, 59, 0.08);
+      margin-bottom: 18px;
+    }
+
+    .admin-topbar h2 {
+      margin: 0 0 8px 0;
+      font-size: 28px;
+      color: #0f4c5c;
+    }
+
+    .admin-topbar p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: #f7fcfc;
+      border: 1px solid #a7d7dc;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 8px 22px rgba(16, 52, 59, 0.06);
+      margin-bottom: 18px;
+    }
+
+    .panel h3 {
+      margin: 0 0 14px 0;
+      font-size: 20px;
+      color: #0f4c5c;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #2a5f68;
+    }
+
+    select,
+    input,
+    textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #8fc7cd;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #10343b;
+      padding: 11px 12px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    select:focus,
+    input:focus,
+    textarea:focus {
+      border-color: #4ea7b0;
+      box-shadow: 0 0 0 3px rgba(78, 167, 176, 0.15);
+    }
+
+    textarea {
+      min-height: 420px;
+      resize: vertical;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    button {
+      border: 1px solid #4ea7b0;
+      background: #dff6f7;
+      color: #0f4c5c;
+      border-radius: 9px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.15s ease, transform 0.05s ease;
+    }
+
+    button:hover {
+      background: #c9eff2;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .wide {
+      width: 100%;
+    }
+
+    .two-panels {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .list-box {
+      min-height: 220px;
+      border: 1px dashed #8fc7cd;
+      border-radius: 10px;
+      background: #fbffff;
+      padding: 14px;
+      overflow: auto;
+    }
+
+    .muted {
+      color: #4f7278;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .section-note {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #5f7f85;
+    }
+
+    @media (max-width: 900px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="nav-ready">
+  <table align="center" class="maintable">
+    <tr>
+      <td>&nbsp;</td>
+      <td id="logo">
+        <div id="hero-container"></div>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
 
-<h2>Admin Panel</h2>
-  <p>Logged in as: <b id="admin-email"></b></p>
-  
-<select id="page-select">
-  <option value="home">Home</option>
-  <option value="committees">Committees</option>
-</select>
+    <tr>
+      <td>&nbsp;</td>
+      <td id="content">
+        <div class="admin-shell">
 
-<br><br>
+          <div class="admin-topbar">
+            <h2>Admin Panel</h2>
+            <p>Logged in as: <b id="admin-email"></b></p>
+            <p class="muted">This panel is for managing pages, users, and conference registrations.</p>
+          </div>
 
-<input type="text" id="title-input" placeholder="Title" style="width:100%;"><br><br>
+          <div class="admin-grid">
+            <div>
+              <div class="panel">
+                <h3>Page Editor</h3>
 
-<textarea id="content-input" rows="20" style="width:100%;"></textarea>
+                <div class="field">
+                  <label for="page-select">Select Page</label>
+                  <select id="page-select">
+                    <option value="home">Home</option>
+                    <option value="committees">Committees</option>
+                  </select>
+                </div>
 
-<br><br>
+                <div class="field">
+                  <label for="title-input">Title</label>
+                  <input type="text" id="title-input" placeholder="Page title">
+                </div>
 
-<button id="load-btn">Load</button>
-<button id="save-btn">Save</button>
-<button id="backup-btn">Backup All Pages</button>
-<button id="logout-btn">Logout</button>
+                <div class="field">
+                  <label for="content-input">Content</label>
+                  <textarea id="content-input" placeholder="Paste page HTML content here"></textarea>
+                </div>
 
-<script type="module" src="js/admin.js"></script>
+                <div class="btn-row">
+                  <button id="load-btn">Load</button>
+                  <button id="save-btn">Save</button>
+                  <button id="backup-btn">Backup All Pages</button>
+                  <button id="logout-btn">Logout</button>
+                </div>
 
+                <div class="section-note">
+                  Pages are loaded from Firestore and saved back directly from this panel.
+                </div>
+              </div>
+
+              <div class="panel">
+                <h3>User Management</h3>
+                <p class="muted">This section is ready for the user table, role changes, block and unblock controls.</p>
+                <div class="btn-row">
+                  <button id="load-users-btn">Load Users</button>
+                </div>
+                <div id="users-list" class="list-box">
+                  <p class="muted">Users will appear here.</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="panel">
+                <h3>Registrations</h3>
+                <p class="muted">This section is ready for all registered users, with actions for review and management.</p>
+                <div class="btn-row">
+                  <button id="load-registrations-btn">Load Registrations</button>
+                </div>
+                <div id="registrations-list" class="list-box">
+                  <p class="muted">Registrations will appear here.</p>
+                </div>
+              </div>
+
+              <div class="panel">
+                <h3>Admin Notes</h3>
+                <p class="muted">
+                  Use this panel to manage conference pages first, then move to user handling and registration control.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+        <table width="100%">
+          <tr id="footer-row"></tr>
+        </table>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+
+  <script src="sections/footer.js"></script>
+  <script src="sections/hero.js"></script>
+  <script src="js/main.js"></script>
+  <script type="module" src="js/admin.js"></script>
 </body>
 </html>
