@@ -1,7 +1,27 @@
 import { app } from "../firebase/firebase-config.js";
 import { getFirestore, doc, getDoc, setDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
 const db = getFirestore(app);
+
+// ADMIN AUTH CHECK (added)
+const auth = getAuth(app);
+
+onAuthStateChanged(auth, async (user) => {
+
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  const userDoc = await getDoc(doc(db, "users", user.uid));
+
+  if (!userDoc.exists() || userDoc.data().role !== "admin") {
+    alert("Not admin");
+    window.location.href = "index.html";
+  }
+
+});
 
 const pageSelect = document.getElementById("page-select");
 const titleInput = document.getElementById("title-input");
