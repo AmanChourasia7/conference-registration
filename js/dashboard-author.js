@@ -12,7 +12,7 @@ onAuthStateChanged(auth, async (user) => {
 
   if (!user) return;
 
-  // LOAD EXISTING SUBMISSION
+  // CHECK EXISTING SUBMISSION
   const q = query(collection(db, "submissions"), where("uid", "==", user.uid));
   const snapshot = await getDocs(q);
 
@@ -23,7 +23,7 @@ onAuthStateChanged(auth, async (user) => {
 
 });
 
-// SUBMIT
+// SUBMIT NEW PAPER
 submitBtn.addEventListener("click", async () => {
 
   const link = document.getElementById("paper-link").value;
@@ -43,5 +43,5 @@ submitBtn.addEventListener("click", async () => {
     createdAt: new Date()
   });
 
-  alert("Submitted");
+  alert("Submitted. Status: pending");
 });
