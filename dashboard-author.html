@@ -1,6 +1,7 @@
-<h2>Author Dashboard</h2>
+<h2 id="greeting"></h2>
 
-<p>Logged in as: <b id="user-email"></b></p>
+<p>Email: <b id="user-email"></b></p>
+<p>Affiliation: <span id="user-institution"></span></p>
 
 <button id="logout-btn">Logout</button>
 
@@ -8,10 +9,22 @@
 
 <h3>Submit Paper</h3>
 
-<input type="text" id="paper-link" placeholder="Paste PDF link" style="width:300px;">
+<input id="paper-title" placeholder="Paper Title" style="width:400px;"><br><br>
+
+<textarea id="paper-abstract" placeholder="Abstract" style="width:400px;height:100px;"></textarea><br><br>
+
+<input id="paper-link" placeholder="PDF Link" style="width:400px;"><br><br>
+
 <button id="submit-paper">Submit</button>
 
 <p id="status-text"></p>
+
+<hr>
+
+<h3>Support</h3>
+
+<textarea id="support-message" placeholder="Describe your issue" style="width:400px;height:80px;"></textarea><br><br>
+<button id="send-support">Send</button>
 
 <script type="module" src="js/dashboard.js"></script>
 <script type="module" src="js/dashboard-author.js"></script>
