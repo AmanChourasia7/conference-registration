@@ -24,12 +24,28 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    const role = userDoc.data().role;
+    const data = userDoc.data();
 
+    // BLOCK CHECK
+    if (data.blocked) {
+      alert("Your account has been blocked");
+      return;
+    }
+
+    const role = data.role;
+
+    // ROLE BASED REDIRECT
     if (role === "admin") {
       window.location.href = "admin.html";
-    } else {
-      window.location.href = "dashboard.html";
+    }
+    else if (role === "author") {
+      window.location.href = "dashboard-author.html";
+    }
+    else if (role === "speaker") {
+      window.location.href = "dashboard-speaker.html";
+    }
+    else {
+      window.location.href = "dashboard-participant.html";
     }
 
   } catch (err) {
