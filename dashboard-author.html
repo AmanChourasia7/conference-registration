@@ -1,14 +1,15 @@
 <h2>Author Dashboard</h2>
+
 <p>Logged in as: <b id="user-email"></b></p>
 
 <button id="logout-btn">Logout</button>
 
-<h3>Your Actions</h3>
+<h3>Submit Paper</h3>
 
-<ul>
-  <li>Submit Paper</li>
-  <li>View Submission Status</li>
-  <li>Edit Profile</li>
-</ul>
+<input type="text" id="paper-link" placeholder="Paste PDF link">
+<button id="submit-paper">Submit</button>
 
+<p id="status-text"></p>
+
+<script type="module" src="js/dashboard-author.js"></script>
 <script type="module" src="js/dashboard.js"></script>
