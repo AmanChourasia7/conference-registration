@@ -7,17 +7,29 @@
 
 <hr>
 
-<h3>Submit Paper</h3>
+<div id="submission-form">
 
-<input id="paper-title" placeholder="Paper Title" style="width:400px;"><br><br>
+  <h3>Submit Paper</h3>
 
-<textarea id="paper-abstract" placeholder="Abstract" style="width:400px;height:100px;"></textarea><br><br>
+  <input id="paper-title" placeholder="Paper Title" style="width:400px;"><br><br>
 
-<input id="paper-link" placeholder="PDF Link" style="width:400px;"><br><br>
+  <textarea id="paper-abstract" placeholder="Abstract" style="width:400px;height:100px;"></textarea><br><br>
 
-<button id="submit-paper">Submit</button>
+  <input id="paper-link" placeholder="PDF Link" style="width:400px;"><br><br>
 
-<p id="status-text"></p>
+  <button id="submit-paper">Submit</button>
+
+</div>
+
+<div id="submission-view" style="display:none;">
+
+  <h3>Your Submission</h3>
+
+  <p><b>ID:</b> <span id="sub-id"></span></p>
+  <p><b>Title:</b> <span id="sub-title"></span></p>
+  <p><b>Status:</b> <span id="status-text"></span></p>
+
+</div>
 
 <script type="module" src="js/dashboard.js"></script>
 <script type="module" src="js/dashboard-author.js"></script>
