@@ -26,6 +26,7 @@ form.addEventListener("submit", async (e) => {
     await setDoc(doc(db, "users", user.uid), {
       name: name,
       email: email,
+      institution: institution,
       role: roleInput || "participant",
       blocked: false
     });
