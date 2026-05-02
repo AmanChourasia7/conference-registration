@@ -18,11 +18,9 @@ form.addEventListener("submit", async (e) => {
   const password = document.getElementById("password").value;
 
   try {
-    // 1. CREATE AUTH USER
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    // 2. SAVE USER (for roles)
     await setDoc(doc(db, "users", user.uid), {
       name: name,
       email: email,
@@ -31,7 +29,6 @@ form.addEventListener("submit", async (e) => {
       blocked: false
     });
 
-    // 3. SAVE REGISTRATION (admin will view this)
     await addDoc(collection(db, "registrations"), {
       uid: user.uid,
       name: name,
@@ -43,8 +40,6 @@ form.addEventListener("submit", async (e) => {
     });
 
     alert("Registration successful");
-
-    // redirect to login
     window.location.href = "login.html";
 
   } catch (err) {
