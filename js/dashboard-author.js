@@ -5,13 +5,14 @@ import { getFirestore, collection, addDoc, query, where, getDocs, doc, getDoc } 
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const statusText = document.getElementById("status-text");
+const formDiv = document.getElementById("submission-form");
+const viewDiv = document.getElementById("submission-view");
 
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) return;
 
-  // LOAD USER DETAILS
+  // USER DETAILS
   const userSnap = await getDoc(doc(db, "users", user.uid));
 
   if (userSnap.exists()) {
@@ -22,13 +23,15 @@ onAuthStateChanged(auth, async (user) => {
     document.getElementById("greeting").innerText = "Hi, " + (data.name || "User");
   }
 
-  // LOAD SUBMISSION STATUS
+  // CHECK EXISTING SUBMISSION
   const q = query(collection(db, "submissions"), where("uid", "==", user.uid));
   const snapshot = await getDocs(q);
 
   if (!snapshot.empty) {
-    const data = snapshot.docs[0].data();
-    statusText.innerText = "Status: " + data.status;
+    const docItem = snapshot.docs[0];
+    const data = docItem.data();
+
+    showSubmission(docItem.id, data);
   }
 
 });
@@ -48,7 +51,7 @@ document.getElementById("submit-paper").addEventListener("click", async () => {
 
   const user = auth.currentUser;
 
-  await addDoc(collection(db, "submissions"), {
+  const docRef = await addDoc(collection(db, "submissions"), {
     uid: user.uid,
     email: user.email,
     title: title,
@@ -59,4 +62,22 @@ document.getElementById("submit-paper").addEventListener("click", async () => {
   });
 
   alert("Submitted");
+
+  showSubmission(docRef.id, {
+    title: title,
+    status: "pending"
+  });
+
 });
+
+
+// SHOW SUBMISSION + HIDE FORM
+function showSubmission(id, data) {
+
+  formDiv.style.display = "none";
+  viewDiv.style.display = "block";
+
+  document.getElementById("sub-id").innerText = id;
+  document.getElementById("sub-title").innerText = data.title || "";
+  document.getElementById("status-text").innerText = data.status || "pending";
+}
