@@ -47,6 +47,9 @@ form.addEventListener("submit", async (e) => {
     else {
       window.location.href = "dashboard-participant.html";
     }
+    else if (role === "organizer") {
+      window.location.href = "dashboard-organizer.html";
+    }
 
   } catch (err) {
     console.error(err);
