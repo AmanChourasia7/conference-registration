@@ -60,26 +60,3 @@ document.getElementById("submit-paper").addEventListener("click", async () => {
 
   alert("Submitted");
 });
-
-
-// SUPPORT MESSAGE
-document.getElementById("send-support").addEventListener("click", async () => {
-
-  const msg = document.getElementById("support-message").value;
-
-  if (!msg) {
-    alert("Enter message");
-    return;
-  }
-
-  const user = auth.currentUser;
-
-  await addDoc(collection(db, "support_requests"), {
-    uid: user.uid,
-    email: user.email,
-    message: msg,
-    createdAt: new Date()
-  });
-
-  alert("Support request sent");
-});
