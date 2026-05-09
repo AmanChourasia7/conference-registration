@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaker Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
+    <link rel="stylesheet" type="text/css" href="css/mobile.css">
+</head>
+<body class="nav-ready">
+    <div id="hero-container"></div>
+    
+    <table align="center" class="maintable">
+        <tr>
+            <td>&nbsp;</td>
+            <td id="content">
+                <div class="speaker-dashboard">
+                    <!-- Speaker Header Section -->
+                    <div class="speaker-header">
+                        <div class="speaker-profile">
+                            <img id="speaker-photo" src="" alt="Speaker Photo" class="speaker-image">
+                            <div class="speaker-info">
+                                <h1 id="speaker-name"></h1>
+                                <p id="speaker-designation"></p>
+                                <p id="speaker-affiliation"></p>
+                            </div>
+                        </div>
+                        <button id="logout-btn" class="logout-button">Logout</button>
+                    </div>
+
+                    <!-- Main Content Grid -->
+                    <div class="dashboard-grid">
+                        <!-- Left Column -->
+                        <div class="dashboard-column-left">
+                            <!-- About the Speaker -->
+                            <div class="card">
+                                <h3>About the Speaker</h3>
+                                <p id="speaker-bio"></p>
+                                <a href="#" id="view-full-bio" class="link">View Full Bio</a>
+                            </div>
+
+                            <!-- Session Details -->
+                            <div class="card">
+                                <h3>Session Details</h3>
+                                <div id="session-details">
+                                    <p id="session-title"></p>
+                                    <p><strong>Date:</strong> <span id="session-date"></span></p>
+                                    <p><strong>Time:</strong> <span id="session-time"></span></p>
+                                    <p><strong>Venue:</strong> <span id="session-venue"></span></p>
+                                </div>
+                                <a href="#" id="view-session" class="link">View Session</a>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="dashboard-column-right">
+                            <!-- Uploaded Presentation/Paper -->
+                            <div class="card">
+                                <h3>Uploaded Presentation / Paper</h3>
+                                <div id="uploaded-files">
+                                    <!-- Files will be populated here -->
+                                </div>
+                                <button id="upload-presentation" class="btn-secondary">Upload Presentation</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Row -->
+                    <div class="dashboard-bottom">
+                        <!-- Upcoming Sessions -->
+                        <div class="card card-half">
+                            <h3>Upcoming Sessions</h3>
+                            <table class="sessions-table" border="1" cellpadding="8">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Session Title</th>
+                                        <th>Venue</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="upcoming-sessions">
+                                    <!-- Sessions will be populated here -->
+                                </tbody>
+                            </table>
+                            <a href="#" id="view-schedule" class="link">View Schedule</a>
+                        </div>
+
+                        <!-- Notifications -->
+                        <div class="card card-half">
+                            <h3>Notifications</h3>
+                            <div id="notifications-list">
+                                <!-- Notifications will be populated here -->
+                            </div>
+                            <a href="#" id="view-all-notifications" class="link">View All Notifications</a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+    <div id="footer-container"></div>
+
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/navigation.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
 
