@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conference Registration System</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #dbdbdb;
+      color: #222;
+    }
 
+    .page-shell {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 20px 40px;
+    }
+
+    .page-card {
+      background: #f5f5f5;
+      border-radius: 14px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border: 1px solid #d2d2d2;
+    }
+
+    .page-banner {
+      background: #e0e0e0;
+      padding: 24px 28px 22px;
+      border-bottom: 1px solid #c2c2c2;
+      text-align: center;
+    }
+
+    .page-banner h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .page-banner p {
+      margin: 10px auto 0;
+      max-width: 680px;
+      color: #4a4a4a;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .form-panel {
+      padding: 28px;
+    }
+
+    .section-card {
+      background: #ededed;
+      border: 1px solid #d3d3d3;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #222;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .row-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .input-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 42px;
+      padding: 12px 14px;
+      border: 1px solid #bfbfbf;
+      border-radius: 8px;
+      background: #fff;
+      color: #1d1d1d;
+      font-size: 14px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #2e75c7;
+      box-shadow: 0 0 0 3px rgba(46, 117, 199, 0.12);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .button {
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      min-width: 130px;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button.accept {
+      background: #2e75c7;
+      color: #fff;
+    }
+
+    .button.decline {
+      background: #f5f5f5;
+      color: #202020;
+      border: 1px solid #c3c3c3;
+    }
+
+    .footer-note {
+      margin: 24px 0 0;
+      font-size: 12px;
+      color: #5f5f5f;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .page-shell {
+        padding: 18px 14px 28px;
+      }
+
+      .row-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .page-banner h1 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="page-card">
+      <div class="page-banner">
+        <h1>Conference Registration System</h1>
+        <p>Meet our speakers, organizers, and attendees from around the world.</p>
+      </div>
+      <div class="form-panel">
+        <div class="section-card">
+          <p class="section-title">Personal Information</p>
+          <div class="form-grid row-2">
+            <div class="input-group">
+              <label for="first-name">Full Name</label>
+              <input id="first-name" name="first-name" type="text" placeholder="Enter your full name" />
+            </div>
+            <div class="input-group">
+              <label for="last-name">Last Name</label>
+              <input id="last-name" name="last-name" type="text" placeholder="Enter your last name" />
+            </div>
+          </div>
+          <div class="form-grid row-2">
+            <div class="input-group">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" placeholder="Enter your email address" />
+            </div>
+            <div class="input-group">
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" placeholder="Enter your phone number" />
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <p class="section-title">Registration Type</p>
+          <div class="input-group">
+            <label for="registration-type">Registration Type</label>
+            <select id="registration-type" name="registration-type">
+              <option value="">Select registration type</option>
+              <option>Organizer</option>
+              <option>Speaker</option>
+              <option>Student</option>
+              <option>Working Professional</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <p class="section-title">Special Requirements</p>
+          <div class="form-grid">
+            <div class="input-group">
+              <label for="dietary">Dietary Requirements</label>
+              <input id="dietary" name="dietary" type="text" placeholder="e.g. Veg / NonVeg" />
+            </div>
+            <div class="input-group">
+              <label for="accessibility">Accessibility Needed</label>
+              <input id="accessibility" name="accessibility" type="text" placeholder="Enter any accessibility needs" />
+            </div>
+            <div class="input-group">
+              <label for="additional">Additional Requirements</label>
+              <textarea id="additional" name="additional" placeholder="Enter other requirements"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button type="button" class="button accept">Accept</button>
+          <button type="button" class="button decline">Decline</button>
+        </div>
+
+        <p class="footer-note">© 2026 Conference. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
