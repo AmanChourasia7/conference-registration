@@ -33,21 +33,26 @@ let currentUser = null;
 
 let currentUserData = null;
 
+let currentSubmissionData = null;
+
 
 // ================= AUTH =================
 
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
+
     window.location.href = "login.html";
+
     return;
+
   }
 
   currentUser = user;
 
   try {
 
-    // USER DATA
+    // USER
     const userRef =
       doc(db, "users", user.uid);
 
@@ -76,7 +81,7 @@ onAuthStateChanged(auth, async (user) => {
 
     }
 
-    // LOAD SUBMISSION
+    // SUBMISSION
     const q = query(
       collection(db, "submissions"),
       where("uid", "==", user.uid)
@@ -93,6 +98,9 @@ onAuthStateChanged(auth, async (user) => {
       currentDocId =
         docItem.id;
 
+      currentSubmissionData =
+        docItem.data();
+
       showSubmission(
         docItem.id,
         docItem.data()
@@ -100,7 +108,7 @@ onAuthStateChanged(auth, async (user) => {
 
     }
 
-    // LOAD GATEPASS
+    // GATEPASS
     const passRef =
       doc(db, "gatepasses", user.uid);
 
@@ -157,34 +165,11 @@ if (submitBtn) {
     const now =
       new Date();
 
-    const docRef =
-      await addDoc(
-        collection(db, "submissions"),
-        {
+    const submissionData = {
 
-          uid: user.uid,
+      uid: user.uid,
 
-          email: user.email,
-
-          title: title,
-
-          abstract: abstract,
-
-          paperLink: link,
-
-          status: "pending",
-
-          createdAt: now,
-
-          updatedAt: now
-
-        }
-      );
-
-    currentDocId =
-      docRef.id;
-
-    showSubmission(docRef.id, {
+      email: user.email,
 
       title: title,
 
@@ -198,9 +183,28 @@ if (submitBtn) {
 
       updatedAt: now
 
-    });
+    };
+
+    const docRef =
+      await addDoc(
+        collection(db, "submissions"),
+        submissionData
+      );
+
+    currentDocId =
+      docRef.id;
+
+    currentSubmissionData =
+      submissionData;
+
+    showSubmission(
+      docRef.id,
+      submissionData
+    );
 
     alert("Paper submitted");
+
+    location.reload();
 
   });
 
@@ -267,6 +271,18 @@ function showSubmission(id, data) {
   document.getElementById("sub-title").innerText =
     data.title || "";
 
+  // PASS TITLE
+  const passTitle =
+    document.getElementById("pass-paper-title");
+
+  if (passTitle) {
+
+    passTitle.innerText =
+      data.title || "";
+
+  }
+
+  // STATUS
   const statusEl =
     document.getElementById("status-text");
 
@@ -282,6 +298,17 @@ function showSubmission(id, data) {
   statusEl.classList.add(
     data.status || "pending"
   );
+
+  // PASS STATUS
+  const passStatus =
+    document.getElementById("pass-paper-status");
+
+  if (passStatus) {
+
+    passStatus.innerText =
+      (data.status || "pending").toUpperCase();
+
+  }
 
   document.getElementById("created-at").innerText =
     data.createdAt?.toDate?.().toLocaleString?.() || "--";
@@ -348,12 +375,17 @@ if (generateBtn) {
           role:
             "author",
 
+          paperTitle:
+            currentSubmissionData?.title || "",
+
+          paperStatus:
+            currentSubmissionData?.status || "pending",
+
           entryId:
             entryId
 
         });
 
-      // SAVE PASS
       await setDoc(
         doc(db, "gatepasses", currentUser.uid),
         {
@@ -396,7 +428,7 @@ function loadPass(data) {
   document.getElementById("gatepass-section").style.display =
     "block";
 
-  // HIDE GENERATE BUTTON
+  // HIDE BUTTON
   const btn =
     document.getElementById("generate-pass");
 
@@ -446,7 +478,6 @@ if (downloadBtn) {
       const pass =
         document.getElementById("pass-card");
 
-      // WAIT FOR QR
       const qrImg =
         document.querySelector("#qrcode img");
 
