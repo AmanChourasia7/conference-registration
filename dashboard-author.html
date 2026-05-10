@@ -23,7 +23,7 @@ body{
 
 .nav-actions{
     display:flex;
-    gap:15px;
+    gap:16px;
 }
 
 .nav-actions button{
@@ -58,6 +58,12 @@ body{
 
 .form-group{
     margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
 }
 
 input,
@@ -150,6 +156,11 @@ td{
         <h2>Author Information</h2>
 
         <div class="form-group">
+            <label>Author Name</label>
+            <input type="text" id="user-name" readonly>
+        </div>
+
+        <div class="form-group">
             <label>Email</label>
             <input type="text" id="user-email" readonly>
         </div>
@@ -224,7 +235,9 @@ td{
 
         <br>
 
-        <div id="edit-section" style="display:none;">
+        <!-- EDIT SECTION -->
+
+        <div id="edit-section">
 
             <h3>Edit Submission</h3>
 
