@@ -26,7 +26,7 @@ const viewDiv = document.getElementById("submission-view");
 let currentDocId = null;
 
 
-// ================= AUTH =================
+// AUTH
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -44,6 +44,9 @@ onAuthStateChanged(auth, async (user) => {
 
       document.getElementById("greeting").innerText =
         "Hi, " + (userData.name || "User");
+
+      document.getElementById("user-name").value =
+        userData.name || "";
 
       document.getElementById("user-email").value =
         userData.email || "";
@@ -79,7 +82,7 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
-// ================= SUBMIT =================
+// SUBMIT
 
 const submitBtn = document.getElementById("submit-paper");
 
@@ -143,7 +146,7 @@ if (submitBtn) {
 }
 
 
-// ================= UPDATE =================
+// UPDATE
 
 const updateBtn = document.getElementById("update-paper");
 
@@ -181,7 +184,7 @@ if (updateBtn) {
 }
 
 
-// ================= SHOW =================
+// SHOW
 
 function showSubmission(id, data) {
 
@@ -217,7 +220,8 @@ function showSubmission(id, data) {
   document.getElementById("updated-at").innerText =
     data.updatedAt?.toDate?.().toLocaleString?.() || "--";
 
-  // ALLOW EDIT ONLY IF PENDING
+  // EDIT ENABLED ONLY FOR PENDING
+
   if (data.status === "pending") {
 
     document.getElementById("edit-section").style.display =
@@ -231,6 +235,12 @@ function showSubmission(id, data) {
 
     document.getElementById("edit-link").value =
       data.paperLink || "";
+
+  }
+  else {
+
+    document.getElementById("edit-section").style.display =
+      "none";
 
   }
 
