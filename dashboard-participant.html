@@ -31,7 +31,6 @@ body{
     border:none;
     border-radius:6px;
     cursor:pointer;
-    font-size:1rem;
 }
 
 .logout-btn{
@@ -73,17 +72,25 @@ select{
     padding:12px;
     border:1px solid #ccc;
     border-radius:6px;
-    font-size:1rem;
 }
 
 .generate-btn{
     background:#0d6efd;
     color:white;
     border:none;
-    padding:14px 22px;
+    padding:14px 20px;
     border-radius:8px;
     cursor:pointer;
-    font-size:16px;
+}
+
+.delete-btn{
+    background:#dc3545;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-left:10px;
 }
 
 .download-btn{
@@ -95,8 +102,6 @@ select{
     cursor:pointer;
     margin-top:20px;
 }
-
-/* PASS */
 
 .pass-card{
     width:700px;
@@ -116,10 +121,6 @@ select{
 .pass-body{
     padding:30px;
     text-align:center;
-}
-
-.pass-body h1{
-    margin-bottom:10px;
 }
 
 .pass-info{
@@ -194,8 +195,11 @@ select{
     }
 
     .generate-btn,
-    .download-btn{
+    .download-btn,
+    .delete-btn{
         width:100%;
+        margin-top:10px;
+        margin-left:0;
     }
 
 }
@@ -224,7 +228,7 @@ select{
 
 <div class="dashboard">
 
-    <!-- PROFILE -->
+    <!-- USER INFO -->
 
     <div class="card">
 
@@ -246,6 +250,7 @@ select{
         </div>
 
         <div class="form-group">
+
             <label>Select Conference Day</label>
 
             <select id="pass-day">
@@ -281,7 +286,7 @@ select{
     </div>
 
 
-    <!-- GATE PASS -->
+    <!-- PASS -->
 
     <div class="card" id="gatepass-section" style="display:none;">
 
@@ -297,14 +302,16 @@ select{
 
             <div class="pass-body">
 
-                <h1>Conference Entry Pass</h1>
+                <h2>
+                    Conference Entry Pass
+                </h2>
 
-                <p>
+                <p style="margin-top:10px;">
                     Tutorial: 8 - 9 January 2027, LH001,
                     Indian Institute of Technology Patna
                 </p>
 
-                <p style="margin-top:8px;">
+                <p style="margin-top:10px;">
                     Scientific Programme: 10 - 14 January 2027, LH004,
                     Indian Institute of Technology Patna
                 </p>
@@ -340,29 +347,27 @@ select{
                 <div style="
                     text-align:left;
                     font-size:12px;
-                    line-height:1.7;
+                    line-height:1.8;
                     color:#555;
                 ">
 
                     <h3 style="margin-bottom:12px; color:#111;">
-                        Terms & Conditions
+                        Terms and Conditions
                     </h3>
 
-                    <p>
-                        This entry pass is valid only for registered participants.
-                    </p>
+                    <p>1. This pass is valid only for the selected conference day.</p>
 
-                    <p>
-                        QR code verification may be required at entry.
-                    </p>
+                    <p>2. Entry is permitted only between 06:00 AM and 09:00 PM.</p>
 
-                    <p>
-                        Unauthorized duplication or misuse may result in cancellation.
-                    </p>
+                    <p>3. The QR code must remain visible and scannable at all times.</p>
 
-                    <p>
-                        Organizers may request valid identification documents.
-                    </p>
+                    <p>4. Unauthorized duplication or sharing of this pass is prohibited.</p>
+
+                    <p>5. Conference organizers may request valid government identification.</p>
+
+                    <p>6. Any misuse may result in cancellation of conference access.</p>
+
+                    <p>7. This pass remains property of the conference organizers.</p>
 
                 </div>
 
@@ -372,6 +377,10 @@ select{
 
         <button class="download-btn" id="download-pass">
             Download PDF
+        </button>
+
+        <button class="delete-btn" id="delete-pass">
+            Delete Pass
         </button>
 
     </div>
