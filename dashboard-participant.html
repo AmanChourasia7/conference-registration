@@ -45,7 +45,7 @@ body{
 }
 
 .dashboard{
-    max-width:1200px;
+    max-width:1100px;
     margin:auto;
     padding:30px;
 }
@@ -75,38 +75,60 @@ input{
     font-size:1rem;
 }
 
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-    background:#0d1b2a;
-    color:white;
-    padding:12px;
-    text-align:left;
-}
-
-td{
-    padding:12px;
-    border-bottom:1px solid #ddd;
-}
-
-.download-btn{
+.generate-btn{
     background:#0d6efd;
     color:white;
     border:none;
-    padding:10px 16px;
-    border-radius:6px;
+    padding:14px 22px;
+    border-radius:8px;
     cursor:pointer;
+    font-size:16px;
 }
 
-.notice{
-    padding:14px;
+.download-btn{
+    background:#198754;
+    color:white;
+    border:none;
+    padding:12px 18px;
     border-radius:8px;
-    background:#f8f9fa;
-    border:1px solid #ddd;
-    margin-bottom:12px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+/* PASS */
+
+.pass-card{
+    width:700px;
+    margin:auto;
+    background:white;
+    border:2px solid #0d1b2a;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.pass-header{
+    background:#0d1b2a;
+    color:white;
+    padding:20px;
+}
+
+.pass-body{
+    padding:30px;
+    text-align:center;
+}
+
+.pass-body h1{
+    margin-bottom:10px;
+}
+
+.pass-info{
+    margin-top:25px;
+    text-align:left;
+    line-height:2;
+}
+
+#qrcode{
+    margin-top:25px;
 }
 
 @media screen and (max-width:900px){
@@ -131,10 +153,8 @@ td{
         width:100%;
     }
 
-    table{
-        display:block;
-        overflow-x:auto;
-        white-space:nowrap;
+    .pass-card{
+        width:100%;
     }
 
 }
@@ -149,6 +169,7 @@ td{
         padding:16px;
     }
 
+    .generate-btn,
     .download-btn{
         width:100%;
     }
@@ -200,103 +221,74 @@ td{
             <input type="text" id="user-institution" readonly>
         </div>
 
-    </div>
-
-
-    <!-- SCHEDULE -->
-
-    <div class="card">
-
-        <h2>Conference Schedule</h2>
-
-        <table>
-
-            <tr>
-                <th>Session</th>
-                <th>Date</th>
-                <th>Time</th>
-            </tr>
-
-            <tr>
-                <td>Opening Ceremony</td>
-                <td>12 June 2027</td>
-                <td>09:00 AM</td>
-            </tr>
-
-            <tr>
-                <td>Machine Learning Session</td>
-                <td>12 June 2027</td>
-                <td>11:00 AM</td>
-            </tr>
-
-            <tr>
-                <td>Optimization Workshop</td>
-                <td>13 June 2027</td>
-                <td>10:00 AM</td>
-            </tr>
-
-        </table>
+        <button class="generate-btn" id="generate-pass">
+            Generate Gate Pass
+        </button>
 
     </div>
 
 
-    <!-- MATERIALS -->
+    <!-- GATE PASS -->
 
-    <div class="card">
+    <div class="card" id="gatepass-section" style="display:none;">
 
-        <h2>Conference Materials</h2>
+        <div class="pass-card" id="pass-card">
 
-        <table>
+            <div class="pass-header">
 
-            <tr>
-                <th>Material</th>
-                <th>Download</th>
-            </tr>
+                <h2>OML 2027 Conference Entry Pass</h2>
 
-            <tr>
-                <td>Conference Brochure</td>
-                <td>
-                    <button class="download-btn">
-                        Download
-                    </button>
-                </td>
-            </tr>
+            </div>
 
-            <tr>
-                <td>Schedule PDF</td>
-                <td>
-                    <button class="download-btn">
-                        Download
-                    </button>
-                </td>
-            </tr>
+            <div class="pass-body">
 
-        </table>
+                <h1>Conference Access Pass</h1>
 
-    </div>
+                <p>
+                    Optimization and Machine Learning Conference 2027
+                </p>
 
+                <div class="pass-info">
 
-    <!-- ANNOUNCEMENTS -->
+                    <p>
+                        <b>Entry ID:</b>
+                        <span id="entry-id"></span>
+                    </p>
 
-    <div class="card">
+                    <p>
+                        <b>Date:</b>
+                        12 June 2027
+                    </p>
 
-        <h2>Announcements</h2>
+                    <p>
+                        <b>Venue:</b>
+                        IIT Patna, India
+                    </p>
 
-        <div class="notice">
-            Registration verification is completed.
+                </div>
+
+                <div id="qrcode"></div>
+
+            </div>
+
         </div>
 
-        <div class="notice">
-            Conference venue details updated.
-        </div>
-
-        <div class="notice">
-            Participation certificates will be available after the event.
-        </div>
+        <button class="download-btn" id="download-pass">
+            Download PDF
+        </button>
 
     </div>
 
 </div>
+
+
+<!-- QR -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+<!-- PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script type="module" src="js/dashboard.js"></script>
 <script type="module" src="js/dashboard-participant.js"></script>
