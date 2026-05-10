@@ -78,40 +78,77 @@ if (logoutBtn) {
 }
 
 
+
 // GENERATE PASS
 
-document.getElementById("generate-pass").addEventListener("click", async () => {
+const generateBtn =
+  document.getElementById("generate-pass");
 
-  document.getElementById("gatepass-section").style.display =
-    "block";
+if (generateBtn) {
 
-  // unique entry id
-  const entryId =
-    "OML-" + Math.random().toString(36).substring(2,10).toUpperCase();
+  generateBtn.addEventListener("click", async () => {
 
-  document.getElementById("entry-id").innerText =
-    entryId;
+    try {
 
-  // QR DATA
-  const qrData = JSON.stringify({
-    name: currentUserData.name || "",
-    email: currentUserData.email || "",
-    institution: currentUserData.institution || "",
-    entryId: entryId
-  });
+      document.getElementById("gatepass-section").style.display =
+        "block";
 
-  // clear old qr
-  document.getElementById("qrcode").innerHTML = "";
+      // UNIQUE ENTRY ID
+      const entryId =
+        "OML-" +
+        Math.random()
+        .toString(36)
+        .substring(2,10)
+        .toUpperCase();
 
-  QRCode.toCanvas(qrData, { width: 180 }, function(err, canvas){
+      document.getElementById("entry-id").innerText =
+        entryId;
 
-    if (!err) {
-      document.getElementById("qrcode").appendChild(canvas);
+      // QR CONTENT
+      const qrData = JSON.stringify({
+
+        name: currentUserData?.name || "",
+
+        email: currentUserData?.email || "",
+
+        institution: currentUserData?.institution || "",
+
+        entryId: entryId
+
+      });
+
+      // CLEAR OLD QR
+      const qrContainer =
+        document.getElementById("qrcode");
+
+      qrContainer.innerHTML = "";
+
+      // CREATE QR IMAGE
+      const qrImage =
+        document.createElement("img");
+
+      qrImage.style.width = "180px";
+
+      qrImage.style.height = "180px";
+
+      qrImage.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+        encodeURIComponent(qrData);
+
+      qrContainer.appendChild(qrImage);
+
+    }
+    catch(err) {
+
+      console.error(err);
+
+      alert("Failed to generate pass");
+
     }
 
   });
 
-});
+}
 
 
 // DOWNLOAD PDF
