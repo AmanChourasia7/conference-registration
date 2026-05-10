@@ -29,13 +29,16 @@ onAuthStateChanged(auth, async (user) => {
 
   try {
 
-    const userRef = doc(db, "users", user.uid);
+    const userRef =
+      doc(db, "users", user.uid);
 
-    const userSnap = await getDoc(userRef);
+    const userSnap =
+      await getDoc(userRef);
 
     if (userSnap.exists()) {
 
-      const data = userSnap.data();
+      const data =
+        userSnap.data();
 
       currentUserData = data;
 
@@ -53,7 +56,7 @@ onAuthStateChanged(auth, async (user) => {
 
     }
 
-    loadPassHistory();
+    loadHistory();
 
   }
   catch(err) {
@@ -65,159 +68,142 @@ onAuthStateChanged(auth, async (user) => {
 
 // LOGOUT
 
-const logoutBtn = document.getElementById("logout-btn");
+document.getElementById("logout-btn")
+.addEventListener("click", async () => {
 
-if (logoutBtn) {
+  await signOut(auth);
 
-  logoutBtn.addEventListener("click", async () => {
+  window.location.href = "login.html";
 
-    await signOut(auth);
-
-    window.location.href = "login.html";
-
-  });
-
-}
+});
 
 
 // GENERATE PASS
 
-const generateBtn =
-  document.getElementById("generate-pass");
+document.getElementById("generate-pass")
+.addEventListener("click", () => {
 
-if (generateBtn) {
+  const selectedDay =
+    document.getElementById("pass-day").value;
 
-  generateBtn.addEventListener("click", async () => {
+  let history =
+    JSON.parse(localStorage.getItem("passHistory")) || [];
 
-    try {
+  // ALREADY EXISTS
+  const existingPass =
+    history.find(item => item.day === selectedDay);
 
-      document.getElementById("gatepass-section").style.display =
-        "block";
+  if (existingPass) {
 
-      const selectedDay =
-        document.getElementById("pass-day").value;
+    renderPass(existingPass);
 
-      // ONE PASS PER DAY
-      const safeEmail =
-        currentUserData.email
-        .replace(/[^a-zA-Z0-9]/g, "")
-        .substring(0,6)
-        .toUpperCase();
+    alert("Pass already exists for this day.");
 
-      const safeDay =
-        selectedDay
-        .replace(/\s/g, "")
-        .substring(0,5)
-        .toUpperCase();
+    return;
+  }
 
-      const entryId =
-        "OML-" + safeEmail + "-" + safeDay;
+  // NEW PASS
+  const safeEmail =
+    currentUserData.email
+    .replace(/[^a-zA-Z0-9]/g, "")
+    .substring(0,6)
+    .toUpperCase();
 
-      // GENERATED TIME
-      const now =
-        new Date();
+  const safeDay =
+    selectedDay
+    .replace(/\s/g, "")
+    .substring(0,5)
+    .toUpperCase();
 
-      const generatedTime =
-        now.toLocaleString();
+  const entryId =
+    "OML-" + safeEmail + "-" + safeDay;
 
-      // PASS DATA
-      document.getElementById("entry-id").innerText =
-        entryId;
+  const generatedAt =
+    new Date().toLocaleString();
 
-      document.getElementById("pass-date").innerText =
-        selectedDay;
+  const passData = {
 
-      document.getElementById("generated-at").innerText =
-        generatedTime;
+    day: selectedDay,
 
-      document.getElementById("pass-validity").innerText =
-        selectedDay + " | 06:00 AM to 09:00 PM";
+    id: entryId,
 
-      // QR CONTENT
-      const qrData = JSON.stringify({
+    generatedAt: generatedAt
 
-        name: currentUserData?.name || "",
+  };
 
-        email: currentUserData?.email || "",
+  history.push(passData);
 
-        institution: currentUserData?.institution || "",
+  localStorage.setItem(
+    "passHistory",
+    JSON.stringify(history)
+  );
 
-        entryId: entryId,
+  renderPass(passData);
 
-        validDate: selectedDay,
+  loadHistory();
 
-        generatedAt: generatedTime
+});
 
-      });
 
-      // CLEAR OLD QR
-      const qrContainer =
-        document.getElementById("qrcode");
+// RENDER PASS
 
-      qrContainer.innerHTML = "";
+function renderPass(data) {
 
-      // QR IMAGE
-      const qrImage =
-        document.createElement("img");
+  document.getElementById("gatepass-section").style.display =
+    "block";
 
-      qrImage.style.width = "180px";
+  document.getElementById("entry-id").innerText =
+    data.id;
 
-      qrImage.style.height = "180px";
+  document.getElementById("pass-date").innerText =
+    data.day;
 
-      qrImage.src =
-        "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
-        encodeURIComponent(qrData);
+  document.getElementById("generated-at").innerText =
+    data.generatedAt;
 
-      qrContainer.appendChild(qrImage);
+  document.getElementById("pass-validity").innerText =
+    data.day + " | 06:00 AM to 09:00 PM";
 
-      // SAVE HISTORY
-      saveHistory(selectedDay, entryId, generatedTime);
+  const qrData = JSON.stringify({
 
-    }
-    catch(err) {
+    name: currentUserData?.name || "",
 
-      console.error(err);
+    email: currentUserData?.email || "",
 
-      alert("Failed to generate pass");
+    institution: currentUserData?.institution || "",
 
-    }
+    entryId: data.id,
+
+    validDate: data.day,
+
+    generatedAt: data.generatedAt
 
   });
 
-}
+  const qrContainer =
+    document.getElementById("qrcode");
 
+  qrContainer.innerHTML = "";
 
-// HISTORY
+  const qrImage =
+    document.createElement("img");
 
-function saveHistory(day, id, time) {
+  qrImage.style.width = "180px";
 
-  const history =
-    JSON.parse(localStorage.getItem("passHistory")) || [];
+  qrImage.style.height = "180px";
 
-  const exists =
-    history.find(item => item.day === day);
+  qrImage.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+    encodeURIComponent(qrData);
 
-  if (!exists) {
-
-    history.push({
-      day: day,
-      id: id,
-      time: time
-    });
-
-    localStorage.setItem(
-      "passHistory",
-      JSON.stringify(history)
-    );
-
-  }
-
-  loadPassHistory();
+  qrContainer.appendChild(qrImage);
 
 }
 
 
-function loadPassHistory() {
+// HISTORY TABLE
+
+function loadHistory() {
 
   const body =
     document.getElementById("history-body");
@@ -235,7 +221,7 @@ function loadPassHistory() {
     row.innerHTML = `
       <td>${item.day}</td>
       <td>${item.id}</td>
-      <td>${item.time}</td>
+      <td>${item.generatedAt}</td>
     `;
 
     body.appendChild(row);
@@ -245,9 +231,39 @@ function loadPassHistory() {
 }
 
 
+// DELETE PASS
+
+document.getElementById("delete-pass")
+.addEventListener("click", () => {
+
+  const selectedDay =
+    document.getElementById("pass-day").value;
+
+  let history =
+    JSON.parse(localStorage.getItem("passHistory")) || [];
+
+  history =
+    history.filter(item => item.day !== selectedDay);
+
+  localStorage.setItem(
+    "passHistory",
+    JSON.stringify(history)
+  );
+
+  document.getElementById("gatepass-section").style.display =
+    "none";
+
+  loadHistory();
+
+  alert("Pass deleted. You may regenerate.");
+
+});
+
+
 // DOWNLOAD PDF
 
-document.getElementById("download-pass").addEventListener("click", async () => {
+document.getElementById("download-pass")
+.addEventListener("click", async () => {
 
   const pass =
     document.getElementById("pass-card");
@@ -258,7 +274,8 @@ document.getElementById("download-pass").addEventListener("click", async () => {
   const imgData =
     canvas.toDataURL("image/png");
 
-  const { jsPDF } = window.jspdf;
+  const { jsPDF } =
+    window.jspdf;
 
   const pdf =
     new jsPDF("p", "mm", "a4");
