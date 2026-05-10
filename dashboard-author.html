@@ -11,8 +11,6 @@ body{
     color:#222;
 }
 
-/* NAVBAR */
-
 .navbar{
     width:100%;
     background:#0d1b2a;
@@ -21,15 +19,6 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-}
-
-.logo-section h2{
-    font-size:24px;
-}
-
-.logo-section p{
-    font-size:13px;
-    opacity:0.8;
 }
 
 .nav-actions{
@@ -42,7 +31,6 @@ body{
     border:none;
     border-radius:6px;
     cursor:pointer;
-    font-size:14px;
 }
 
 .logout-btn{
@@ -55,114 +43,58 @@ body{
     color:#0d1b2a;
 }
 
-/* DASHBOARD */
-
 .dashboard{
-    max-width:1400px;
+    max-width:1200px;
     margin:auto;
     padding:30px;
 }
 
-/* TOP */
-
-.top-cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    margin-bottom:30px;
-}
-
-.stat-card{
-    background:white;
-    border-radius:14px;
-    padding:25px;
-}
-
-.stat-card h3{
-    color:#666;
-    margin-bottom:10px;
-    font-size:15px;
-}
-
-.stat-card h1{
-    color:#0d1b2a;
-    font-size:34px;
-}
-
-/* GRID */
-
-.main-grid{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:25px;
-}
-
-/* CARD */
-
 .card{
     background:white;
     border-radius:14px;
-    padding:30px;
+    padding:25px;
     margin-bottom:25px;
 }
-
-.card h2{
-    margin-bottom:25px;
-    color:#0d1b2a;
-}
-
-/* FORM */
 
 .form-group{
     margin-bottom:20px;
 }
 
-label{
-    display:block;
-    margin-bottom:8px;
-    font-weight:600;
-}
-
 input,
-textarea,
-select{
+textarea{
     width:100%;
-    padding:14px;
+    padding:12px;
     border:1px solid #ccc;
     border-radius:8px;
-    font-size:15px;
 }
 
 textarea{
     height:120px;
-    resize:none;
 }
 
 .submit-btn{
     background:#0d6efd;
     color:white;
     border:none;
-    padding:14px 22px;
+    padding:12px 18px;
     border-radius:8px;
     cursor:pointer;
 }
-
-/* TABLE */
 
 table{
     width:100%;
     border-collapse:collapse;
 }
 
-table th{
+th{
     background:#0d1b2a;
     color:white;
-    padding:15px;
+    padding:12px;
     text-align:left;
 }
 
-table td{
-    padding:14px;
+td{
+    padding:12px;
     border-bottom:1px solid #ddd;
 }
 
@@ -170,7 +102,6 @@ table td{
     padding:6px 12px;
     border-radius:20px;
     font-size:13px;
-    font-weight:600;
 }
 
 .pending{
@@ -188,50 +119,18 @@ table td{
     color:#842029;
 }
 
-/* SIDEBAR */
-
-.deadline-box{
-    background:#fff4e5;
-    border-left:5px solid orange;
-    padding:18px;
-    border-radius:10px;
-    margin-bottom:15px;
-}
-
-.notice{
-    background:#f8f9fa;
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:12px;
-    border:1px solid #ddd;
-}
-
-.footer{
-    margin-top:40px;
-    background:#0d1b2a;
-    color:white;
-    padding:20px;
-    text-align:center;
-}
-
-@media(max-width:1000px){
-
-    .main-grid{
-        grid-template-columns:1fr;
-    }
-
-}
-
 </style>
 
 
 <div class="navbar">
 
-    <div class="logo-section">
-        <h2>Author Dashboard</h2>
-    </div>
+    <h2>Author Dashboard</h2>
 
     <div class="nav-actions">
+
+        <button class="profile-btn" id="greeting">
+            Hi, User
+        </button>
 
         <button class="logout-btn" id="logout-btn">
             Logout
@@ -244,194 +143,113 @@ table td{
 
 <div class="dashboard">
 
-    <!-- TOP STATS -->
+    <!-- AUTHOR INFO -->
 
-    <div class="top-cards">
+    <div class="card">
 
-        <div class="stat-card">
-            <h3>Submission Status</h3>
-            <h1 id="top-status">--</h1>
+        <h2>Author Information</h2>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="text" id="user-email" readonly>
         </div>
 
-        <div class="stat-card">
-            <h3>Submission ID</h3>
-            <h1 id="top-id">--</h1>
-        </div>
-
-        <div class="stat-card">
-            <h3>Last Updated</h3>
-            <h1 id="top-updated" style="font-size:18px;">--</h1>
+        <div class="form-group">
+            <label>Institution</label>
+            <input type="text" id="user-institution" readonly>
         </div>
 
     </div>
 
 
-    <div class="main-grid">
+    <!-- SUBMISSION FORM -->
 
-        <!-- LEFT -->
+    <div class="card" id="submission-form">
 
-        <div>
+        <h2>Submit Research Paper</h2>
 
-            <!-- PROFILE -->
-
-            <div class="card">
-
-                <h2>Author Information</h2>
-
-                <div class="form-group">
-    <label>Author Name</label>
-    <input type="text" id="author-name" readonly>
-</div>
-
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="user-email" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label>Institution</label>
-                    <input type="text" id="user-institution" readonly>
-                </div>
-
-            </div>
-
-            <!-- FORM -->
-
-            <div class="card" id="submission-form">
-
-                <h2>Submit Research Paper</h2>
-
-                <div class="form-group">
-                    <label>Paper Title</label>
-                    <input type="text" id="paper-title">
-                </div>
-
-                <div class="form-group">
-                    <label>Abstract</label>
-                    <textarea id="paper-abstract"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>PDF Link</label>
-                    <input type="text" id="paper-link">
-                </div>
-
-                <button class="submit-btn" id="submit-paper">
-                    Submit Paper
-                </button>
-
-            </div>
-
-            <!-- VIEW -->
-
-            <div class="card" id="submission-view" style="display:none;">
-
-                <h2>My Submission</h2>
-
-                <table>
-
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Status</th>
-                        <th>Submitted</th>
-                        <th>Updated</th>
-                    </tr>
-
-                    <tr>
-                        <td id="sub-id"></td>
-                        <td id="sub-title"></td>
-                        <td>
-                            <span class="status" id="status-text">
-                                Pending
-                            </span>
-                        </td>
-                        <td id="created-at"></td>
-                        <td id="updated-at"></td>
-                    </tr>
-
-                </table>
-
-                <br>
-
-                <div id="edit-section" style="display:none;">
-
-                    <h3>Edit Submission</h3>
-
-                    <div class="form-group">
-                        <label>Paper Title</label>
-                        <input id="edit-title">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Abstract</label>
-                        <textarea id="edit-abstract"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>PDF Link</label>
-                        <input id="edit-link">
-                    </div>
-
-                    <button class="submit-btn" id="update-paper">
-                        Update Submission
-                    </button>
-
-                </div>
-
-            </div>
-
+        <div class="form-group">
+            <label>Paper Title</label>
+            <input type="text" id="paper-title">
         </div>
 
-        <!-- RIGHT -->
+        <div class="form-group">
+            <label>Abstract</label>
+            <textarea id="paper-abstract"></textarea>
+        </div>
 
-        <div>
+        <div class="form-group">
+            <label>PDF Link</label>
+            <input type="text" id="paper-link">
+        </div>
 
-            <div class="card">
+        <button class="submit-btn" id="submit-paper">
+            Submit Paper
+        </button>
 
-                <h2>Conference Deadlines</h2>
+    </div>
 
-                <div class="deadline-box">
-                    <h4>Paper Submission</h4>
-                    <p>15 May 2027</p>
-                </div>
 
-                <div class="deadline-box">
-                    <h4>Acceptance Notification</h4>
-                    <p>25 May 2027</p>
-                </div>
+    <!-- SUBMISSION VIEW -->
 
+    <div class="card" id="submission-view" style="display:none;">
+
+        <h2>My Submission</h2>
+
+        <table>
+
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Submitted</th>
+                <th>Updated</th>
+            </tr>
+
+            <tr>
+                <td id="sub-id"></td>
+                <td id="sub-title"></td>
+
+                <td>
+                    <span class="status" id="status-text">
+                        Pending
+                    </span>
+                </td>
+
+                <td id="created-at"></td>
+                <td id="updated-at"></td>
+            </tr>
+
+        </table>
+
+        <br>
+
+        <div id="edit-section" style="display:none;">
+
+            <h3>Edit Submission</h3>
+
+            <div class="form-group">
+                <label>Paper Title</label>
+                <input type="text" id="edit-title">
             </div>
 
-
-            <div class="card">
-
-                <h2>Announcements</h2>
-
-                <div class="notice">
-                    Paper review process has started.
-                </div>
-
-                <div class="notice">
-                    Use IEEE conference template.
-                </div>
-
-                <div class="notice">
-                    Camera-ready papers open soon.
-                </div>
-
+            <div class="form-group">
+                <label>Abstract</label>
+                <textarea id="edit-abstract"></textarea>
             </div>
+
+            <div class="form-group">
+                <label>PDF Link</label>
+                <input type="text" id="edit-link">
+            </div>
+
+            <button class="submit-btn" id="update-paper">
+                Update Submission
+            </button>
 
         </div>
 
     </div>
-
-</div>
-
-
-<div class="footer">
-
-    © 2027 Conference Registration System
 
 </div>
 
