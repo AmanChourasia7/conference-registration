@@ -9,13 +9,15 @@ import {
 import {
   getFirestore,
   doc,
-  getDoc
+  getDoc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
 
 let currentUserData = null;
+let currentUser = null;
 
 
 // AUTH
@@ -26,6 +28,8 @@ onAuthStateChanged(auth, async (user) => {
     window.location.href = "login.html";
     return;
   }
+
+  currentUser = user;
 
   try {
 
@@ -53,9 +57,27 @@ onAuthStateChanged(auth, async (user) => {
 
     }
 
+    // CHECK EXISTING PASS
+    const passRef =
+      doc(db, "gatepasses", user.uid);
+
+    const passSnap =
+      await getDoc(passRef);
+
+    if (passSnap.exists()) {
+
+      const passData =
+        passSnap.data();
+
+      loadPass(passData);
+
+    }
+
   }
   catch(err) {
+
     console.error(err);
+
   }
 
 });
@@ -63,7 +85,8 @@ onAuthStateChanged(auth, async (user) => {
 
 // LOGOUT
 
-const logoutBtn = document.getElementById("logout-btn");
+const logoutBtn =
+  document.getElementById("logout-btn");
 
 if (logoutBtn) {
 
@@ -89,10 +112,6 @@ if (generateBtn) {
 
     try {
 
-      document.getElementById("gatepass-section").style.display =
-        "block";
-
-      // UNIQUE ENTRY ID
       const entryId =
         "OML-" +
         Math.random()
@@ -100,10 +119,6 @@ if (generateBtn) {
         .substring(2,10)
         .toUpperCase();
 
-      document.getElementById("entry-id").innerText =
-        entryId;
-
-      // QR CONTENT
       const qrData = JSON.stringify({
 
         name: currentUserData?.name || "",
@@ -116,25 +131,20 @@ if (generateBtn) {
 
       });
 
-      // CLEAR OLD QR
-      const qrContainer =
-        document.getElementById("qrcode");
+      // SAVE PASS
+      await setDoc(
+        doc(db, "gatepasses", currentUser.uid),
+        {
+          entryId: entryId,
+          qrData: qrData,
+          createdAt: new Date()
+        }
+      );
 
-      qrContainer.innerHTML = "";
-
-      // CREATE QR IMAGE
-      const qrImage =
-        document.createElement("img");
-
-      qrImage.style.width = "180px";
-
-      qrImage.style.height = "180px";
-
-      qrImage.src =
-        "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
-        encodeURIComponent(qrData);
-
-      qrContainer.appendChild(qrImage);
+      loadPass({
+        entryId,
+        qrData
+      });
 
     }
     catch(err) {
@@ -150,33 +160,128 @@ if (generateBtn) {
 }
 
 
+// LOAD PASS
+
+function loadPass(data) {
+
+  document.getElementById("gatepass-section").style.display =
+    "block";
+
+  // REMOVE BUTTON
+  const btn =
+    document.getElementById("generate-pass");
+
+  if (btn) {
+    btn.style.display = "none";
+  }
+
+  document.getElementById("entry-id").innerText =
+    data.entryId;
+
+  // QR IMAGE
+  const qrContainer =
+    document.getElementById("qrcode");
+
+  qrContainer.innerHTML = "";
+
+  const qrImage =
+    document.createElement("img");
+
+  qrImage.crossOrigin = "anonymous";
+
+  qrImage.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+    encodeURIComponent(data.qrData);
+
+  qrContainer.appendChild(qrImage);
+
+}
+
+
 // DOWNLOAD PDF
 
 document.getElementById("download-pass").addEventListener("click", async () => {
 
-  const pass =
-    document.getElementById("pass-card");
+  try {
 
-  const canvas =
-    await html2canvas(pass);
+    const pass =
+      document.getElementById("pass-card");
 
-  const imgData =
-    canvas.toDataURL("image/png");
+    // WAIT FOR QR LOAD
+    const qrImg =
+      document.querySelector("#qrcode img");
 
-  const { jsPDF } = window.jspdf;
+    if (qrImg && !qrImg.complete) {
 
-  const pdf =
-    new jsPDF();
+      await new Promise((resolve) => {
 
-  pdf.addImage(
-    imgData,
-    "PNG",
-    10,
-    10,
-    190,
-    0
-  );
+        qrImg.onload = resolve;
 
-  pdf.save("OML2027_GatePass.pdf");
+      });
+
+    }
+
+    const canvas =
+      await html2canvas(pass, {
+
+        useCORS: true,
+        scale: 2
+
+      });
+
+    const imgData =
+      canvas.toDataURL("image/png");
+
+    const { jsPDF } =
+      window.jspdf;
+
+    // LETTER SIZE
+    const pdf =
+      new jsPDF({
+
+        orientation: "portrait",
+
+        unit: "pt",
+
+        format: "letter"
+
+      });
+
+    const pageWidth = 612;
+
+    const imgWidth = 560;
+
+    const ratio =
+      canvas.height / canvas.width;
+
+    const imgHeight =
+      imgWidth * ratio;
+
+    pdf.addImage(
+
+      imgData,
+
+      "PNG",
+
+      26,
+
+      20,
+
+      imgWidth,
+
+      imgHeight
+
+    );
+
+    pdf.save("OML2027_GatePass.pdf");
+
+  }
+  catch(err) {
+
+    console.error(err);
+
+    alert("PDF generation failed");
+
+  }
 
 });
