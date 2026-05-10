@@ -217,6 +217,88 @@ td{
 }
 </style>
 
+<style>
+
+/* GATE PASS */
+
+.generate-btn{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:14px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.download-btn{
+    background:#198754;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.pass-card{
+    width:816px;
+    margin:auto;
+    background:white;
+    border:2px solid #0d1b2a;
+    border-radius:14px;
+    overflow:hidden;
+}
+
+.pass-header{
+    background:#0d1b2a;
+    color:white;
+    padding:24px;
+}
+
+.pass-body{
+    padding:40px;
+    text-align:center;
+}
+
+.pass-info{
+    margin-top:25px;
+    text-align:left;
+    line-height:2;
+}
+
+#qrcode{
+    margin-top:30px;
+}
+
+#qrcode img{
+    width:180px;
+    height:180px;
+}
+
+@media screen and (max-width:900px){
+
+    .pass-card{
+        width:100%;
+    }
+
+}
+
+@media screen and (max-width:600px){
+
+    .generate-btn,
+    .download-btn{
+        width:100%;
+    }
+
+    .pass-body{
+        padding:22px;
+    }
+
+}
+
+</style>
+
 
 <div class="navbar">
 
@@ -262,8 +344,90 @@ td{
             <input type="text" id="user-institution" readonly>
         </div>
 
+        
+<button class="generate-btn" id="generate-pass">
+    Generate Gate Pass
+</button>
     </div>
 
+
+    <!-- GATE PASS -->
+
+<div class="card" id="gatepass-section" style="display:none;">
+
+    <div class="pass-card" id="pass-card">
+
+        <div class="pass-header">
+
+            <h2>
+                1st Conference on Optimization and Machine Learning
+            </h2>
+
+        </div>
+
+        <div class="pass-body">
+
+            <h1>Author Entry Pass</h1>
+
+            <p>
+                Indian Institute of Technology Patna
+            </p>
+
+            <div class="pass-info">
+
+                <p>
+                    <b>Entry ID:</b>
+                    <span id="entry-id"></span>
+                </p>
+
+                <p>
+                    <b>Date:</b>
+                    8 to 12 January 2027
+                </p>
+
+                <p>
+                    <b>Venue:</b>
+                    Central Lecture Hall, IIT Patna, Bihar, India
+                </p>
+
+            </div>
+
+            <div id="qrcode"></div>
+
+            <hr style="margin:30px 0; border:none; border-top:1px solid #ccc;">
+
+            <div style="
+                text-align:left;
+                font-size:12px;
+                line-height:1.7;
+                color:#555;
+            ">
+
+                <h3 style="margin-bottom:12px; color:#111;">
+                    Terms and Conditions
+                </h3>
+
+                <p>1. This pass is valid only for conference access</p>
+
+                <p>2. The QR code must remain visible and scannable</p>
+
+                <p>3. Organizers may request valid identification</p>
+
+                <p>4. Sharing this pass is prohibited</p>
+
+                <p>5. Conference access may be revoked for misuse</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <button class="download-btn" id="download-pass">
+        Download PDF
+    </button>
+
+</div>
 
     <!-- SUBMISSION FORM -->
 
@@ -290,6 +454,7 @@ td{
             Submit Paper
         </button>
 
+        
     </div>
 
 
@@ -357,6 +522,10 @@ td{
     </div>
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script type="module" src="js/dashboard.js"></script>
 <script type="module" src="js/dashboard-author.js"></script>
