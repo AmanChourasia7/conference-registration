@@ -98,7 +98,8 @@ input{
 /* PASS */
 
 .pass-card{
-    width:700px;
+    width:816px;
+    min-height:1056px;
     margin:auto;
     background:white;
     border:2px solid #0d1b2a;
@@ -109,11 +110,11 @@ input{
 .pass-header{
     background:#0d1b2a;
     color:white;
-    padding:20px;
+    padding:24px;
 }
 
 .pass-body{
-    padding:30px;
+    padding:40px;
     text-align:center;
 }
 
@@ -128,7 +129,12 @@ input{
 }
 
 #qrcode{
-    margin-top:25px;
+    margin-top:30px;
+}
+
+#qrcode img{
+    width:180px;
+    height:180px;
 }
 
 @media screen and (max-width:900px){
@@ -155,6 +161,7 @@ input{
 
     .pass-card{
         width:100%;
+        min-height:auto;
     }
 
 }
@@ -172,6 +179,10 @@ input{
     .generate-btn,
     .download-btn{
         width:100%;
+    }
+
+    .pass-body{
+        padding:22px;
     }
 
 }
@@ -236,7 +247,9 @@ input{
 
             <div class="pass-header">
 
-                <h2>1st Conference on Optimization and Machine Learning</h2>
+                <h2>
+                    1st Conference on Optimization and Machine Learning
+                </h2>
 
             </div>
 
@@ -269,23 +282,22 @@ input{
 
                 <div id="qrcode"></div>
 
-
                 <hr style="margin:30px 0; border:none; border-top:1px solid #ccc;">
 
-<div style="
-    text-align:left;
-    font-size:12px;
-    line-height:1.7;
-    color:#555;
-">
+                <div style="
+                    text-align:left;
+                    font-size:12px;
+                    line-height:1.7;
+                    color:#555;
+                ">
 
-    <h3 style="margin-bottom:12px; color:#111;">
-        Terms and Conditions
-    </h3>
+                    <h3 style="margin-bottom:12px; color:#111;">
+                        Terms and Conditions
+                    </h3>
 
-    <p>1. This pass is valid only for the selected conference day.</p>
+                    <p>1. This pass is valid only for the selected conference day</p>
 
-                    <p>2. Entry is permitted only between 06:00 AM and 09:00 PM Indian Standard Time./p>
+                    <p>2. Entry is permitted only between 06:00 AM and 09:00 PM Indian Standard Time</p>
 
                     <p>3. The QR code must remain visible and scannable at all times</p>
 
@@ -297,7 +309,8 @@ input{
 
                     <p>7. This pass remains property of the conference organizers</p>
 
-</div>
+                </div>
+
             </div>
 
         </div>
@@ -311,10 +324,6 @@ input{
 </div>
 
 
-<!-- QR -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-
-<!-- PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
