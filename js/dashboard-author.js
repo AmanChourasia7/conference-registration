@@ -37,13 +37,48 @@ let currentUserData = null;
 let currentSubmissionData = null;
 
 
+// ================= LOGOUT =================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const logoutBtn =
+    document.getElementById("logout-btn");
+
+  if (logoutBtn) {
+
+    logoutBtn.addEventListener("click", async () => {
+
+      try {
+
+        await signOut(auth);
+
+        window.location.href =
+          "login.html";
+
+      }
+      catch(err) {
+
+        console.error(err);
+
+        alert("Logout failed");
+
+      }
+
+    });
+
+  }
+
+});
+
+
 // ================= AUTH =================
 
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
 
-    window.location.href = "login.html";
+    window.location.href =
+      "login.html";
 
     return;
 
@@ -132,24 +167,6 @@ onAuthStateChanged(auth, async (user) => {
   }
 
 });
-
-// ================= LOGOUT =================
-
-const logoutBtn =
-  document.getElementById("logout-btn");
-
-if (logoutBtn) {
-
-  logoutBtn.addEventListener("click", async () => {
-
-    await signOut(auth);
-
-    window.location.href =
-      "login.html";
-
-  });
-
-}
 
 
 // ================= SUBMIT =================
@@ -447,7 +464,6 @@ function loadPass(data) {
   document.getElementById("gatepass-section").style.display =
     "block";
 
-  // HIDE BUTTON
   const btn =
     document.getElementById("generate-pass");
 
@@ -461,7 +477,6 @@ function loadPass(data) {
   document.getElementById("entry-id").innerText =
     data.entryId;
 
-  // QR
   const qrContainer =
     document.getElementById("qrcode");
 
