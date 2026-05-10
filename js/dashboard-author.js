@@ -14,33 +14,53 @@ import {
   getDocs,
   doc,
   getDoc,
-  updateDoc
+  updateDoc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const formDiv = document.getElementById("submission-form");
-const viewDiv = document.getElementById("submission-view");
+const formDiv =
+  document.getElementById("submission-form");
+
+const viewDiv =
+  document.getElementById("submission-view");
 
 let currentDocId = null;
 
+let currentUser = null;
 
-// AUTH
+let currentUserData = null;
+
+
+// ================= AUTH =================
 
 onAuthStateChanged(auth, async (user) => {
 
-  if (!user) return;
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
 
   try {
 
     // USER DATA
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
+    const userRef =
+      doc(db, "users", user.uid);
+
+    const userSnap =
+      await getDoc(userRef);
 
     if (userSnap.exists()) {
 
-      const userData = userSnap.data();
+      const userData =
+        userSnap.data();
+
+      currentUserData =
+        userData;
 
       document.getElementById("greeting").innerText =
         "Hi, " + (userData.name || "User");
@@ -62,29 +82,53 @@ onAuthStateChanged(auth, async (user) => {
       where("uid", "==", user.uid)
     );
 
-    const snapshot = await getDocs(q);
+    const snapshot =
+      await getDocs(q);
 
     if (!snapshot.empty) {
 
-      const docItem = snapshot.docs[0];
+      const docItem =
+        snapshot.docs[0];
 
-      currentDocId = docItem.id;
+      currentDocId =
+        docItem.id;
 
-      showSubmission(docItem.id, docItem.data());
+      showSubmission(
+        docItem.id,
+        docItem.data()
+      );
+
+    }
+
+    // LOAD GATEPASS
+    const passRef =
+      doc(db, "gatepasses", user.uid);
+
+    const passSnap =
+      await getDoc(passRef);
+
+    if (passSnap.exists()) {
+
+      loadPass(
+        passSnap.data()
+      );
 
     }
 
   }
   catch(err) {
+
     console.error(err);
+
   }
 
 });
 
 
-// SUBMIT
+// ================= SUBMIT =================
 
-const submitBtn = document.getElementById("submit-paper");
+const submitBtn =
+  document.getElementById("submit-paper");
 
 if (submitBtn) {
 
@@ -100,41 +144,58 @@ if (submitBtn) {
       document.getElementById("paper-link").value;
 
     if (!title || !abstract || !link) {
+
       alert("Fill all fields");
+
       return;
+
     }
 
-    const user = auth.currentUser;
+    const user =
+      auth.currentUser;
 
-    const now = new Date();
+    const now =
+      new Date();
 
-    const docRef = await addDoc(collection(db, "submissions"), {
+    const docRef =
+      await addDoc(
+        collection(db, "submissions"),
+        {
 
-      uid: user.uid,
-      email: user.email,
+          uid: user.uid,
 
-      title: title,
-      abstract: abstract,
-      paperLink: link,
+          email: user.email,
 
-      status: "pending",
+          title: title,
 
-      createdAt: now,
-      updatedAt: now
+          abstract: abstract,
 
-    });
+          paperLink: link,
 
-    currentDocId = docRef.id;
+          status: "pending",
+
+          createdAt: now,
+
+          updatedAt: now
+
+        }
+      );
+
+    currentDocId =
+      docRef.id;
 
     showSubmission(docRef.id, {
 
       title: title,
+
       abstract: abstract,
+
       paperLink: link,
 
       status: "pending",
 
       createdAt: now,
+
       updatedAt: now
 
     });
@@ -146,9 +207,10 @@ if (submitBtn) {
 }
 
 
-// UPDATE
+// ================= UPDATE =================
 
-const updateBtn = document.getElementById("update-paper");
+const updateBtn =
+  document.getElementById("update-paper");
 
 if (updateBtn) {
 
@@ -165,15 +227,20 @@ if (updateBtn) {
     const link =
       document.getElementById("edit-link").value;
 
-    await updateDoc(doc(db, "submissions", currentDocId), {
+    await updateDoc(
+      doc(db, "submissions", currentDocId),
+      {
 
-      title: title,
-      abstract: abstract,
-      paperLink: link,
+        title: title,
 
-      updatedAt: new Date()
+        abstract: abstract,
 
-    });
+        paperLink: link,
+
+        updatedAt: new Date()
+
+      }
+    );
 
     alert("Submission updated");
 
@@ -184,13 +251,15 @@ if (updateBtn) {
 }
 
 
-// SHOW
+// ================= SHOW SUBMISSION =================
 
 function showSubmission(id, data) {
 
-  formDiv.style.display = "none";
+  formDiv.style.display =
+    "none";
 
-  viewDiv.style.display = "block";
+  viewDiv.style.display =
+    "block";
 
   document.getElementById("sub-id").innerText =
     id;
@@ -220,8 +289,7 @@ function showSubmission(id, data) {
   document.getElementById("updated-at").innerText =
     data.updatedAt?.toDate?.().toLocaleString?.() || "--";
 
-  // EDIT ENABLED ONLY FOR PENDING
-
+  // EDIT ONLY IF PENDING
   if (data.status === "pending") {
 
     document.getElementById("edit-section").style.display =
@@ -249,34 +317,6 @@ function showSubmission(id, data) {
 
 // ================= GATE PASS =================
 
-let currentUser = null;
-
-
-// SAVE USER
-onAuthStateChanged(auth, async (user) => {
-
-  if (!user) return;
-
-  currentUser = user;
-
-  // CHECK EXISTING PASS
-  const passRef =
-    doc(db, "gatepasses", user.uid);
-
-  const passSnap =
-    await getDoc(passRef);
-
-  if (passSnap.exists()) {
-
-    loadPass(passSnap.data());
-
-  }
-
-});
-
-
-// GENERATE PASS
-
 const generateBtn =
   document.getElementById("generate-pass");
 
@@ -293,32 +333,46 @@ if (generateBtn) {
         .substring(2,10)
         .toUpperCase();
 
-      const qrData = JSON.stringify({
+      const qrData =
+        JSON.stringify({
 
-        name: currentUserData?.name || "",
+          name:
+            currentUserData?.name || "",
 
-        email: currentUserData?.email || "",
+          email:
+            currentUserData?.email || "",
 
-        institution: currentUserData?.institution || "",
+          institution:
+            currentUserData?.institution || "",
 
-        role: "author",
+          role:
+            "author",
 
-        entryId: entryId
+          entryId:
+            entryId
 
-      });
+        });
 
+      // SAVE PASS
       await setDoc(
         doc(db, "gatepasses", currentUser.uid),
         {
+
           entryId: entryId,
+
           qrData: qrData,
+
           createdAt: new Date()
+
         }
       );
 
       loadPass({
+
         entryId,
+
         qrData
+
       });
 
     }
@@ -335,32 +389,39 @@ if (generateBtn) {
 }
 
 
-// LOAD PASS
+// ================= LOAD PASS =================
 
 function loadPass(data) {
 
   document.getElementById("gatepass-section").style.display =
     "block";
 
+  // HIDE GENERATE BUTTON
   const btn =
     document.getElementById("generate-pass");
 
   if (btn) {
-    btn.style.display = "none";
+
+    btn.style.display =
+      "none";
+
   }
 
   document.getElementById("entry-id").innerText =
     data.entryId;
 
+  // QR
   const qrContainer =
     document.getElementById("qrcode");
 
-  qrContainer.innerHTML = "";
+  qrContainer.innerHTML =
+    "";
 
   const qrImage =
     document.createElement("img");
 
-  qrImage.crossOrigin = "anonymous";
+  qrImage.crossOrigin =
+    "anonymous";
 
   qrImage.src =
     "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
@@ -371,79 +432,99 @@ function loadPass(data) {
 }
 
 
-// DOWNLOAD PDF
+// ================= PDF =================
 
-document.getElementById("download-pass").addEventListener("click", async () => {
+const downloadBtn =
+  document.getElementById("download-pass");
 
-  try {
+if (downloadBtn) {
 
-    const pass =
-      document.getElementById("pass-card");
+  downloadBtn.addEventListener("click", async () => {
 
-    const qrImg =
-      document.querySelector("#qrcode img");
+    try {
 
-    if (qrImg && !qrImg.complete) {
+      const pass =
+        document.getElementById("pass-card");
 
-      await new Promise((resolve) => {
+      // WAIT FOR QR
+      const qrImg =
+        document.querySelector("#qrcode img");
 
-        qrImg.onload = resolve;
+      if (qrImg && !qrImg.complete) {
 
-      });
+        await new Promise((resolve) => {
+
+          qrImg.onload =
+            resolve;
+
+        });
+
+      }
+
+      const canvas =
+        await html2canvas(pass, {
+
+          useCORS: true,
+
+          scale: 2
+
+        });
+
+      const imgData =
+        canvas.toDataURL("image/png");
+
+      const { jsPDF } =
+        window.jspdf;
+
+      const pdf =
+        new jsPDF({
+
+          orientation: "portrait",
+
+          unit: "pt",
+
+          format: "letter"
+
+        });
+
+      const imgWidth =
+        560;
+
+      const ratio =
+        canvas.height / canvas.width;
+
+      const imgHeight =
+        imgWidth * ratio;
+
+      pdf.addImage(
+
+        imgData,
+
+        "PNG",
+
+        26,
+
+        20,
+
+        imgWidth,
+
+        imgHeight
+
+      );
+
+      pdf.save(
+        "OML2027_Author_Pass.pdf"
+      );
+
+    }
+    catch(err) {
+
+      console.error(err);
+
+      alert("PDF generation failed");
 
     }
 
-    const canvas =
-      await html2canvas(pass, {
+  });
 
-        useCORS: true,
-        scale: 2
-
-      });
-
-    const imgData =
-      canvas.toDataURL("image/png");
-
-    const { jsPDF } =
-      window.jspdf;
-
-    const pdf =
-      new jsPDF({
-
-        orientation: "portrait",
-
-        unit: "pt",
-
-        format: "letter"
-
-      });
-
-    const imgWidth = 560;
-
-    const ratio =
-      canvas.height / canvas.width;
-
-    const imgHeight =
-      imgWidth * ratio;
-
-    pdf.addImage(
-      imgData,
-      "PNG",
-      26,
-      20,
-      imgWidth,
-      imgHeight
-    );
-
-    pdf.save("OML2027_Author_Pass.pdf");
-
-  }
-  catch(err) {
-
-    console.error(err);
-
-    alert("PDF generation failed");
-
-  }
-
-});
+}
