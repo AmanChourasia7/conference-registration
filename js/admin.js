@@ -1,3 +1,5 @@
+// ================= IMPORTS =================
+
 import { app } from "../firebase/firebase-config.js";
 
 import {
@@ -8,20 +10,24 @@ import {
   collection,
   getDocs,
   deleteDoc,
-  updateDoc
+  updateDoc,
+  addDoc
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
 import {
   getAuth,
   onAuthStateChanged,
-  signOut
+  signOut,
+  createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+let qrScanner = null;
 
-// AUTH
+
+// ================= AUTH =================
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -63,10 +69,12 @@ onAuthStateChanged(auth, async (user) => {
 
   loadStats();
 
+  loadScanHistory();
+
 });
 
 
-// LOGOUT
+// ================= LOGOUT =================
 
 document.getElementById("logout-btn")
 .addEventListener("click", async () => {
@@ -79,7 +87,7 @@ document.getElementById("logout-btn")
 });
 
 
-// PAGE EDITOR
+// ================= PAGE EDITOR =================
 
 document.getElementById("load-btn")
 .addEventListener("click", async () => {
@@ -132,7 +140,7 @@ document.getElementById("save-btn")
 });
 
 
-// BACKUP
+// ================= BACKUP =================
 
 document.getElementById("backup-btn")
 .addEventListener("click", async () => {
@@ -175,7 +183,7 @@ document.getElementById("backup-btn")
 });
 
 
-// STATS
+// ================= STATS =================
 
 async function loadStats() {
 
@@ -215,7 +223,86 @@ async function loadStats() {
 }
 
 
-// USERS
+// ================= CREATE ORGANIZER =================
+
+document.getElementById("create-organizer-btn")
+.addEventListener("click", async () => {
+
+  try {
+
+    const name =
+      document.getElementById("org-name").value;
+
+    const email =
+      document.getElementById("org-email").value;
+
+    const password =
+      document.getElementById("org-password").value;
+
+    const institution =
+      document.getElementById("org-institution").value;
+
+    const country =
+      document.getElementById("org-country").value;
+
+    if (
+      !name ||
+      !email ||
+      !password
+    ) {
+
+      alert("Fill all required fields");
+
+      return;
+
+    }
+
+    const userCredential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+    const user =
+      userCredential.user;
+
+    await setDoc(
+      doc(db, "users", user.uid),
+      {
+
+        name: name,
+
+        email: email,
+
+        institution: institution,
+
+        country: country,
+
+        role: "organizer",
+
+        blocked: false
+
+      }
+    );
+
+    alert("Organizer created");
+
+    location.reload();
+
+  }
+  catch(err) {
+
+    console.error(err);
+
+    alert(err.message);
+
+  }
+
+});
+
+
+// ================= USERS =================
 
 document.getElementById("load-users-btn")
 .addEventListener("click", async () => {
@@ -278,7 +365,7 @@ document.getElementById("load-users-btn")
 });
 
 
-// REGISTRATIONS
+// ================= REGISTRATIONS =================
 
 document.getElementById("load-registrations-btn")
 .addEventListener("click", async () => {
@@ -318,7 +405,7 @@ document.getElementById("load-registrations-btn")
 });
 
 
-// GATEPASSES
+// ================= GATEPASSES =================
 
 document.getElementById("load-gatepasses-btn")
 .addEventListener("click", async () => {
@@ -364,7 +451,7 @@ document.getElementById("load-gatepasses-btn")
 });
 
 
-// USER ACTIONS
+// ================= USER ACTIONS =================
 
 window.makeAdmin = async (uid) => {
 
@@ -436,57 +523,147 @@ window.revokeGatepass = async (uid) => {
 };
 
 
-// QR SCANNER
+// ================= QR SCANNER =================
 
 document.getElementById("start-scanner-btn")
 .addEventListener("click", async () => {
 
-  const scanner =
-    new Html5Qrcode("reader");
+  try {
 
-  scanner.start(
+    qrScanner =
+      new Html5Qrcode("reader");
 
-    { facingMode: "environment" },
+    await qrScanner.start(
 
-    {
-      fps: 10,
-      qrbox: 250
-    },
+      { facingMode: "environment" },
 
-    async (decodedText) => {
+      {
+        fps: 10,
+        qrbox: 250
+      },
 
-      try {
+      async (decodedText) => {
 
-        const data =
-          JSON.parse(decodedText);
+        try {
 
-        document.getElementById("scan-result").innerHTML = `
+          const data =
+            JSON.parse(decodedText);
 
-          <div class="verified">
+          // STOP CAMERA
+          await qrScanner.stop();
 
-            ✅ VERIFIED GATEPASS
+          document.getElementById("reader").innerHTML =
+            "";
 
-            <br><br>
+          alert("Scan successful");
 
-            Name: ${data.name}<br>
-            Email: ${data.email}<br>
-            Institution: ${data.institution}<br>
-            Entry ID: ${data.entryId}
+          document.getElementById("scan-result").innerHTML = `
 
-          </div>
+            <div class="verified">
 
-        `;
+              ✅ VERIFIED GATEPASS
+
+              <br><br>
+
+              Name: ${data.name}<br>
+              Email: ${data.email}<br>
+              Institution: ${data.institution}<br>
+              Entry ID: ${data.entryId}
+
+            </div>
+
+          `;
+
+          // SAVE HISTORY
+          await addDoc(
+            collection(db, "scan_history"),
+            {
+
+              name:
+                data.name || "",
+
+              email:
+                data.email || "",
+
+              institution:
+                data.institution || "",
+
+              entryId:
+                data.entryId || "",
+
+              scannedAt:
+                new Date()
+
+            }
+          );
+
+          loadScanHistory();
+
+        }
+        catch(err) {
+
+          document.getElementById("scan-result").innerHTML =
+            "<div class='revoked'>Invalid QR Code</div>";
+
+        }
 
       }
-      catch(err) {
 
-        document.getElementById("scan-result").innerHTML =
-          "<div class='revoked'>Invalid QR Code</div>";
+    );
 
-      }
+  }
+  catch(err) {
 
-    }
+    console.error(err);
 
-  );
+  }
 
 });
+
+
+// ================= SCAN HISTORY =================
+
+async function loadScanHistory() {
+
+  const tbody =
+    document.getElementById("scan-history-table");
+
+  if (!tbody) return;
+
+  tbody.innerHTML = "";
+
+  const snapshot =
+    await getDocs(
+      collection(db, "scan_history")
+    );
+
+  snapshot.forEach(docItem => {
+
+    const data =
+      docItem.data();
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+
+      <td>${data.name || ""}</td>
+
+      <td>${data.email || ""}</td>
+
+      <td>${data.entryId || ""}</td>
+
+      <td>
+        ${
+          data.scannedAt?.toDate?.()
+          ?.toLocaleString?.() || ""
+        }
+      </td>
+
+    `;
+
+    tbody.appendChild(row);
+
+  });
+
+}
