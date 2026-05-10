@@ -15,6 +15,7 @@ import {
   getDocs,
   doc,
   getDoc,
+  updateDoc,
   setDoc
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
@@ -24,6 +25,7 @@ const db = getFirestore(app);
 let currentUser = null;
 let currentUserData = null;
 let currentTalkData = null;
+let currentTalkId = null;
 
 
 // AUTH
@@ -32,7 +34,8 @@ onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
 
-    window.location.href = "login.html";
+    window.location.href =
+      "login.html";
 
     return;
 
@@ -65,7 +68,7 @@ onAuthStateChanged(auth, async (user) => {
 
   }
 
-  // TALK
+  // LOAD TALK
   const q = query(
     collection(db, "speaker_talks"),
     where("uid", "==", user.uid)
@@ -82,6 +85,9 @@ onAuthStateChanged(auth, async (user) => {
     currentTalkData =
       docItem.data();
 
+    currentTalkId =
+      docItem.id;
+
     showTalk(
       docItem.id,
       docItem.data()
@@ -89,7 +95,7 @@ onAuthStateChanged(auth, async (user) => {
 
   }
 
-  // PASS
+  // LOAD PASS
   const passSnap =
     await getDoc(
       doc(db, "gatepasses", user.uid)
@@ -181,7 +187,9 @@ document.getElementById("submit-talk")
 
     status: "pending",
 
-    createdAt: new Date()
+    createdAt: new Date(),
+
+    updatedAt: new Date()
 
   };
 
@@ -194,12 +202,63 @@ document.getElementById("submit-talk")
   currentTalkData =
     talkData;
 
+  currentTalkId =
+    docRef.id;
+
   showTalk(
     docRef.id,
     talkData
   );
 
   alert("Talk submitted");
+
+});
+
+
+// UPDATE TALK
+
+document.getElementById("update-talk")
+.addEventListener("click", async () => {
+
+  if (!currentTalkId) return;
+
+  const title =
+    document.getElementById("edit-talk-title").value;
+
+  const abstract =
+    document.getElementById("edit-talk-abstract").value;
+
+  const ppt =
+    document.getElementById("edit-ppt-link").value;
+
+  const date =
+    document.getElementById("edit-talk-date").value;
+
+  const slot =
+    document.getElementById("edit-talk-slot").value;
+
+  await updateDoc(
+    doc(db, "speaker_talks", currentTalkId),
+    {
+
+      title: title,
+
+      abstract: abstract,
+
+      pptLink: ppt,
+
+      date: date,
+
+      slot: slot,
+
+      updatedAt: new Date()
+
+    }
+  );
+
+  alert("Talk updated");
+
+  location.reload();
 
 });
 
@@ -255,15 +314,37 @@ function showTalk(id, data) {
   document.getElementById("pass-talk-slot").innerText =
     data.slot;
 
+  // EDIT
+  if (data.status === "pending") {
+
+    document.getElementById("edit-section").style.display =
+      "block";
+
+    document.getElementById("edit-talk-title").value =
+      data.title || "";
+
+    document.getElementById("edit-talk-abstract").value =
+      data.abstract || "";
+
+    document.getElementById("edit-ppt-link").value =
+      data.pptLink || "";
+
+    document.getElementById("edit-talk-date").value =
+      data.date || "";
+
+    document.getElementById("edit-talk-slot").value =
+      data.slot || "";
+
+  }
+
 }
 
 
-// PASS
+// GENERATE PASS
 
 document.getElementById("generate-pass")
 .addEventListener("click", async () => {
 
-  // NO TALK SUBMITTED
   if (!currentTalkData) {
 
     showModal();
