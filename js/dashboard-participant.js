@@ -15,8 +15,10 @@ import {
 const auth = getAuth(app);
 const db = getFirestore(app);
 
+let currentUserData = null;
 
-// AUTH CHECK
+
+// AUTH
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -34,6 +36,8 @@ onAuthStateChanged(auth, async (user) => {
     if (userSnap.exists()) {
 
       const data = userSnap.data();
+
+      currentUserData = data;
 
       document.getElementById("greeting").innerText =
         "Hi, " + (data.name || "User");
@@ -72,3 +76,71 @@ if (logoutBtn) {
   });
 
 }
+
+
+// GENERATE PASS
+
+document.getElementById("generate-pass").addEventListener("click", async () => {
+
+  document.getElementById("gatepass-section").style.display =
+    "block";
+
+  // unique entry id
+  const entryId =
+    "OML-" + Math.random().toString(36).substring(2,10).toUpperCase();
+
+  document.getElementById("entry-id").innerText =
+    entryId;
+
+  // QR DATA
+  const qrData = JSON.stringify({
+    name: currentUserData.name || "",
+    email: currentUserData.email || "",
+    institution: currentUserData.institution || "",
+    entryId: entryId
+  });
+
+  // clear old qr
+  document.getElementById("qrcode").innerHTML = "";
+
+  QRCode.toCanvas(qrData, { width: 180 }, function(err, canvas){
+
+    if (!err) {
+      document.getElementById("qrcode").appendChild(canvas);
+    }
+
+  });
+
+});
+
+
+// DOWNLOAD PDF
+
+document.getElementById("download-pass").addEventListener("click", async () => {
+
+  const pass =
+    document.getElementById("pass-card");
+
+  const canvas =
+    await html2canvas(pass);
+
+  const imgData =
+    canvas.toDataURL("image/png");
+
+  const { jsPDF } = window.jspdf;
+
+  const pdf =
+    new jsPDF();
+
+  pdf.addImage(
+    imgData,
+    "PNG",
+    10,
+    10,
+    190,
+    0
+  );
+
+  pdf.save("OML2027_GatePass.pdf");
+
+});
