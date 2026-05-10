@@ -2,7 +2,8 @@ import { app } from "../firebase/firebase-config.js";
 
 import {
   getAuth,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
 import {
@@ -131,6 +132,24 @@ onAuthStateChanged(auth, async (user) => {
   }
 
 });
+
+// ================= LOGOUT =================
+
+const logoutBtn =
+  document.getElementById("logout-btn");
+
+if (logoutBtn) {
+
+  logoutBtn.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+    window.location.href =
+      "login.html";
+
+  });
+
+}
 
 
 // ================= SUBMIT =================
