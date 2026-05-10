@@ -6,10 +6,6 @@
     box-sizing:border-box;
 }
 
-.dashboard h2{
-    margin-bottom:1rem;
-}
-
 body{
     background:#eef2f7;
     color:#222;
@@ -333,16 +329,6 @@ td{
             <input type="text" id="user-institution" readonly>
         </div>
 
-        <p>
-    <b>Paper Title:</b>
-    <span id="pass-paper-title"></span>
-</p>
-
-<p>
-    <b>Paper Status:</b>
-    <span id="pass-paper-status"></span>
-</p>
-
         <div style="margin-top:20px;">
 
             <button class="generate-btn" id="generate-pass">
@@ -393,6 +379,16 @@ td{
                         Central Lecture Hall, IIT Patna, Bihar, India
                     </p>
 
+                            <p>
+    <b>Paper Title:</b>
+    <span id="pass-paper-title"></span>
+</p>
+
+<p>
+    <b>Paper Status:</b>
+    <span id="pass-paper-status"></span>
+</p>
+
                 </div>
 
                 <div id="qrcode"></div>
@@ -438,7 +434,7 @@ td{
     <div class="card" id="submission-form">
 
         <h2>Submit Research Paper</h2>
-
+<br/>
         <div class="form-group">
             <label>Paper Title</label>
             <input type="text" id="paper-title">
