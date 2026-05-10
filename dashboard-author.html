@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Conference Author Dashboard</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
 <style>
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 body{
@@ -23,7 +11,7 @@ body{
     color:#222;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR */
 
 .navbar{
     width:100%;
@@ -33,12 +21,10 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
 
 .logo-section h2{
     font-size:24px;
-    font-weight:700;
 }
 
 .logo-section p{
@@ -57,7 +43,6 @@ body{
     border-radius:6px;
     cursor:pointer;
     font-size:14px;
-    transition:0.3s;
 }
 
 .logout-btn{
@@ -65,16 +50,12 @@ body{
     color:white;
 }
 
-.logout-btn:hover{
-    background:#bb2d3b;
-}
-
 .profile-btn{
-    background:#ffffff;
+    background:white;
     color:#0d1b2a;
 }
 
-/* ================= DASHBOARD ================= */
+/* DASHBOARD */
 
 .dashboard{
     max-width:1400px;
@@ -82,7 +63,7 @@ body{
     padding:30px;
 }
 
-/* ================= TOP CARDS ================= */
+/* TOP */
 
 .top-cards{
     display:grid;
@@ -95,12 +76,6 @@ body{
     background:white;
     border-radius:14px;
     padding:25px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    transition:0.3s;
-}
-
-.stat-card:hover{
-    transform:translateY(-3px);
 }
 
 .stat-card h3{
@@ -114,7 +89,7 @@ body{
     font-size:34px;
 }
 
-/* ================= MAIN GRID ================= */
+/* GRID */
 
 .main-grid{
     display:grid;
@@ -122,13 +97,12 @@ body{
     gap:25px;
 }
 
-/* ================= CARD ================= */
+/* CARD */
 
 .card{
     background:white;
     border-radius:14px;
     padding:30px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
     margin-bottom:25px;
 }
 
@@ -137,7 +111,7 @@ body{
     color:#0d1b2a;
 }
 
-/* ================= FORM ================= */
+/* FORM */
 
 .form-group{
     margin-bottom:20px;
@@ -147,7 +121,6 @@ label{
     display:block;
     margin-bottom:8px;
     font-weight:600;
-    color:#444;
 }
 
 input,
@@ -158,15 +131,6 @@ select{
     border:1px solid #ccc;
     border-radius:8px;
     font-size:15px;
-    transition:0.3s;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-    outline:none;
-    border-color:#0d6efd;
-    box-shadow:0 0 5px rgba(13,110,253,0.3);
 }
 
 textarea{
@@ -181,15 +145,9 @@ textarea{
     padding:14px 22px;
     border-radius:8px;
     cursor:pointer;
-    font-size:15px;
-    transition:0.3s;
 }
 
-.submit-btn:hover{
-    background:#084298;
-}
-
-/* ================= TABLE ================= */
+/* TABLE */
 
 table{
     width:100%;
@@ -230,11 +188,7 @@ table td{
     color:#842029;
 }
 
-/* ================= SIDEBAR ================= */
-
-.sidebar-section{
-    margin-bottom:25px;
-}
+/* SIDEBAR */
 
 .deadline-box{
     background:#fff4e5;
@@ -252,39 +206,13 @@ table td{
     border:1px solid #ddd;
 }
 
-.notice h4{
-    margin-bottom:6px;
-    color:#0d1b2a;
-}
-
-/* ================= FILE UPLOAD ================= */
-
-.upload-box{
-    border:2px dashed #999;
-    border-radius:10px;
-    padding:30px;
-    text-align:center;
-    color:#666;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.upload-box:hover{
-    background:#f8f9fa;
-}
-
-/* ================= FOOTER ================= */
-
 .footer{
     margin-top:40px;
     background:#0d1b2a;
     color:white;
     padding:20px;
     text-align:center;
-    font-size:14px;
 }
-
-/* ================= RESPONSIVE ================= */
 
 @media(max-width:1000px){
 
@@ -294,46 +222,23 @@ table td{
 
 }
 
-@media(max-width:768px){
-
-    .navbar{
-        flex-direction:column;
-        gap:15px;
-        text-align:center;
-    }
-
-    .dashboard{
-        padding:15px;
-    }
-
-    table{
-        display:block;
-        overflow-x:auto;
-    }
-
-}
-
 </style>
-</head>
 
-<body>
-
-<!-- ================= NAVBAR ================= -->
 
 <div class="navbar">
 
     <div class="logo-section">
-        <h2>International Conference Portal</h2>
-        <p>Conference Registration & Paper Submission System</p>
+        <h2>Conference Author Portal</h2>
+        <p>Paper Submission & Review System</p>
     </div>
 
     <div class="nav-actions">
 
-        <button class="profile-btn">
-            Ankush Chowdhury
+        <button class="profile-btn" id="greeting">
+            Hi, User
         </button>
 
-        <button class="logout-btn">
+        <button class="logout-btn" id="logout-btn">
             Logout
         </button>
 
@@ -341,7 +246,6 @@ table td{
 
 </div>
 
-<!-- ================= DASHBOARD ================= -->
 
 <div class="dashboard">
 
@@ -350,36 +254,30 @@ table td{
     <div class="top-cards">
 
         <div class="stat-card">
-            <h3>Total Papers Submitted</h3>
-            <h1>03</h1>
+            <h3>Submission Status</h3>
+            <h1 id="top-status">--</h1>
         </div>
 
         <div class="stat-card">
-            <h3>Accepted Papers</h3>
-            <h1>01</h1>
+            <h3>Submission ID</h3>
+            <h1 id="top-id">--</h1>
         </div>
 
         <div class="stat-card">
-            <h3>Pending Reviews</h3>
-            <h1>02</h1>
-        </div>
-
-        <div class="stat-card">
-            <h3>Conference Deadline</h3>
-            <h1>15 May</h1>
+            <h3>Last Updated</h3>
+            <h1 id="top-updated" style="font-size:18px;">--</h1>
         </div>
 
     </div>
 
-    <!-- MAIN GRID -->
 
     <div class="main-grid">
 
-        <!-- LEFT SIDE -->
+        <!-- LEFT -->
 
         <div>
 
-            <!-- AUTHOR PROFILE -->
+            <!-- PROFILE -->
 
             <div class="card">
 
@@ -387,207 +285,139 @@ table td{
 
                 <div class="form-group">
                     <label>Email Address</label>
-                    <input type="email" value="ankush@gmail.com">
+                    <input type="email" id="user-email" readonly>
                 </div>
 
                 <div class="form-group">
                     <label>Institution</label>
-                    <input type="text" value="IIT Patna">
-                </div>
-
-                <div class="form-group">
-                    <label>Research Domain</label>
-                    <select>
-                        <option>Artificial Intelligence</option>
-                        <option>Machine Learning</option>
-                        <option>Data Science</option>
-                    </select>
+                    <input type="text" id="user-institution" readonly>
                 </div>
 
             </div>
 
-            <!-- SUBMISSION FORM -->
+            <!-- FORM -->
 
-            <div class="card">
+            <div class="card" id="submission-form">
 
-                <h2>Submit New Research Paper</h2>
+                <h2>Submit Research Paper</h2>
 
                 <div class="form-group">
                     <label>Paper Title</label>
-                    <input type="text"
-                    placeholder="Enter Research Paper Title">
+                    <input type="text" id="paper-title">
                 </div>
 
                 <div class="form-group">
                     <label>Abstract</label>
-                    <textarea
-                    placeholder="Enter paper abstract here..."></textarea>
+                    <textarea id="paper-abstract"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label>Keywords</label>
-                    <input type="text"
-                    placeholder="AI, ML, Cloud Computing">
+                    <label>PDF Link</label>
+                    <input type="text" id="paper-link">
                 </div>
 
-                <div class="form-group">
-                    <label>Paper Category</label>
-
-                    <select>
-                        <option>Research Paper</option>
-                        <option>Review Paper</option>
-                        <option>Case Study</option>
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Upload PDF</label>
-
-                    <div class="upload-box">
-                        Drag & Drop PDF Here <br>
-                        or Click to Upload
-                    </div>
-
-                </div>
-
-                <button class="submit-btn">
+                <button class="submit-btn" id="submit-paper">
                     Submit Paper
                 </button>
 
             </div>
 
-            <!-- SUBMISSION TABLE -->
+            <!-- VIEW -->
 
-            <div class="card">
+            <div class="card" id="submission-view" style="display:none;">
 
-                <h2>My Submissions</h2>
+                <h2>My Submission</h2>
 
                 <table>
 
                     <tr>
                         <th>ID</th>
-                        <th>Paper Title</th>
+                        <th>Title</th>
                         <th>Status</th>
-                        <th>Last Updated</th>
+                        <th>Submitted</th>
+                        <th>Updated</th>
                     </tr>
 
                     <tr>
-                        <td>#P102</td>
-                        <td>AI Driven Conference System</td>
+                        <td id="sub-id"></td>
+                        <td id="sub-title"></td>
                         <td>
-                            <span class="status pending">
+                            <span class="status" id="status-text">
                                 Pending
                             </span>
                         </td>
-                        <td>08 May 2026</td>
-                    </tr>
-
-                    <tr>
-                        <td>#P099</td>
-                        <td>Cloud Based Registration</td>
-                        <td>
-                            <span class="status accepted">
-                                Accepted
-                            </span>
-                        </td>
-                        <td>04 May 2026</td>
-                    </tr>
-
-                    <tr>
-                        <td>#P087</td>
-                        <td>Smart Scheduling Algorithm</td>
-                        <td>
-                            <span class="status rejected">
-                                Rejected
-                            </span>
-                        </td>
-                        <td>01 May 2026</td>
+                        <td id="created-at"></td>
+                        <td id="updated-at"></td>
                     </tr>
 
                 </table>
+
+                <br>
+
+                <div id="edit-section" style="display:none;">
+
+                    <h3>Edit Submission</h3>
+
+                    <div class="form-group">
+                        <label>Paper Title</label>
+                        <input id="edit-title">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Abstract</label>
+                        <textarea id="edit-abstract"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>PDF Link</label>
+                        <input id="edit-link">
+                    </div>
+
+                    <button class="submit-btn" id="update-paper">
+                        Update Submission
+                    </button>
+
+                </div>
 
             </div>
 
         </div>
 
-        <!-- RIGHT SIDE -->
+        <!-- RIGHT -->
 
         <div>
 
-            <!-- DEADLINE -->
-
-            <div class="card sidebar-section">
+            <div class="card">
 
                 <h2>Conference Deadlines</h2>
 
                 <div class="deadline-box">
                     <h4>Paper Submission</h4>
-                    <p>15 May 2026</p>
+                    <p>15 May 2027</p>
                 </div>
 
                 <div class="deadline-box">
                     <h4>Acceptance Notification</h4>
-                    <p>25 May 2026</p>
-                </div>
-
-                <div class="deadline-box">
-                    <h4>Camera Ready Submission</h4>
-                    <p>30 May 2026</p>
+                    <p>25 May 2027</p>
                 </div>
 
             </div>
 
-            <!-- NOTICES -->
 
-            <div class="card sidebar-section">
+            <div class="card">
 
                 <h2>Announcements</h2>
 
                 <div class="notice">
-                    <h4>Conference Venue Updated</h4>
-                    <p>
-                        Main auditorium changed to Hall B.
-                    </p>
+                    Paper review process has started.
                 </div>
 
                 <div class="notice">
-                    <h4>Paper Format Notice</h4>
-                    <p>
-                        Use IEEE conference template for submission.
-                    </p>
+                    Use IEEE conference template.
                 </div>
 
                 <div class="notice">
-                    <h4>Review Process Started</h4>
-                    <p>
-                        Reviewers have started evaluating papers.
-                    </p>
-                </div>
-
-            </div>
-
-            <!-- QUICK LINKS -->
-
-            <div class="card sidebar-section">
-
-                <h2>Quick Links</h2>
-
-                <div class="notice">
-                    📄 Download IEEE Template
-                </div>
-
-                <div class="notice">
-                    🏨 Accommodation Details
-                </div>
-
-                <div class="notice">
-                    📍 Conference Venue
-                </div>
-
-                <div class="notice">
-                    📅 Conference Programme
+                    Camera-ready papers open soon.
                 </div>
 
             </div>
@@ -598,14 +428,12 @@ table td{
 
 </div>
 
-<!-- ================= FOOTER ================= -->
 
 <div class="footer">
 
-    © 2026 International Conference Registration System |
-    Developed for Academic Use
+    © 2027 Conference Registration System
 
 </div>
 
-</body>
-</html>
+<script type="module" src="js/dashboard.js"></script>
+<script type="module" src="js/dashboard-author.js"></script>
