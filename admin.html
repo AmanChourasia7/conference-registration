@@ -294,27 +294,47 @@
     </div>
 
 
-    <!-- ORGANIZER CREATE -->
+<!-- ORGANIZER CREATE -->
 
-    <div class="card">
+<div class="card">
 
-      <h2>Create Organizer</h2>
+  <h2>Create Organizer</h2>
 
-      <input
-        type="text"
-        id="organizer-email"
-        placeholder="User email"
-      >
+  <input
+    type="text"
+    id="org-name"
+    placeholder="Full Name"
+  >
 
-      <div class="actions">
+  <input
+    type="email"
+    id="org-email"
+    placeholder="Email"
+  >
 
-        <button id="make-organizer-btn">
-          Make Organizer
-        </button>
+  <input
+    type="password"
+    id="org-password"
+    placeholder="Password"
+  >
 
-      </div>
+  <input
+    type="text"
+    id="org-institution"
+    placeholder="Affiliation"
+  >
 
-    </div>
+  <input
+    type="text"
+    id="org-country"
+    placeholder="Citizenship"
+  >
+
+  <button id="create-organizer-btn">
+    Create Organizer
+  </button>
+
+</div>
 
 
     <!-- USERS -->
@@ -435,6 +455,32 @@
 
   </div>
 
+<!-- SCAN HISTORY -->
+
+<div class="card">
+
+  <h2>QR Scan History</h2>
+
+  <table>
+
+    <thead>
+
+      <tr>
+
+        <th>Name</th>
+        <th>Email</th>
+        <th>Entry ID</th>
+        <th>Scanned At</th>
+
+      </tr>
+
+    </thead>
+
+    <tbody id="scan-history-table"></tbody>
+
+  </table>
+
+</div>
 
   <!-- QR LIBRARY -->
 
