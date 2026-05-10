@@ -225,6 +225,19 @@ async function loadStats() {
 
 // ================= CREATE ORGANIZER =================
 
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+
+const secondaryApp = initializeApp(
+  app.options,
+  "Secondary"
+);
+
+const secondaryAuth =
+  getAuth(secondaryApp);
+
+
 document.getElementById("create-organizer-btn")
 .addEventListener("click", async () => {
 
@@ -257,9 +270,10 @@ document.getElementById("create-organizer-btn")
 
     }
 
+    // CREATE ORGANIZER USER
     const userCredential =
       await createUserWithEmailAndPassword(
-        auth,
+        secondaryAuth,
         email,
         password
       );
@@ -267,6 +281,7 @@ document.getElementById("create-organizer-btn")
     const user =
       userCredential.user;
 
+    // SAVE USER DATA
     await setDoc(
       doc(db, "users", user.uid),
       {
@@ -286,9 +301,20 @@ document.getElementById("create-organizer-btn")
       }
     );
 
-    alert("Organizer created");
+    alert("Organizer created successfully");
 
-    location.reload();
+    // CLEAR FORM
+    document.getElementById("org-name").value = "";
+    document.getElementById("org-email").value = "";
+    document.getElementById("org-password").value = "";
+    document.getElementById("org-institution").value = "";
+    document.getElementById("org-country").value = "";
+
+    // RELOAD USERS TABLE
+    document.getElementById("load-users-btn").click();
+
+    // REFRESH STATS
+    loadStats();
 
   }
   catch(err) {
@@ -300,7 +326,6 @@ document.getElementById("create-organizer-btn")
   }
 
 });
-
 
 // ================= USERS =================
 
