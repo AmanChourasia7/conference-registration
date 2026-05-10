@@ -28,7 +28,7 @@ let currentTalkData = null;
 let currentTalkId = null;
 
 
-// AUTH
+// ================= AUTH =================
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -43,449 +43,723 @@ onAuthStateChanged(auth, async (user) => {
 
   currentUser = user;
 
-  // USER
-  const userSnap =
-    await getDoc(
-      doc(db, "users", user.uid)
+  try {
+
+    // USER DATA
+    const userSnap =
+      await getDoc(
+        doc(db, "users", user.uid)
+      );
+
+    if (userSnap.exists()) {
+
+      currentUserData =
+        userSnap.data();
+
+      const greeting =
+        document.getElementById("greeting");
+
+      if (greeting) {
+
+        greeting.innerText =
+          "Hi, " + (currentUserData.name || "User");
+
+      }
+
+      const userName =
+        document.getElementById("user-name");
+
+      if (userName) {
+
+        userName.value =
+          currentUserData.name || "";
+
+      }
+
+      const userEmail =
+        document.getElementById("user-email");
+
+      if (userEmail) {
+
+        userEmail.value =
+          currentUserData.email || "";
+
+      }
+
+      const institution =
+        document.getElementById("user-institution");
+
+      if (institution) {
+
+        institution.value =
+          currentUserData.institution || "";
+
+      }
+
+    }
+
+    // TALK
+    const q = query(
+      collection(db, "speaker_talks"),
+      where("uid", "==", user.uid)
     );
 
-  if (userSnap.exists()) {
+    const snapshot =
+      await getDocs(q);
 
-    currentUserData =
-      userSnap.data();
+    if (!snapshot.empty) {
 
-    document.getElementById("greeting").innerText =
-      "Hi, " + currentUserData.name;
+      const docItem =
+        snapshot.docs[0];
 
-    document.getElementById("user-name").value =
-      currentUserData.name || "";
+      currentTalkData =
+        docItem.data();
 
-    document.getElementById("user-email").value =
-      currentUserData.email || "";
+      currentTalkId =
+        docItem.id;
 
-    document.getElementById("user-institution").value =
-      currentUserData.institution || "";
+      showTalk(
+        docItem.id,
+        docItem.data()
+      );
+
+    }
+
+    // PASS
+    const passSnap =
+      await getDoc(
+        doc(db, "gatepasses", user.uid)
+      );
+
+    if (passSnap.exists()) {
+
+      loadPass(
+        passSnap.data()
+      );
+
+    }
 
   }
+  catch(err) {
 
-  // LOAD TALK
-  const q = query(
-    collection(db, "speaker_talks"),
-    where("uid", "==", user.uid)
-  );
-
-  const snapshot =
-    await getDocs(q);
-
-  if (!snapshot.empty) {
-
-    const docItem =
-      snapshot.docs[0];
-
-    currentTalkData =
-      docItem.data();
-
-    currentTalkId =
-      docItem.id;
-
-    showTalk(
-      docItem.id,
-      docItem.data()
-    );
-
-  }
-
-  // LOAD PASS
-  const passSnap =
-    await getDoc(
-      doc(db, "gatepasses", user.uid)
-    );
-
-  if (passSnap.exists()) {
-
-    loadPass(
-      passSnap.data()
-    );
+    console.error(err);
 
   }
 
 });
 
 
-// LOGOUT
+// ================= LOGOUT =================
 
-document.getElementById("logout-btn")
-.addEventListener("click", async () => {
+const logoutBtn =
+  document.getElementById("logout-btn");
 
-  await signOut(auth);
+if (logoutBtn) {
 
-  window.location.href =
-    "login.html";
+  logoutBtn.addEventListener("click", async () => {
 
-});
+    await signOut(auth);
 
+    window.location.href =
+      "login.html";
 
-// MODAL
-
-function showModal() {
-
-  document.getElementById("modal-overlay").style.display =
-    "flex";
+  });
 
 }
 
-document.getElementById("close-modal")
-.addEventListener("click", () => {
 
-  document.getElementById("modal-overlay").style.display =
-    "none";
+// ================= MODAL =================
 
-});
+function showModal() {
 
+  const modal =
+    document.getElementById("modal-overlay");
 
-// SUBMIT TALK
+  if (modal) {
 
-document.getElementById("submit-talk")
-.addEventListener("click", async () => {
-
-  const title =
-    document.getElementById("talk-title").value;
-
-  const abstract =
-    document.getElementById("talk-abstract").value;
-
-  const ppt =
-    document.getElementById("ppt-link").value;
-
-  const date =
-    document.getElementById("talk-date").value;
-
-  const slot =
-    document.getElementById("talk-slot").value;
-
-  if (!title || !abstract || !ppt || !date || !slot) {
-
-    alert("Fill all fields");
-
-    return;
+    modal.style.display =
+      "flex";
 
   }
 
-  const talkData = {
+}
 
-    uid: currentUser.uid,
+const closeModal =
+  document.getElementById("close-modal");
 
-    title: title,
+if (closeModal) {
 
-    abstract: abstract,
+  closeModal.addEventListener("click", () => {
 
-    pptLink: ppt,
+    const modal =
+      document.getElementById("modal-overlay");
 
-    date: date,
+    if (modal) {
 
-    slot: slot,
-
-    status: "pending",
-
-    createdAt: new Date(),
-
-    updatedAt: new Date()
-
-  };
-
-  const docRef =
-    await addDoc(
-      collection(db, "speaker_talks"),
-      talkData
-    );
-
-  currentTalkData =
-    talkData;
-
-  currentTalkId =
-    docRef.id;
-
-  showTalk(
-    docRef.id,
-    talkData
-  );
-
-  alert("Talk submitted");
-
-});
-
-
-// UPDATE TALK
-
-document.getElementById("update-talk")
-.addEventListener("click", async () => {
-
-  if (!currentTalkId) return;
-
-  const title =
-    document.getElementById("edit-talk-title").value;
-
-  const abstract =
-    document.getElementById("edit-talk-abstract").value;
-
-  const ppt =
-    document.getElementById("edit-ppt-link").value;
-
-  const date =
-    document.getElementById("edit-talk-date").value;
-
-  const slot =
-    document.getElementById("edit-talk-slot").value;
-
-  await updateDoc(
-    doc(db, "speaker_talks", currentTalkId),
-    {
-
-      title: title,
-
-      abstract: abstract,
-
-      pptLink: ppt,
-
-      date: date,
-
-      slot: slot,
-
-      updatedAt: new Date()
+      modal.style.display =
+        "none";
 
     }
-  );
 
-  alert("Talk updated");
+  });
 
-  location.reload();
-
-});
+}
 
 
-// SHOW TALK
+// ================= SUBMIT TALK =================
+
+const submitTalkBtn =
+  document.getElementById("submit-talk");
+
+if (submitTalkBtn) {
+
+  submitTalkBtn.addEventListener("click", async () => {
+
+    try {
+
+      const title =
+        document.getElementById("talk-title").value;
+
+      const abstract =
+        document.getElementById("talk-abstract").value;
+
+      const ppt =
+        document.getElementById("ppt-link").value;
+
+      const date =
+        document.getElementById("talk-date").value;
+
+      const slot =
+        document.getElementById("talk-slot").value;
+
+      if (!title || !abstract || !ppt || !date || !slot) {
+
+        alert("Fill all fields");
+
+        return;
+
+      }
+
+      const talkData = {
+
+        uid: currentUser.uid,
+
+        title: title,
+
+        abstract: abstract,
+
+        pptLink: ppt,
+
+        date: date,
+
+        slot: slot,
+
+        status: "pending",
+
+        createdAt: new Date(),
+
+        updatedAt: new Date()
+
+      };
+
+      const docRef =
+        await addDoc(
+          collection(db, "speaker_talks"),
+          talkData
+        );
+
+      currentTalkData =
+        talkData;
+
+      currentTalkId =
+        docRef.id;
+
+      showTalk(
+        docRef.id,
+        talkData
+      );
+
+      alert("Talk submitted");
+
+    }
+    catch(err) {
+
+      console.error(err);
+
+      alert("Submission failed");
+
+    }
+
+  });
+
+}
+
+
+// ================= UPDATE TALK =================
+
+const updateTalkBtn =
+  document.getElementById("update-talk");
+
+if (updateTalkBtn) {
+
+  updateTalkBtn.addEventListener("click", async () => {
+
+    try {
+
+      if (!currentTalkId) return;
+
+      const title =
+        document.getElementById("edit-talk-title").value;
+
+      const abstract =
+        document.getElementById("edit-talk-abstract").value;
+
+      const ppt =
+        document.getElementById("edit-ppt-link").value;
+
+      const date =
+        document.getElementById("edit-talk-date").value;
+
+      const slot =
+        document.getElementById("edit-talk-slot").value;
+
+      await updateDoc(
+        doc(db, "speaker_talks", currentTalkId),
+        {
+
+          title: title,
+
+          abstract: abstract,
+
+          pptLink: ppt,
+
+          date: date,
+
+          slot: slot,
+
+          updatedAt: new Date()
+
+        }
+      );
+
+      alert("Talk updated");
+
+      location.reload();
+
+    }
+    catch(err) {
+
+      console.error(err);
+
+      alert("Update failed");
+
+    }
+
+  });
+
+}
+
+
+// ================= SHOW TALK =================
 
 function showTalk(id, data) {
 
-  document.getElementById("talk-form").style.display =
-    "none";
+  const form =
+    document.getElementById("talk-form");
 
-  document.getElementById("talk-view").style.display =
-    "block";
+  const view =
+    document.getElementById("talk-view");
 
-  document.getElementById("talk-id").innerText =
-    id;
+  if (form) {
 
-  document.getElementById("talk-title-view").innerText =
-    data.title;
+    form.style.display =
+      "none";
 
-  document.getElementById("talk-date-view").innerText =
-    data.date;
+  }
 
-  document.getElementById("talk-slot-view").innerText =
-    data.slot;
+  if (view) {
+
+    view.style.display =
+      "block";
+
+  }
+
+  const talkId =
+    document.getElementById("talk-id");
+
+  if (talkId) {
+
+    talkId.innerText =
+      id;
+
+  }
+
+  const talkTitle =
+    document.getElementById("talk-title-view");
+
+  if (talkTitle) {
+
+    talkTitle.innerText =
+      data.title;
+
+  }
+
+  const talkDate =
+    document.getElementById("talk-date-view");
+
+  if (talkDate) {
+
+    talkDate.innerText =
+      data.date;
+
+  }
+
+  const talkSlot =
+    document.getElementById("talk-slot-view");
+
+  if (talkSlot) {
+
+    talkSlot.innerText =
+      data.slot;
+
+  }
 
   const statusEl =
     document.getElementById("talk-status");
 
-  statusEl.innerText =
-    data.status;
+  if (statusEl) {
 
-  statusEl.classList.remove(
-    "pending",
-    "accepted",
-    "rejected"
-  );
+    statusEl.innerText =
+      data.status;
 
-  statusEl.classList.add(
-    data.status
-  );
+    statusEl.classList.remove(
+      "pending",
+      "accepted",
+      "rejected"
+    );
 
-  // PASS DETAILS
-  document.getElementById("pass-talk-title").innerText =
-    data.title;
+    statusEl.classList.add(
+      data.status
+    );
 
-  document.getElementById("pass-talk-status").innerText =
-    data.status.toUpperCase();
+  }
 
-  document.getElementById("pass-talk-date").innerText =
-    data.date;
+  // PASS DATA
 
-  document.getElementById("pass-talk-slot").innerText =
-    data.slot;
+  const passTitle =
+    document.getElementById("pass-talk-title");
 
-  // EDIT
+  if (passTitle) {
+
+    passTitle.innerText =
+      data.title;
+
+  }
+
+  const passStatus =
+    document.getElementById("pass-talk-status");
+
+  if (passStatus) {
+
+    passStatus.innerText =
+      data.status.toUpperCase();
+
+  }
+
+  const passDate =
+    document.getElementById("pass-talk-date");
+
+  if (passDate) {
+
+    passDate.innerText =
+      data.date;
+
+  }
+
+  const passSlot =
+    document.getElementById("pass-talk-slot");
+
+  if (passSlot) {
+
+    passSlot.innerText =
+      data.slot;
+
+  }
+
+  // EDIT SECTION
+
   if (data.status === "pending") {
 
-    document.getElementById("edit-section").style.display =
-      "block";
+    const editSection =
+      document.getElementById("edit-section");
 
-    document.getElementById("edit-talk-title").value =
-      data.title || "";
+    if (editSection) {
 
-    document.getElementById("edit-talk-abstract").value =
-      data.abstract || "";
+      editSection.style.display =
+        "block";
 
-    document.getElementById("edit-ppt-link").value =
-      data.pptLink || "";
+    }
 
-    document.getElementById("edit-talk-date").value =
-      data.date || "";
+    const editTitle =
+      document.getElementById("edit-talk-title");
 
-    document.getElementById("edit-talk-slot").value =
-      data.slot || "";
+    if (editTitle) {
+
+      editTitle.value =
+        data.title || "";
+
+    }
+
+    const editAbstract =
+      document.getElementById("edit-talk-abstract");
+
+    if (editAbstract) {
+
+      editAbstract.value =
+        data.abstract || "";
+
+    }
+
+    const editPpt =
+      document.getElementById("edit-ppt-link");
+
+    if (editPpt) {
+
+      editPpt.value =
+        data.pptLink || "";
+
+    }
+
+    const editDate =
+      document.getElementById("edit-talk-date");
+
+    if (editDate) {
+
+      editDate.value =
+        data.date || "";
+
+    }
+
+    const editSlot =
+      document.getElementById("edit-talk-slot");
+
+    if (editSlot) {
+
+      editSlot.value =
+        data.slot || "";
+
+    }
 
   }
 
 }
 
 
-// GENERATE PASS
+// ================= GENERATE PASS =================
 
-document.getElementById("generate-pass")
-.addEventListener("click", async () => {
+const generateBtn =
+  document.getElementById("generate-pass");
 
-  if (!currentTalkData) {
+if (generateBtn) {
 
-    showModal();
+  generateBtn.addEventListener("click", async () => {
 
-    return;
+    try {
 
-  }
+      if (!currentTalkData) {
 
-  const entryId =
-    "SPK-" +
-    Math.random()
-    .toString(36)
-    .substring(2,10)
-    .toUpperCase();
+        showModal();
 
-  const qrData =
-    JSON.stringify({
+        return;
 
-      name:
-        currentUserData?.name || "",
+      }
 
-      email:
-        currentUserData?.email || "",
+      const entryId =
+        "SPK-" +
+        Math.random()
+        .toString(36)
+        .substring(2,10)
+        .toUpperCase();
 
-      institution:
-        currentUserData?.institution || "",
+      const qrData =
+        JSON.stringify({
 
-      role:
-        "speaker",
+          name:
+            currentUserData?.name || "",
 
-      talk:
-        currentTalkData?.title || "",
+          email:
+            currentUserData?.email || "",
 
-      status:
-        currentTalkData?.status || "",
+          institution:
+            currentUserData?.institution || "",
 
-      entryId:
-        entryId
+          role:
+            "speaker",
 
-    });
+          talk:
+            currentTalkData?.title || "",
 
-  await setDoc(
-    doc(db, "gatepasses", currentUser.uid),
-    {
+          status:
+            currentTalkData?.status || "",
 
-      entryId: entryId,
+          entryId:
+            entryId
 
-      qrData: qrData,
+        });
 
-      createdAt: new Date()
+      await setDoc(
+        doc(db, "gatepasses", currentUser.uid),
+        {
+
+          entryId: entryId,
+
+          qrData: qrData,
+
+          createdAt: new Date()
+
+        }
+      );
+
+      loadPass({
+
+        entryId,
+
+        qrData
+
+      });
 
     }
-  );
+    catch(err) {
 
-  loadPass({
+      console.error(err);
 
-    entryId,
+      alert("Gate pass generation failed");
 
-    qrData
+    }
 
   });
 
-});
+}
 
 
-// LOAD PASS
+// ================= LOAD PASS =================
 
 function loadPass(data) {
 
-  document.getElementById("gatepass-section").style.display =
-    "block";
+  const section =
+    document.getElementById("gatepass-section");
 
-  document.getElementById("generate-pass").style.display =
-    "none";
+  if (section) {
 
-  document.getElementById("entry-id").innerText =
-    data.entryId;
+    section.style.display =
+      "block";
+
+  }
+
+  const btn =
+    document.getElementById("generate-pass");
+
+  if (btn) {
+
+    btn.style.display =
+      "none";
+
+  }
+
+  const entry =
+    document.getElementById("entry-id");
+
+  if (entry) {
+
+    entry.innerText =
+      data.entryId;
+
+  }
 
   const qrContainer =
     document.getElementById("qrcode");
 
-  qrContainer.innerHTML =
-    "";
+  if (qrContainer) {
 
-  const img =
-    document.createElement("img");
+    qrContainer.innerHTML =
+      "";
 
-  img.crossOrigin =
-    "anonymous";
+    const img =
+      document.createElement("img");
 
-  img.src =
-    "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
-    encodeURIComponent(data.qrData);
+    img.crossOrigin =
+      "anonymous";
 
-  qrContainer.appendChild(img);
+    img.src =
+      "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+      encodeURIComponent(data.qrData);
+
+    qrContainer.appendChild(img);
+
+  }
 
 }
 
 
-// PDF
+// ================= PDF =================
 
-document.getElementById("download-pass")
-.addEventListener("click", async () => {
+const downloadBtn =
+  document.getElementById("download-pass");
 
-  const pass =
-    document.getElementById("pass-card");
+if (downloadBtn) {
 
-  const canvas =
-    await html2canvas(pass, {
+  downloadBtn.addEventListener("click", async () => {
 
-      useCORS: true,
-      scale: 2
+    try {
 
-    });
+      const pass =
+        document.getElementById("pass-card");
 
-  const imgData =
-    canvas.toDataURL("image/png");
+      const canvas =
+        await html2canvas(pass, {
 
-  const { jsPDF } =
-    window.jspdf;
+          useCORS: true,
+          scale: 2
 
-  const pdf =
-    new jsPDF({
+        });
 
-      orientation: "portrait",
-      unit: "pt",
-      format: "letter"
+      const imgData =
+        canvas.toDataURL("image/png");
 
-    });
+      const { jsPDF } =
+        window.jspdf;
 
-  pdf.addImage(
-    imgData,
-    "PNG",
-    26,
-    20,
-    560,
-    720
-  );
+      const pdf =
+        new jsPDF({
 
-  pdf.save(
-    "OML2027_SpeakerPass.pdf"
-  );
+          orientation: "portrait",
+          unit: "pt",
+          format: "letter"
 
-});
+        });
+
+      pdf.addImage(
+        imgData,
+        "PNG",
+        26,
+        20,
+        560,
+        720
+      );
+
+      pdf.save(
+        "OML2027_SpeakerPass.pdf"
+      );
+
+    }
+    catch(err) {
+
+      console.error(err);
+
+      alert("PDF generation failed");
+
+    }
+
+  });
+
+}
