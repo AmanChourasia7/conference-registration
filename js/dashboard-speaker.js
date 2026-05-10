@@ -31,14 +31,20 @@ let currentTalkData = null;
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
+
     window.location.href = "login.html";
+
     return;
+
   }
 
   currentUser = user;
 
+  // USER
   const userSnap =
-    await getDoc(doc(db, "users", user.uid));
+    await getDoc(
+      doc(db, "users", user.uid)
+    );
 
   if (userSnap.exists()) {
 
@@ -59,7 +65,7 @@ onAuthStateChanged(auth, async (user) => {
 
   }
 
-  // LOAD TALK
+  // TALK
   const q = query(
     collection(db, "speaker_talks"),
     where("uid", "==", user.uid)
@@ -83,7 +89,7 @@ onAuthStateChanged(auth, async (user) => {
 
   }
 
-  // LOAD PASS
+  // PASS
   const passSnap =
     await getDoc(
       doc(db, "gatepasses", user.uid)
@@ -109,6 +115,24 @@ document.getElementById("logout-btn")
 
   window.location.href =
     "login.html";
+
+});
+
+
+// MODAL
+
+function showModal() {
+
+  document.getElementById("modal-overlay").style.display =
+    "flex";
+
+}
+
+document.getElementById("close-modal")
+.addEventListener("click", () => {
+
+  document.getElementById("modal-overlay").style.display =
+    "none";
 
 });
 
@@ -208,11 +232,17 @@ function showTalk(id, data) {
   statusEl.innerText =
     data.status;
 
+  statusEl.classList.remove(
+    "pending",
+    "accepted",
+    "rejected"
+  );
+
   statusEl.classList.add(
     data.status
   );
 
-  // PASS
+  // PASS DETAILS
   document.getElementById("pass-talk-title").innerText =
     data.title;
 
@@ -228,10 +258,19 @@ function showTalk(id, data) {
 }
 
 
-// GENERATE PASS
+// PASS
 
 document.getElementById("generate-pass")
 .addEventListener("click", async () => {
+
+  // NO TALK SUBMITTED
+  if (!currentTalkData) {
+
+    showModal();
+
+    return;
+
+  }
 
   const entryId =
     "SPK-" +
@@ -257,6 +296,9 @@ document.getElementById("generate-pass")
 
       talk:
         currentTalkData?.title || "",
+
+      status:
+        currentTalkData?.status || "",
 
       entryId:
         entryId
