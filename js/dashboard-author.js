@@ -245,3 +245,205 @@ function showSubmission(id, data) {
   }
 
 }
+
+
+// ================= GATE PASS =================
+
+let currentUser = null;
+
+
+// SAVE USER
+onAuthStateChanged(auth, async (user) => {
+
+  if (!user) return;
+
+  currentUser = user;
+
+  // CHECK EXISTING PASS
+  const passRef =
+    doc(db, "gatepasses", user.uid);
+
+  const passSnap =
+    await getDoc(passRef);
+
+  if (passSnap.exists()) {
+
+    loadPass(passSnap.data());
+
+  }
+
+});
+
+
+// GENERATE PASS
+
+const generateBtn =
+  document.getElementById("generate-pass");
+
+if (generateBtn) {
+
+  generateBtn.addEventListener("click", async () => {
+
+    try {
+
+      const entryId =
+        "OML-" +
+        Math.random()
+        .toString(36)
+        .substring(2,10)
+        .toUpperCase();
+
+      const qrData = JSON.stringify({
+
+        name: currentUserData?.name || "",
+
+        email: currentUserData?.email || "",
+
+        institution: currentUserData?.institution || "",
+
+        role: "author",
+
+        entryId: entryId
+
+      });
+
+      await setDoc(
+        doc(db, "gatepasses", currentUser.uid),
+        {
+          entryId: entryId,
+          qrData: qrData,
+          createdAt: new Date()
+        }
+      );
+
+      loadPass({
+        entryId,
+        qrData
+      });
+
+    }
+    catch(err) {
+
+      console.error(err);
+
+      alert("Failed to generate pass");
+
+    }
+
+  });
+
+}
+
+
+// LOAD PASS
+
+function loadPass(data) {
+
+  document.getElementById("gatepass-section").style.display =
+    "block";
+
+  const btn =
+    document.getElementById("generate-pass");
+
+  if (btn) {
+    btn.style.display = "none";
+  }
+
+  document.getElementById("entry-id").innerText =
+    data.entryId;
+
+  const qrContainer =
+    document.getElementById("qrcode");
+
+  qrContainer.innerHTML = "";
+
+  const qrImage =
+    document.createElement("img");
+
+  qrImage.crossOrigin = "anonymous";
+
+  qrImage.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" +
+    encodeURIComponent(data.qrData);
+
+  qrContainer.appendChild(qrImage);
+
+}
+
+
+// DOWNLOAD PDF
+
+document.getElementById("download-pass").addEventListener("click", async () => {
+
+  try {
+
+    const pass =
+      document.getElementById("pass-card");
+
+    const qrImg =
+      document.querySelector("#qrcode img");
+
+    if (qrImg && !qrImg.complete) {
+
+      await new Promise((resolve) => {
+
+        qrImg.onload = resolve;
+
+      });
+
+    }
+
+    const canvas =
+      await html2canvas(pass, {
+
+        useCORS: true,
+        scale: 2
+
+      });
+
+    const imgData =
+      canvas.toDataURL("image/png");
+
+    const { jsPDF } =
+      window.jspdf;
+
+    const pdf =
+      new jsPDF({
+
+        orientation: "portrait",
+
+        unit: "pt",
+
+        format: "letter"
+
+      });
+
+    const imgWidth = 560;
+
+    const ratio =
+      canvas.height / canvas.width;
+
+    const imgHeight =
+      imgWidth * ratio;
+
+    pdf.addImage(
+      imgData,
+      "PNG",
+      26,
+      20,
+      imgWidth,
+      imgHeight
+    );
+
+    pdf.save("OML2027_Author_Pass.pdf");
+
+  }
+  catch(err) {
+
+    console.error(err);
+
+    alert("PDF generation failed");
+
+  }
+
+});
