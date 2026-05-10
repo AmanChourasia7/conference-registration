@@ -139,9 +139,14 @@ td{
     color:#856404;
 }
 
-.confirmed{
+.accepted{
     background:#d1e7dd;
     color:#0f5132;
+}
+
+.rejected{
+    background:#f8d7da;
+    color:#842029;
 }
 
 .pass-card{
@@ -178,6 +183,38 @@ td{
 #qrcode img{
     width:180px;
     height:180px;
+}
+
+.modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.4);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.modal-box{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    width:420px;
+    text-align:center;
+}
+
+.modal-box h3{
+    margin-bottom:14px;
+}
+
+.modal-box button{
+    margin-top:20px;
+    padding:12px 18px;
+    border:none;
+    border-radius:6px;
+    background:#0d1b2a;
+    color:white;
+    cursor:pointer;
 }
 
 @media screen and (max-width:900px){
@@ -254,8 +291,6 @@ td{
 
 
 <div class="dashboard">
-
-    <!-- USER INFO -->
 
     <div class="card">
 
@@ -345,7 +380,7 @@ td{
     </div>
 
 
-    <!-- TALK SUBMISSION -->
+    <!-- TALK FORM -->
 
     <div class="card" id="talk-form">
 
@@ -367,33 +402,17 @@ td{
         </div>
 
         <div class="form-group">
-            <label>Select Talk Date</label>
+            <label>Talk Date</label>
 
             <select id="talk-date">
 
-                <option value="">
-                    Select Date
-                </option>
+                <option value="">Select Date</option>
 
-                <option value="8 January 2027">
-                    8 January 2027
-                </option>
-
-                <option value="9 January 2027">
-                    9 January 2027
-                </option>
-
-                <option value="10 January 2027">
-                    10 January 2027
-                </option>
-
-                <option value="11 January 2027">
-                    11 January 2027
-                </option>
-
-                <option value="12 January 2027">
-                    12 January 2027
-                </option>
+                <option>8 January 2027</option>
+                <option>9 January 2027</option>
+                <option>10 January 2027</option>
+                <option>11 January 2027</option>
+                <option>12 January 2027</option>
 
             </select>
 
@@ -401,33 +420,17 @@ td{
 
         <div class="form-group">
 
-            <label>Select Available Slot</label>
+            <label>Available Slot</label>
 
             <select id="talk-slot">
 
-                <option value="">
-                    Select Slot
-                </option>
+                <option value="">Select Slot</option>
 
-                <option>
-                    09:00 AM to 10:00 AM
-                </option>
-
-                <option>
-                    10:30 AM to 11:30 AM
-                </option>
-
-                <option>
-                    12:00 PM to 01:00 PM
-                </option>
-
-                <option>
-                    02:00 PM to 03:00 PM
-                </option>
-
-                <option>
-                    03:30 PM to 04:30 PM
-                </option>
+                <option>09:00 AM to 10:00 AM</option>
+                <option>10:30 AM to 11:30 AM</option>
+                <option>12:00 PM to 01:00 PM</option>
+                <option>02:00 PM to 03:00 PM</option>
+                <option>03:30 PM to 04:30 PM</option>
 
             </select>
 
@@ -475,6 +478,27 @@ td{
             </tr>
 
         </table>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal-overlay" id="modal-overlay">
+
+    <div class="modal-box">
+
+        <h3>Submission Required</h3>
+
+        <p>
+            Kindly submit your talk details before generating a gate pass.
+        </p>
+
+        <button id="close-modal">
+            Close
+        </button>
 
     </div>
 
