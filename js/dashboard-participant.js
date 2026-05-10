@@ -53,6 +53,8 @@ onAuthStateChanged(auth, async (user) => {
 
     }
 
+    loadPassHistory();
+
   }
   catch(err) {
     console.error(err);
@@ -78,7 +80,6 @@ if (logoutBtn) {
 }
 
 
-
 // GENERATE PASS
 
 const generateBtn =
@@ -93,16 +94,44 @@ if (generateBtn) {
       document.getElementById("gatepass-section").style.display =
         "block";
 
-      // UNIQUE ENTRY ID
-      const entryId =
-        "OML-" +
-        Math.random()
-        .toString(36)
-        .substring(2,10)
+      const selectedDay =
+        document.getElementById("pass-day").value;
+
+      // ONE PASS PER DAY
+      const safeEmail =
+        currentUserData.email
+        .replace(/[^a-zA-Z0-9]/g, "")
+        .substring(0,6)
         .toUpperCase();
 
+      const safeDay =
+        selectedDay
+        .replace(/\s/g, "")
+        .substring(0,5)
+        .toUpperCase();
+
+      const entryId =
+        "OML-" + safeEmail + "-" + safeDay;
+
+      // GENERATED TIME
+      const now =
+        new Date();
+
+      const generatedTime =
+        now.toLocaleString();
+
+      // PASS DATA
       document.getElementById("entry-id").innerText =
         entryId;
+
+      document.getElementById("pass-date").innerText =
+        selectedDay;
+
+      document.getElementById("generated-at").innerText =
+        generatedTime;
+
+      document.getElementById("pass-validity").innerText =
+        selectedDay + " | 06:00 AM to 09:00 PM";
 
       // QR CONTENT
       const qrData = JSON.stringify({
@@ -113,7 +142,11 @@ if (generateBtn) {
 
         institution: currentUserData?.institution || "",
 
-        entryId: entryId
+        entryId: entryId,
+
+        validDate: selectedDay,
+
+        generatedAt: generatedTime
 
       });
 
@@ -123,7 +156,7 @@ if (generateBtn) {
 
       qrContainer.innerHTML = "";
 
-      // CREATE QR IMAGE
+      // QR IMAGE
       const qrImage =
         document.createElement("img");
 
@@ -137,6 +170,9 @@ if (generateBtn) {
 
       qrContainer.appendChild(qrImage);
 
+      // SAVE HISTORY
+      saveHistory(selectedDay, entryId, generatedTime);
+
     }
     catch(err) {
 
@@ -145,6 +181,64 @@ if (generateBtn) {
       alert("Failed to generate pass");
 
     }
+
+  });
+
+}
+
+
+// HISTORY
+
+function saveHistory(day, id, time) {
+
+  const history =
+    JSON.parse(localStorage.getItem("passHistory")) || [];
+
+  const exists =
+    history.find(item => item.day === day);
+
+  if (!exists) {
+
+    history.push({
+      day: day,
+      id: id,
+      time: time
+    });
+
+    localStorage.setItem(
+      "passHistory",
+      JSON.stringify(history)
+    );
+
+  }
+
+  loadPassHistory();
+
+}
+
+
+function loadPassHistory() {
+
+  const body =
+    document.getElementById("history-body");
+
+  body.innerHTML = "";
+
+  const history =
+    JSON.parse(localStorage.getItem("passHistory")) || [];
+
+  history.forEach(item => {
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${item.day}</td>
+      <td>${item.id}</td>
+      <td>${item.time}</td>
+    `;
+
+    body.appendChild(row);
 
   });
 
@@ -167,15 +261,24 @@ document.getElementById("download-pass").addEventListener("click", async () => {
   const { jsPDF } = window.jspdf;
 
   const pdf =
-    new jsPDF();
+    new jsPDF("p", "mm", "a4");
+
+  const pageWidth =
+    pdf.internal.pageSize.getWidth();
+
+  const imgWidth =
+    pageWidth - 20;
+
+  const imgHeight =
+    canvas.height * imgWidth / canvas.width;
 
   pdf.addImage(
     imgData,
     "PNG",
     10,
     10,
-    190,
-    0
+    imgWidth,
+    imgHeight
   );
 
   pdf.save("OML2027_GatePass.pdf");
