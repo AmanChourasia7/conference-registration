@@ -23,6 +23,9 @@ function toggleMenu() {
 	document.body.classList.toggle("mobile-menu-open");
 }
 
+// Expose toggleMenu to global scope for onclick handlers
+window.toggleMenu = toggleMenu;
+
 function toggle2() {
 	var ele = document.getElementById("toggleText2");
 	var text = document.getElementById("displayText2");
