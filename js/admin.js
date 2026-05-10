@@ -3,6 +3,10 @@
 import { app } from "../firebase/firebase-config.js";
 
 import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+
+import {
   getFirestore,
   doc,
   getDoc,
@@ -24,7 +28,14 @@ import {
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+const secondaryApp =
+  initializeApp(app.options, "Secondary");
+
+const secondaryAuth =
+  getAuth(secondaryApp);
+
 let qrScanner = null;
+let scanningLocked = false;
 
 
 // ================= AUTH =================
@@ -68,7 +79,6 @@ onAuthStateChanged(auth, async (user) => {
   }
 
   loadStats();
-
   loadScanHistory();
 
 });
@@ -200,7 +210,9 @@ async function loadStats() {
 
   users.forEach(docItem => {
 
-    if (docItem.data().role === "organizer") {
+    if (
+      docItem.data().role === "organizer"
+    ) {
 
       organizerCount++;
 
@@ -224,19 +236,6 @@ async function loadStats() {
 
 
 // ================= CREATE ORGANIZER =================
-
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-
-const secondaryApp = initializeApp(
-  app.options,
-  "Secondary"
-);
-
-const secondaryAuth =
-  getAuth(secondaryApp);
-
 
 document.getElementById("create-organizer-btn")
 .addEventListener("click", async () => {
@@ -270,7 +269,6 @@ document.getElementById("create-organizer-btn")
 
     }
 
-    // CREATE ORGANIZER USER
     const userCredential =
       await createUserWithEmailAndPassword(
         secondaryAuth,
@@ -281,17 +279,13 @@ document.getElementById("create-organizer-btn")
     const user =
       userCredential.user;
 
-    // SAVE USER DATA
     await setDoc(
       doc(db, "users", user.uid),
       {
 
         name: name,
-
         email: email,
-
         institution: institution,
-
         country: country,
 
         role: "organizer",
@@ -303,17 +297,14 @@ document.getElementById("create-organizer-btn")
 
     alert("Organizer created successfully");
 
-    // CLEAR FORM
     document.getElementById("org-name").value = "";
     document.getElementById("org-email").value = "";
     document.getElementById("org-password").value = "";
     document.getElementById("org-institution").value = "";
     document.getElementById("org-country").value = "";
 
-    // RELOAD USERS TABLE
     document.getElementById("load-users-btn").click();
 
-    // REFRESH STATS
     loadStats();
 
   }
@@ -326,6 +317,7 @@ document.getElementById("create-organizer-btn")
   }
 
 });
+
 
 // ================= USERS =================
 
@@ -416,10 +408,24 @@ document.getElementById("load-registrations-btn")
     row.innerHTML = `
 
       <td>${data.name || ""}</td>
+
       <td>${data.email || ""}</td>
+
       <td>${data.institution || ""}</td>
+
       <td>${data.country || ""}</td>
+
       <td>${data.category || ""}</td>
+
+      <td>
+
+        <button onclick="deleteRegistration('${docItem.id}')">
+
+          Delete
+
+        </button>
+
+      </td>
 
     `;
 
@@ -534,6 +540,37 @@ window.deleteUser = async (uid) => {
 };
 
 
+window.deleteRegistration = async (id) => {
+
+  if (!confirm("Delete registration?"))
+    return;
+
+  try {
+
+    await deleteDoc(
+      doc(db, "registrations", id)
+    );
+
+    alert("Registration deleted");
+
+    document.getElementById(
+      "load-registrations-btn"
+    ).click();
+
+    loadStats();
+
+  }
+  catch(err) {
+
+    console.error(err);
+
+    alert("Delete failed");
+
+  }
+
+};
+
+
 window.revokeGatepass = async (uid) => {
 
   if (!confirm("Revoke gatepass?"))
@@ -555,6 +592,29 @@ document.getElementById("start-scanner-btn")
 
   try {
 
+    scanningLocked = false;
+
+    document.getElementById("scan-result").innerHTML =
+      "";
+
+    if (qrScanner) {
+
+      try {
+
+        await qrScanner.stop();
+
+      }
+      catch(e){}
+
+      try {
+
+        await qrScanner.clear();
+
+      }
+      catch(e){}
+
+    }
+
     qrScanner =
       new Html5Qrcode("reader");
 
@@ -569,6 +629,11 @@ document.getElementById("start-scanner-btn")
 
       async (decodedText) => {
 
+        if (scanningLocked)
+          return;
+
+        scanningLocked = true;
+
         try {
 
           const data =
@@ -577,10 +642,10 @@ document.getElementById("start-scanner-btn")
           // STOP CAMERA
           await qrScanner.stop();
 
+          await qrScanner.clear();
+
           document.getElementById("reader").innerHTML =
             "";
-
-          alert("Scan successful");
 
           document.getElementById("scan-result").innerHTML = `
 
@@ -598,6 +663,10 @@ document.getElementById("start-scanner-btn")
             </div>
 
           `;
+
+          alert(
+            "Gatepass verified successfully"
+          );
 
           // SAVE HISTORY
           await addDoc(
@@ -627,6 +696,8 @@ document.getElementById("start-scanner-btn")
         }
         catch(err) {
 
+          console.error(err);
+
           document.getElementById("scan-result").innerHTML =
             "<div class='revoked'>Invalid QR Code</div>";
 
@@ -641,6 +712,8 @@ document.getElementById("start-scanner-btn")
 
     console.error(err);
 
+    alert("Camera start failed");
+
   }
 
 });
@@ -653,7 +726,8 @@ async function loadScanHistory() {
   const tbody =
     document.getElementById("scan-history-table");
 
-  if (!tbody) return;
+  if (!tbody)
+    return;
 
   tbody.innerHTML = "";
 
@@ -679,10 +753,12 @@ async function loadScanHistory() {
       <td>${data.entryId || ""}</td>
 
       <td>
+
         ${
           data.scannedAt?.toDate?.()
           ?.toLocaleString?.() || ""
         }
+
       </td>
 
     `;
