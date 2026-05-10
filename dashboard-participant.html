@@ -67,7 +67,8 @@ label{
     font-weight:600;
 }
 
-input{
+input,
+select{
     width:100%;
     padding:12px;
     border:1px solid #ccc;
@@ -131,6 +132,23 @@ input{
     margin-top:25px;
 }
 
+.history-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.history-table th{
+    background:#0d1b2a;
+    color:white;
+    padding:12px;
+    text-align:left;
+}
+
+.history-table td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+
 @media screen and (max-width:900px){
 
     .dashboard{
@@ -155,6 +173,12 @@ input{
 
     .pass-card{
         width:100%;
+    }
+
+    .history-table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
     }
 
 }
@@ -221,6 +245,35 @@ input{
             <input type="text" id="user-institution" readonly>
         </div>
 
+        <div class="form-group">
+            <label>Select Conference Day</label>
+
+            <select id="pass-day">
+
+                <option value="10 January 2027">
+                    10 January 2027
+                </option>
+
+                <option value="11 January 2027">
+                    11 January 2027
+                </option>
+
+                <option value="12 January 2027">
+                    12 January 2027
+                </option>
+
+                <option value="13 January 2027">
+                    13 January 2027
+                </option>
+
+                <option value="14 January 2027">
+                    14 January 2027
+                </option>
+
+            </select>
+
+        </div>
+
         <button class="generate-btn" id="generate-pass">
             Generate Gate Pass
         </button>
@@ -236,16 +289,24 @@ input{
 
             <div class="pass-header">
 
-                <h2>OML 2027 Conference Entry Pass</h2>
+                <h2>
+                    1st Conference on Optimization and Machine Learning
+                </h2>
 
             </div>
 
             <div class="pass-body">
 
-                <h1>Conference Access Pass</h1>
+                <h1>Conference Entry Pass</h1>
 
                 <p>
-                    Optimization and Machine Learning Conference 2027
+                    Tutorial: 8 - 9 January 2027, LH001,
+                    Indian Institute of Technology Patna
+                </p>
+
+                <p style="margin-top:8px;">
+                    Scientific Programme: 10 - 14 January 2027, LH004,
+                    Indian Institute of Technology Patna
                 </p>
 
                 <div class="pass-info">
@@ -256,18 +317,54 @@ input{
                     </p>
 
                     <p>
-                        <b>Date:</b>
-                        12 June 2027
+                        <b>Conference Date:</b>
+                        <span id="pass-date"></span>
                     </p>
 
                     <p>
-                        <b>Venue:</b>
-                        IIT Patna, India
+                        <b>Validity:</b>
+                        <span id="pass-validity"></span>
+                    </p>
+
+                    <p>
+                        <b>Generated At:</b>
+                        <span id="generated-at"></span>
                     </p>
 
                 </div>
 
                 <div id="qrcode"></div>
+
+                <hr style="margin:30px 0; border:none; border-top:1px solid #ccc;">
+
+                <div style="
+                    text-align:left;
+                    font-size:12px;
+                    line-height:1.7;
+                    color:#555;
+                ">
+
+                    <h3 style="margin-bottom:12px; color:#111;">
+                        Terms & Conditions
+                    </h3>
+
+                    <p>
+                        This entry pass is valid only for registered participants.
+                    </p>
+
+                    <p>
+                        QR code verification may be required at entry.
+                    </p>
+
+                    <p>
+                        Unauthorized duplication or misuse may result in cancellation.
+                    </p>
+
+                    <p>
+                        Organizers may request valid identification documents.
+                    </p>
+
+                </div>
 
             </div>
 
@@ -279,13 +376,35 @@ input{
 
     </div>
 
+
+    <!-- HISTORY -->
+
+    <div class="card">
+
+        <h2>Generated Pass History</h2>
+
+        <table class="history-table">
+
+            <thead>
+
+                <tr>
+                    <th>Conference Day</th>
+                    <th>Entry ID</th>
+                    <th>Generated At</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="history-body">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
 </div>
 
-
-<!-- QR -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-
-<!-- PDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
