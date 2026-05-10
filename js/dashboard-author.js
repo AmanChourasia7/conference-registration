@@ -544,7 +544,7 @@ if (downloadBtn) {
       );
 
       pdf.save(
-        "OML2027_Author_Pass.pdf"
+        "OML2027_AuthorPass.pdf"
       );
 
     }
