@@ -1,26 +1,368 @@
-<h2>Organizer Dashboard</h2>
+  <style>
 
-<p>Logged in as: <b id="user-email"></b></p>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
 
-<button id="logout-btn">Logout</button>
+    body{
+      background:#eef2f7;
+      color:#222;
+    }
 
-<hr>
+    .topbar{
+      background:#0d1b2a;
+      color:white;
+      padding:18px 30px;
 
-<h3>Submissions</h3>
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:15px;
+    }
 
-<button id="load-submissions">Load Submissions</button>
+    .top-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
 
-<table border="1" cellpadding="8">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Email</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody id="submissions-table"></tbody>
-</table>
+    .top-actions button{
+      padding:10px 16px;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+    }
 
-<script type="module" src="js/dashboard.js"></script>
-<script type="module" src="js/dashboard-organizer.js"></script>
+    .logout-btn{
+      background:#dc3545;
+      color:white;
+    }
+
+    .dashboard{
+      max-width:1400px;
+      margin:auto;
+      padding:30px;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px;
+      margin-bottom:25px;
+    }
+
+    .stat-card{
+      background:white;
+      border-radius:14px;
+      padding:24px;
+    }
+
+    .stat-card h3{
+      font-size:15px;
+      margin-bottom:10px;
+      color:#555;
+    }
+
+    .stat-card h1{
+      font-size:38px;
+    }
+
+    .card{
+      background:white;
+      border-radius:14px;
+      padding:25px;
+      margin-bottom:25px;
+    }
+
+    .card h2{
+      margin-bottom:20px;
+    }
+
+    button{
+      padding:12px 18px;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      background:#0d6efd;
+      color:white;
+    }
+
+    .success{
+      background:#198754;
+    }
+
+    .danger{
+      background:#dc3545;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:20px;
+    }
+
+    th{
+      background:#0d1b2a;
+      color:white;
+      padding:12px;
+      text-align:left;
+    }
+
+    td{
+      padding:12px;
+      border-bottom:1px solid #ddd;
+      font-size:14px;
+      vertical-align:top;
+    }
+
+    .table-actions{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .verified{
+      color:#198754;
+      font-weight:bold;
+      margin-top:20px;
+      font-size:18px;
+    }
+
+    .revoked{
+      color:#dc3545;
+      font-weight:bold;
+    }
+
+    #reader{
+      width:100%;
+      max-width:500px;
+      margin-top:20px;
+    }
+
+    @media screen and (max-width:900px){
+
+      .dashboard{
+        padding:16px;
+      }
+
+      .topbar{
+        padding:16px;
+      }
+
+      .table-actions,
+      .top-actions{
+        flex-direction:column;
+      }
+
+      button{
+        width:100%;
+      }
+
+      table{
+        display:block;
+        overflow:auto;
+      }
+
+    }
+
+  </style>
+
+  <div class="topbar">
+
+    <div>
+
+      <h2>Organizer Panel</h2>
+
+      <p>
+        Logged in as:
+        <b id="organizer-email"></b>
+      </p>
+
+    </div>
+
+    <div class="top-actions">
+
+      <button
+        id="logout-btn"
+        class="logout-btn"
+      >
+        Logout
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="dashboard">
+
+    <!-- STATS -->
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <h3>Total Registrations</h3>
+        <h1 id="total-registrations">0</h1>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Submissions</h3>
+        <h1 id="total-submissions">0</h1>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Gatepasses</h3>
+        <h1 id="total-gatepasses">0</h1>
+      </div>
+
+    </div>
+
+
+    <!-- SUBMISSIONS -->
+
+    <div class="card">
+
+      <h2>Paper / Talk Submissions</h2>
+
+      <button id="load-submissions-btn">
+        Load Submissions
+      </button>
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Title</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="submissions-table"></tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- REGISTRATIONS -->
+
+    <div class="card">
+
+      <h2>Registrations</h2>
+
+      <button id="load-registrations-btn">
+        Load Registrations
+      </button>
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Name</th>
+            <th>Email</th>
+            <th>Institution</th>
+            <th>Country</th>
+            <th>Category</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="registrations-table"></tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- GATEPASSES -->
+
+    <div class="card">
+
+      <h2>Gatepasses</h2>
+
+      <button id="load-gatepasses-btn">
+        Load Gatepasses
+      </button>
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>User ID</th>
+            <th>Entry ID</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="gatepasses-table"></tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- QR SCANNER -->
+
+    <div class="card">
+
+      <h2>QR Verification Scanner</h2>
+
+      <button id="start-scanner-btn">
+        Open Camera Scanner
+      </button>
+
+      <div id="reader"></div>
+
+      <div id="scan-result"></div>
+
+    </div>
+
+
+    <!-- SCAN HISTORY -->
+
+    <div class="card">
+
+      <h2>QR Scan History</h2>
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>Name</th>
+            <th>Email</th>
+            <th>Entry ID</th>
+            <th>Scanned At</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="scan-history-table"></tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <script type="module" src="js/organizer.js"></script>
